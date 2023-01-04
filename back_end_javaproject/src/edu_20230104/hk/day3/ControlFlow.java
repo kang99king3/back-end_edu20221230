@@ -51,8 +51,20 @@ public class ControlFlow {
 			}
 			
 		}
+		
+		//switch case문
+		int num=10; // 정수형과 String 타입만 비교 대상임
+		switch (num) {
+			case 1:System.out.println("1입니다"); break; //break를 쓰지 않으면 해당 코드부터 밑으로 모두 실행됨
+			case 5:System.out.println("5입니다"); break;
+			case 10:System.out.println("10입니다"); break;
+			case 15:System.out.println("15입니다"); break;
+			case 20:System.out.println("20입니다"); break;
+			default:System.out.println("해당되는 값이 없습니다.");break;
+		}
 	}
-
+	
+	
 }
 
 

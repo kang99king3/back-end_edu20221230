@@ -62,6 +62,7 @@ public class ControlFlow {
 			case 20:System.out.println("20입니다"); break;
 			default:System.out.println("해당되는 값이 없습니다.");break;
 		}
+		
 	}
 	
 	

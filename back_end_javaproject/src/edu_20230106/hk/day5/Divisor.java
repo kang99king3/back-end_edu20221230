@@ -17,11 +17,12 @@ public class Divisor {
 //		int num=scan.nextInt();//키보드로 콘솔에서 입력받은 값 구하기
 //		divisor(num);//입력받은 값을 메서드에 전달하면서 실행하기
 		
-		greateDivisor(30,50);
-		
-
+//		divisor(10);
+//		greateDivisor(30,50);
+//		lowestMultiple(30,50);
 	}
-	//약수를 구하는 메서드
+	
+	//====1.약수를 구하는 메서드===============================
 	public static void divisor(int num) {
 		//약수구하기는 프로그램 구현하기
 		for (int i = 1; i <= num; i++) {
@@ -32,7 +33,7 @@ public class Divisor {
 		System.out.println();
 	}
 	
-	//최대공약수 구하는 메서드
+	//====2.최대공약수 구하는 메서드=======================================
 	//방법: 두 수중 큰수에서 작은 수를 빼는 방식으로 마지막에 서로 같아지면 그게 최대공약수
 	public static void greateDivisor(int a, int b) {
 //		int a=15; //메서드의 파라미터로 처리하면 외부로터 값을 받을 수 있다.
@@ -67,6 +68,54 @@ public class Divisor {
 		
 	}//greateDivisor()종료
 	
+	//====3.최소공배수를 구하는 메서드===================================
+	//두 수 10 , 15   ---->  (10*15)/(10과15의 최대공약수) == 최소공배수
+	
+	//최대공약수를 구하는 메서드2
+	public static int greateDivisor2(int a, int b) {
+		int tempA=a;//a의 초기값 저장
+		int tempB=b;//b의 초기값 저장
+		while(true) {
+			//a가 b보다 클 경우
+			if(a>b) {
+				a=a-b;
+			}
+			//b가 a보다 클 경우
+			if(b>a) {
+				b=b-a;
+			}
+			//a와 b가 같을 경우
+			if(a==b) {
+				break; //while문일때는 반드시 반복문을 종료하는 코드를 작성해야 한다.
+			}
+		}//while종료
+		
+		return a; //a값(최대공약수)를 반환해준다.  
+	}
+	public static void lowestMultiple(int a, int b) {
+		int val=greateDivisor2(a, b);//최대공약수를 전달해준다.
+	//  최대공약수를 구하는 greateDivisor2(int a, int b)를 활용하기 때문에 아래 코드는 필요없음
+//		int a=2;
+//		int b=4;
+//		int tempA=a;//a의 초기값 저장
+//		int tempB=b;//b의 초기값 저장
+//		while(true) {
+//			//a가 b보다 클 경우
+//			if(a>b) {
+//				a=a-b;
+//			}
+//			//b가 a보다 클 경우
+//			if(b>a) {
+//				b=b-a;
+//			}
+//			//a와 b가 같을 경우
+//			if(a==b) {
+//				break; //while문일때는 반드시 반복문을 종료하는 코드를 작성해야 한다.
+//			}
+//		}//while종료
+		System.out.println(a+"와"+b+"의 최소공배수:"+(a*b)/val);
+		
+	}
 }
 
 

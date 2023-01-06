@@ -8,6 +8,7 @@ public class BankTest {
 		
 		//while문과 Scanner를 이용해서 키보드로부터 입력된 데이터로 예금, 출금, 조회, 종료 기능을 
 		//제공하는 코드를 작성해보세요. 이 프로그램을 실행시키면 다음과 같은 실행 결과가 나와야 합니다.
+		//추가 문제: 출금을 할때 잔액이 초과되면 초과됐다고 안내하고 다시 입력받게 하자
 		boolean run = true;
 		int balance=0;// 계좌 
 		Scanner scan=new Scanner(System.in);
@@ -29,6 +30,7 @@ public class BankTest {
 				System.out.println("예금합니다");
 			}else if(sel==2) {
 				//출금
+				//추가 문제: 출금을 할때 잔액이 초과되면 초과됐다고 안내하고 다시 입력받게 하자
 				System.out.println("출금액을 입력하세요>");
 				int a=scan.nextInt();//콘솔에 입력한 값을 받아온다
 //				balance=balance-a;

@@ -37,9 +37,7 @@ public class BankTest2 {
 						int b=scan.nextInt();//콘솔에 입력한 값을 받아온다
 						if(balance<b) { //예금액을 초과하는가??
 							//초과되는 경우 처리 코드 작성--->출금코드작성X , ??
-							System.out.println("잔액을 초과하여 출금할 수 없습니다.");
-							System.out.println("잔액:"+balance+"원입니다.");
-							System.out.println("다시 출금액을 입력하세요>");
+							printResult(balance);
 							continue;//가장 가까운 반복분으로 이동
 						}else {
 							//초과되지 않을 경우 처리 코드 작성---> 출금코드 작성
@@ -68,6 +66,13 @@ public class BankTest2 {
 		
 		System.out.println("프로그램을 종료합니다.!!");
 
+	}
+	
+	//출력하는 기능을 메서드로 따로 구현
+	public static void printResult(int balance) {
+		System.out.println("잔액을 초과하여 출금할 수 없습니다.");
+		System.out.println("잔액:"+balance+"원입니다.");
+		System.out.println("다시 출금액을 입력하세요>");
 	}
 
 	

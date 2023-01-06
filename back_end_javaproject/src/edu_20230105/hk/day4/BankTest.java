@@ -12,6 +12,7 @@ public class BankTest {
 		boolean run = true;
 		int balance=0;// 계좌 
 		Scanner scan=new Scanner(System.in);
+	    
 		while(run) {
 			System.out.println("------------------------------");
 			System.out.println("1.예금|2.출금|3.잔고|4.종료");
@@ -51,6 +52,7 @@ public class BankTest {
 			
 			// sel의 값이 2냐??
 		}
+	
 		
 		System.out.println("프로그램을 종료합니다.!!");
 

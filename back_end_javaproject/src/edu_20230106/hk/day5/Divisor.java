@@ -2,9 +2,11 @@ package edu_20230106.hk.day5;
 
 import java.util.Scanner;
 
+
 public class Divisor {
 	
 	public static void main(String[] args) {
+		
 		//약수구하기는 프로그램 구현하기
 		//12의 약수
 //		for (int i = 1; i <= 12; i++) {

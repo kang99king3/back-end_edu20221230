@@ -13,8 +13,7 @@ public class CalendarTest {
 				System.out.println(i);				
 			}
 		}
-		System.out.println();
-		
+		                  
 		System.out.println(isLeapYear(2023));
 	}
 	

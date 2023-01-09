@@ -3,7 +3,7 @@ package edu_20230106.hk.day5;
 import java.util.Scanner;
 
 public class Divisor {
-
+	
 	public static void main(String[] args) {
 		//약수구하기는 프로그램 구현하기
 		//12의 약수
@@ -114,8 +114,8 @@ public class Divisor {
 //			}
 //		}//while종료
 		System.out.println(a+"와"+b+"의 최소공배수:"+(a*b)/val);
-		
 	}
+	
 }
 
 

@@ -69,7 +69,10 @@ public class Divisor2 {
 		}
 	}
 	
-	
+	public int a(int b, int c) {return 5;}
+	public int a(int b) {return 5;}
+	public int a(byte b) {return 5;}
+	public byte a(int b,int c,int d) {return 5;}
 }
 
 

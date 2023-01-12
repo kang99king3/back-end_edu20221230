@@ -5,12 +5,16 @@ public class CalculatorCompare {
 	//은닉화(캡슐화)
 	private int result;//연산 결과값을 저장할 맴버필드
 	
+	public CalculatorCompare() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public void calculator(int num1,int num2, String cal) {
 		//분기형태
 		if(cal.equals("+")) {
 			CalculatorA cA=new CalculatorA(num1,num2);//num1,num2의 초기값을 넣어준다
 			result=cA.a();//a에서 실행된 결과를 result에 저장한다.
-			System.out.println("덧셈을 실행합니다.");
+			System.out.println(cA.num1+"와"+cA.num2+"의 덧셈을 실행합니다.");
 		}else if(cal.equals("-")) {
 			CalculatorB cB=new CalculatorB(num1,num2);
 			result=cB.a();

@@ -9,7 +9,7 @@ public class StringTestMain {
 		smt.sTest4();
 		System.out.println(smt.sTest05("한경닷컴IT교육센터"));
 		System.out.println("=========과제===================");
-		smt.search("이태원");
+		smt.search("전기차");
 	}
 
 }

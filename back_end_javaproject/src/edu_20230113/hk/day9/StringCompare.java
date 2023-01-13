@@ -1,5 +1,7 @@
 package edu_20230113.hk.day9;
 
+import java.util.StringTokenizer;
+
 import javax.print.attribute.standard.Destination;
 
 import edu_20230112.hk.day8.StringMethodTest;
@@ -38,6 +40,21 @@ public class StringCompare {
 		System.out.println(ssss+":"+sb.toString());     
 		StringMethodTest smt=new StringMethodTest();
 		System.out.println(smt.toString());
+		
+		
+		//StringTokenizer를 이용한 문자열 자르기 
+		String source="100,200,300,,400";
+		StringTokenizer st=new StringTokenizer(source,",");
+		while(st.hasMoreElements()) {
+			System.out.println(st.nextToken());
+		}
+		
+		//split메서드를 이용한 문자열 자르기
+		String source2="100,200,300,,,400";
+		String[] arry=source2.split(",");//배열로 리턴
+		for (int i = 0; i < arry.length; i++) {
+			System.out.println(arry[i]);
+		}
 	}
 }
 

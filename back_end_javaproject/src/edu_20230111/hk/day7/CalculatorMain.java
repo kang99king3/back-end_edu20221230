@@ -8,6 +8,7 @@ public class CalculatorMain {
 		calCom.calculator(20, 5, "+");
 		int result=calCom.getResult();
 		System.out.println("계산결과:"+result);
+		
 	}
 
 }

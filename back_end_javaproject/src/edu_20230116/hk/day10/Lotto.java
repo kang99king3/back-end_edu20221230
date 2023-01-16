@@ -1,5 +1,7 @@
 package edu_20230116.hk.day10;
 
+import java.util.Arrays;
+
 //Lotto객체: 로또 번호 6개를 생성해서 배열에 저장하고 있는 객체
 public class Lotto {
 	//맴버필드: 클래스에 정의하는 변수
@@ -25,11 +27,34 @@ public class Lotto {
 	}
 	
 	//1~45까지의 렌덤 숫자를 배열에 6개 담아주는 메서드
-	
+	public void makeLotto() {
+//		for(int i=0;i<lots.length;i++) {
+//			lots[i]=makeBall();
+//		}
+		int count=0;
+		while(count<lots.length) {
+			int b=makeBall();
+			if(!isSame(lots, b)) {// lots배열에 b숫자가 존재하지 않는다면 실행해라
+				lots[count++]=b;
+			}
+		}
+		System.out.println(Arrays.toString(lots));
+	}
 	
 	//1~45까지의 숫자를 렌덤하게 뽑다보면... 예를 들어 5가 생성됐는데, 그 다음에 또 5가 생성될 수 있나??
 	//---> 중복된 숫자를 제거해야 되는구나...--> 중복된 숫자를 판별할 수 있는 메서드
-	
+	//lots배열에 저장되어 있는 숫자들을 확인해서 중복되는게 있는지 판별하기:makeBall()에 의해 생성된 숫자와 비교
+	//이 메서드에 전달될 파리미터: lots배열, 랜덤숫자
+	public boolean isSame(int[] a,int b) {
+		boolean isS=false;
+		for (int i = 0; i < a.length; i++) {
+			if(a[i]==b) {//배열에 b와 같은 숫자가 존재한다면..
+				isS=true;
+				break;
+			}
+		}
+		return isS;
+	}
 }
 
 

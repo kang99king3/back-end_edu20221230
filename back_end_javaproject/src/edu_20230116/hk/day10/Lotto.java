@@ -6,14 +6,16 @@ import java.util.Arrays;
 public class Lotto {
 	//맴버필드: 클래스에 정의하는 변수
 	public int [] lots;//배열선언
-	
+
 	//생성자: 클래스의 맴버필드를 초기화한다.
 	public Lotto() {
 		lots=new int[6];
+		makeLotto();
 	}
 	//생성자 오버로딩
 	public Lotto(int n) {
 		lots=new int[n];
+		makeLotto();
 	}
 	
 	//로또1장 만든다 ---> 임의 숫자가 생성되야해..--> 1~45까지 숫자 중에...

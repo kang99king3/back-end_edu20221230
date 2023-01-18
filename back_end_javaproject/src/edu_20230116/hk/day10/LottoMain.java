@@ -2,6 +2,9 @@ package edu_20230116.hk.day10;
 
 import java.util.Arrays;
 
+import edu_20230113.hk.day9.Calculator;
+import edu_20230117.hk.day11.Calendar;
+
 public class LottoMain {
 
 	public static void main(String[] args) {
@@ -22,7 +25,10 @@ public class LottoMain {
 		//Lotto객체를 생성해서 로또6개 숫자 출력해보기
 		Lotto lo=new Lotto();
 		//LottoStore객체를 생성해서 로또5장을 출력해보기 
+	
 	}
+	
+	
 
 }
 

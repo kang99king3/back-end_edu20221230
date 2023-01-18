@@ -4,6 +4,6 @@ package edu_20230116.hk.day10;
 //주문한 만큼 로또를 생성하는 클래스를 구현했음: 로또여러장을 저장하고있는 객체를 생성
 //추첨번호를 생성해서 주문로또랑 비교하여 당첨번호와 당첨된 숫자의 개수, 등수를 출력하기
 // --->  [2,10,11,23,43,44] : 당첨번호: 2 23 , 당첨수:2개, 5등
-public class LottoCompare {
+public class LottoCompare extends Lotto{
 	
 }

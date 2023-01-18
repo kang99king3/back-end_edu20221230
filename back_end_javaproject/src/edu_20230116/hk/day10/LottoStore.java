@@ -1,6 +1,6 @@
 package edu_20230116.hk.day10;
 
-public class LottoStore {
+public class LottoStore extends Lotto{
 
 	//Lotto객체(숫자6개생성된 로또1장)들을 담을 배열 선언
 	public Lotto [] lottoObj;//Lotto객체를 저장{Lotto,Lotto,Lotto....}

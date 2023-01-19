@@ -9,8 +9,7 @@ public class Customer {
 	double bonusRatio;//적립 비율
 	
 	public Customer() {
-		customerGrade = "SILVER"; //기본등급
-		bonusRatio = 0.01; //보너스 포인 기본 적립 비율
+		initCustomer();
 		System.out.println("Customer()생성자 호출");
 	}
 	//생성자 오버로딩, 초기화할 맴버필드를 매개변수로 초기화
@@ -18,11 +17,15 @@ public class Customer {
 		super();
 		this.customerID = customerID;
 		this.customerName = customerName;
-		customerGrade = "SILVER"; //기본등급
-		bonusRatio = 0.01; //보너스 포인 기본 적립 비율
+		initCustomer();
 		System.out.println("Customer(int,String) 생성자 호출");
 	}
-
+    //모든 생성자에서 공통으로 초기화할 내용들을 따로 메서드에 정의해 놓고 호출해서 사용하자
+	private void initCustomer() {
+		customerGrade = "SILVER"; //기본등급
+		bonusRatio = 0.01; //보너스 포인 기본 적립 비율
+	}
+	
 	public int calcPrice(int price) {
 		bonusPoint += price*bonusRatio;
 		return price;

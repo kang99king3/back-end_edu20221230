@@ -9,6 +9,14 @@ public class CalculatorMain {
 		int result=calCom.getResult();
 		System.out.println("계산결과:"+result);
 		
+		Calculator cal=new Calculator() {
+			@Override
+			public int a() {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+		};
+		
 	}
 
 }

@@ -27,12 +27,12 @@ public class Child extends Parent{
 				         + ":parentMethod()");
 	}
 	
-	@Override
-	public String toString() {
-		//Object의 메서드이고, 기능: 기본타입에 경우는 값을 문자열로 반환
-		//                       참조타입에 경우는 주소@해시코드를 문자열로 반환
-		return "나는 Child객체입니다.";
-	}
+//	@Override
+//	public String toString() {
+//		//Object의 메서드이고, 기능: 기본타입에 경우는 값을 문자열로 반환
+//		//                       참조타입에 경우는 주소@해시코드를 문자열로 반환
+//		return "나는 Child객체입니다.";
+//	}
 
 }
 

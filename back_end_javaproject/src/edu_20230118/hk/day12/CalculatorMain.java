@@ -9,14 +9,19 @@ public class CalculatorMain {
 		int result=calCom.getResult();
 		System.out.println("계산결과:"+result);
 		
-		Calculator cal=new Calculator() {
-			@Override
-			public int a() {
-				// TODO Auto-generated method stub
-				return 0;
-			}
-		};
+//		Calculator cal=new Calculator();//추상클래스라 객체생성 못해
+//		cal.b();
 		
+//		Calculator cal2=new CalculatorA();
+//				   cal2.a();
+//				   cal2.b();
+				   
 	}
 
 }
+
+
+
+
+
+

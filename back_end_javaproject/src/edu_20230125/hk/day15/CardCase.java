@@ -5,7 +5,6 @@ import java.util.List;
 
 public class CardCase {
 
-	
 	private List<Card> cards;//Card객체를 여러개 담을 필통
 	
 	// 52를 구할 수 있다.(카드 총 장수)

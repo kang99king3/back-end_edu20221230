@@ -43,6 +43,27 @@ public class Card {
 	public String toString() {
 		return "["+card+"]";// java에서 문자열 합치는 방법 : " "+" "
 	}
+	
+	//equals() 오버라이딩하기
+	//card.equals(card)
+	@Override
+	public boolean equals(Object obj) {
+		boolean isS=false;
+		Card cd=(Card)obj;
+		//현재클래스의 card(맴버필드)와 비교하려는 Card객체의 card(맴버필드)를 비교한다.
+		if(this.card.equals(cd.getCard())) { 
+			isS=true;
+		}
+		return isS;
+	}
+	
+	//equals() 오버라이딩하면 hashCode()도 오버라이딩해야 된다.
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return this.card.hashCode()+137;
+	}
+	
 
 }
 

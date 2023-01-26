@@ -12,7 +12,7 @@ public class SchedulerTest {
 		
 		//java.io , java.net, java.sql
 		int ch = System.in.read();
-		
+
 		Scheduler scheduler=null; 
 		
 		if(ch=='R'|| ch=='r') {

@@ -27,7 +27,7 @@ public class LottoMain {
 		//LottoStore객체를 생성해서 로또5장을 출력해보기 
 	
 	}
-	
+
 	
 
 }

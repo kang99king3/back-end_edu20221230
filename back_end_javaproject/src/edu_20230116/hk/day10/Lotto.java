@@ -6,7 +6,6 @@ import java.util.Arrays;
 public class Lotto {
 	//맴버필드: 클래스에 정의하는 변수
 	public int [] lots;//배열선언
-
 	//생성자: 클래스의 맴버필드를 초기화한다.
 	public Lotto() {
 		lots=new int[6];

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+/* 	h1,div{background-color: red; display: inline-block;} */
+	h1, div, p, b, i {
+		border: 1px solid blue;
+	}
+	li {
+		list-style: none;
+		display: inline-block;
+	}
+	a {
+		text-decoration: none;
+	}
+	#body>div {
+		float: left;
+		width: 200px;
+		height: 200px;
+	}
+	#body {
+		overflow: auto;
+	}
+</style>
+</head> 
+<body>
+<h1>1.블럭요소:구조를 나타내는 기능, 그룹을 나타내는 기능등으로 사용</h1><br/>
+<div>- 형태를 가지고                    있다.</div>
+<h1>2.인라인요소:블럭요소에 담겨서(포함되서) 사용해야 한다.</h1>
+<h2>연예뉴스</h2>
+<p>
+	<b>형태가</b>
+	<i>없다.</i>
+</p>
+<hr/>
+<div id="container">
+	<div id="menu">
+		<ul>
+			<li><a href="#">메뉴1</a></li>
+			<li><a href="#">메뉴2</a></li>
+		</ul>
+	</div>
+	<div id="body">
+		<div>box1</div>
+		<div>box2</div>
+	</div>
+</div>
+
+</body>
+</html>
+
+
+
+
+

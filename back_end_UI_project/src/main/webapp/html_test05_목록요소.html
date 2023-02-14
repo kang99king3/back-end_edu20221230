@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>html_test05_목록요소</title>
+<style type="text/css">
+	ul{padding:0px;width:300px;}
+	li{list-style: none; margin: 0px; }
+	li>ul{display: none;}
+	span:hover{background-color: yellow;} 
+</style>
+<script type="text/javascript">
+	window.onload=function(){
+		document.getElementsByTagName("span")[0].onclick=function(){
+			document.querySelectorAll("li > ul")[0].style.display="block";
+			//document.getElementsByClassName("a")[0].style.display="block";
+		}
+	}
+</script>
+</head>
+<body>
+<h1>순차/비순차목록요소</h1>
+<ul>
+	<li><span>java</span>
+		<ul class="a">
+			<li>중첩해서 목록태그 작성 가능</li>
+			<li>변수의 사용</li>
+			<li>제어문</li>
+			<li>객체지향개념[상속,은닉화,다형성]</li>
+		</ul>
+	</li>
+	<li><span>MariaDB</span>
+		<ul>
+			<li>환경설정</li>
+			<li>DB모델링 개념</li>
+			<li>DML/DDL/DCL</li>
+			<li>테이블과 뷰/Procedure 프로그래밍</li>
+		</ul>
+	</li>
+	<li>HTML</li>
+	<li>CSS</li>
+</ul>
+<hr/>
+<ol type="i">
+	<li><span>java</span>
+		<ol type="a">
+			<li>중첩해서 목록태그 작성 가능</li>
+			<li>변수의 사용</li>
+			<li>제어문</li>
+			<li>객체지향개념[상속,은닉화,다형성]</li>
+		</ol>
+	</li>
+	<li><span>MariaDB</span>
+		<ol>
+			<li>환경설정</li>
+			<li>DB모델링 개념</li>
+			<li>DML/DDL/DCL</li>
+			<li>테이블과 뷰/Procedure 프로그래밍</li>
+		</ol>
+	</li>
+	<li>HTML</li>
+	<li>CSS</li>
+</ol>
+</body>
+</html>
+
+
+

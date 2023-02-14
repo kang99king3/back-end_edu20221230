@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>html_test06_표만들기</title>
+<style type="text/css">
+	table{width: 600px; border-collapse: collapse;}
+	td{text-align: center;}
+	th{background-color: aqua;}
+</style>
+</head>
+<body>
+<h1>1.기본 표만들기</h1>
+<table border="1">
+	<tr><th>제목</th><th>작성자</th><th>작성일</th></tr>
+	<tr><td>표를 만드는 방법</td><td>정재영</td><td>2023.02.14</td></tr>
+	<tr><td>목록을 만드는 방법</td><td>류주연</td><td>2023.02.14</td></tr>
+</table>
+<h1>2.table요소의 다양한 구성요소들</h1>
+<table border="1">
+	<caption>표의 다양한 요소</caption>
+	<col width="400px">
+	<col width="100px">
+	<col width="100px">
+	<thead>
+		<tr>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>표를 만드는 방법</td>
+			<td>정재영</td>
+			<td>2023.02.14</td>
+		</tr>
+		<tr>
+			<td>목록을 만드는 방법</td>
+			<td>류주연</td>
+			<td>2023.02.14</td>
+		</tr>
+		<tr>
+			<td>축구할때 조심하세요</td>
+			<td>고도흔</td>
+			<td>2023.02.14</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="3">자유 게시판으로 아무런 글이나 작성 가능합니다.</td>
+		</tr>
+	</tfoot>
+</table>
+<h1>3.셀 병합하기</h1>
+<table border="1">
+	<tr><td rowspan="2">a</td><td rowspan="4">2</td><td>3</td><td>4</td></tr>
+	<tr><td>3</td><td>4</td></tr>
+	<tr><td>1</td><td colspan="2">b</td></tr>
+	<tr><td>1</td><td>3</td><td>4</td></tr>
+</table>
+<h1>4.표안에 표 작성하기</h1>
+<table border="1">
+	<tr>
+		<th>title</th>
+		<th>title</th>
+		<th>title</th>
+		<th>title</th>
+	</tr>
+	<tr>
+		<td>1
+			<table border="1">
+				<tr><td>1.1</td><td>1.2</td></tr>
+				<tr><td>1.1</td><td>1.2</td></tr>
+			</table>
+		</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+	</tr>
+</table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

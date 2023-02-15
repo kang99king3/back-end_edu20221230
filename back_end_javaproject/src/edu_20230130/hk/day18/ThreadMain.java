@@ -1,5 +1,7 @@
 package edu_20230130.hk.day18;
 
+import java.util.List;
+
 public class ThreadMain {
 
 	public static void main(String[] args) {
@@ -26,6 +28,7 @@ public class ThreadMain {
 //		Thread tr=new Thread(rn);
 //		
 //		tr.start();
+		
 	}
 
 }

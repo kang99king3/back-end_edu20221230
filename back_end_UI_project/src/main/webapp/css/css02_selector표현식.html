@@ -40,6 +40,45 @@ h1 strong{color:green;}
 #container2 h1 + p {font-size: 30px;}
  
 #container2 h1 ~ p {color: red;}
+
+/* 속성 선택자 */
+span[class] {color:gray;}
+p[title='test'] {background-color: navy;}
+
+/* 가상선택자 */
+a:link{
+	color:maroon;
+}
+a:visited {
+	color:olive;	
+}
+a:active {
+	color:green;
+	font-size: 40px;
+}
+#container2 p:hover {
+	background-color: orange;	
+	width: 300px;
+	height: 300px;
+	border-radius: 10px;
+}
+
+/* 수도선택자 */
+	#container2 p:first-letter {
+		font-size: 40px;
+	}
+	#container2 p:first-line{
+		color: silver;
+	}
+	/* 어떤 요소에 자식요소이면서 그중 첫번째 요소가 p태그이면 선택*/
+    #container3 p:first-child{
+    	color: green;
+		font-weight: bold;
+	}
+	#container3 p:after {
+		content: "뒤에 가상의 요소를 넣는다";
+		color: red;
+	}
 </style>
 </head>
 <body>
@@ -79,8 +118,8 @@ h1 strong{color:green;}
 		(서울=연합뉴스) 이준서 정아란 기자 = <strong id="yun">윤석열</strong> 대통령은 15일 고물가·고금리 등으로 인한 
 		서민 경제의 고통 분담을 위해 통신·금융 업계의 동참을 촉구했다.
 	</p>
-	<p>
-		주요 공공요금에 대해선 올해 상반기 최대한 동결 기조를 유지하겠다는 방침도 내놨다.
+	<p title="test">
+		주요 <span class="aa">공공요금</span>에 대해선 올해 상반기 최대한 동결 기조를 유지하겠다는 방침도 내놨다.
 	</p>
 	<p>
 		<strong class="p">윤 대통령</strong>은 이날 오전 용산 대통령실에서 주재한 제13차 비상경제민생회의 모두발언에서 
@@ -92,7 +131,36 @@ h1 strong{color:green;}
 		어려움을 호소하고 있다"고 지적했다.
 	</p>
 	<p>
-		이어 공공·에너지 요금, 통신 비용, 금융 비용 등 '4대 민생' 분야의 지출 부담 경감을 도모하고 
+		이어 <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148911742">공공·에너지 요금</a>, 통신 비용, 금융 비용 등 '4대 민생' 분야의 지출 부담 경감을 도모하고 
+		취약계층 지원을 강화하겠다는 뜻을 밝혔다.
+	</p>
+	<p>
+		<strong class="p">윤 대통령</strong>은 "통신·금융 분야는 공공재적 성격이 강하고 과점 형태를 유지하는 정부의 특허 사업"이라며 
+		"많이 어려운 서민 가계에 큰 영향을 미치는 만큼 정부 차원의 제도개선 노력과 함께 업계도 물가안정을 
+		위한 고통 분담에 자발적으로 참여할 필요가 있다"고 밝혔다.
+	</p>
+</div>
+<div id="container3">
+	<h1 id="a"><strong>윤석열</strong> 경제 대책 마련을 위한 발표 ....</h1>
+	<h1><span><strong>윤석열</strong></span> 경제 대책 마련을 위한 발표 ....</h1>
+	<p>
+		(서울=연합뉴스) 이준서 정아란 기자 = <strong id="yun">윤석열</strong> 대통령은 15일 고물가·고금리 등으로 인한 
+		서민 경제의 고통 분담을 위해 통신·금융 업계의 동참을 촉구했다.
+	</p>
+	<p title="test">
+		주요 <span class="aa">공공요금</span>에 대해선 올해 상반기 최대한 동결 기조를 유지하겠다는 방침도 내놨다.
+	</p>
+	<p>
+		<strong class="p">윤 대통령</strong>은 이날 오전 용산 대통령실에서 주재한 제13차 비상경제민생회의 모두발언에서 
+		"정부는 모든 정책의 초점을 민생에 두고 비상한 각오로 서민과 취약계층의 어려움을 살피겠다"며 이같이 말했다.
+	</p>
+	<p>
+		먼저 "여러 정책적 노력으로 물가·금리 상승세가 꺾이기는 했지만, 그간 가파른 상승의 여파로 취약계층과 서민들은 
+		여전히 어렵다"며 "특히 난방비 부담이 크게 늘어난 가운데 교통 등 공공요금 인상 계획 소식까지 더해지면서 
+		어려움을 호소하고 있다"고 지적했다.
+	</p>
+	<p>
+		이어 <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148911742">공공·에너지 요금</a>, 통신 비용, 금융 비용 등 '4대 민생' 분야의 지출 부담 경감을 도모하고 
 		취약계층 지원을 강화하겠다는 뜻을 밝혔다.
 	</p>
 	<p>
@@ -103,3 +171,6 @@ h1 strong{color:green;}
 </div>
 </body>
 </html>
+
+
+

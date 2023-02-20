@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css04_font</title>
+<style type="text/css">
+	#p1{
+		font-size: 18px;
+		font-weight: bold ;
+		font-style: italic;
+		font-variant: small-caps;
+		line-height: 50px;
+		font-family: '굴림';
+	}  
+	h1{background-color: orange;  
+	   height: 200px ; 
+	   text-align: center;
+	   line-height: 200px;
+	   }
+	/*
+		font: 1 [font-weight, font-style, font-variant]
+		font: 2 [font-size/line-height]
+		font: 3 [font-family]
+		--> font : 1 2 3 ;
+	*/   
+	#p2{
+		font:bold italic small-caps 18px/50px '굴림';
+	}   
+</style>
+</head>
+<body>
+<h1>폰트 관련 속성</h1>
+<p id="p1">최근 획기적인 대화형 인공지능기술을 탑재한 ChatGPT가 큰 사회적 이슈가 되고 있다. 
+ChatGPT에게 고등학교 1학년 수학 공부법을 물어봤다.</p> 
+
+<p id="p2">ChatGPT의 답변을 살펴보면 일단 고등수학에 대한 정확한 이해를 바탕으로 함을 알 수 있다. 
+또한 정확한 문장과 논리적인 설명, 해결방법까지 이해하기 쉽고 납득할 만한 수준의 설명을 보여주었다.</p>
+
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css08_layout_float</title>
+<style type="text/css">
+* {
+	margin: 0px;
+}
+
+#box1, #box2, #box3 {
+	width: 200px;
+	height: 100px;
+	margin: 5px;
+	color: white;
+	background-color: blue;
+}
+
+#box1 {
+	float: left;
+	height: 150px;
+}
+
+#box2 {
+	float: right;
+}
+
+#box3 {
+	width: 420px;
+	clear: both;
+}
+
+#container {
+	width: 430px;
+	/* 		overflow: auto ; */
+	border: 1px solid red;
+}
+
+/* float을 해제하는 방법: 부모박스에 overflow:auto나
+  :after라는 가상 셀렉터를 이용하여 해제 */
+#container2 {
+	width: 450px;
+	/*  	overflow: auto;  */
+	border: 1px solid red;
+}
+
+#container2:after {
+	content: " ";
+	display: block;
+	clear: both;
+}
+
+#box4, #box5 {
+	width: 200px;
+	background-color: pink;
+	height: 100px;
+	margin: 2px;
+}
+
+#box4 {
+	float: left;
+}
+
+#box5 {
+	float: right;
+}
+
+#box6 {
+	width: 300px;
+	height: 300px;
+	border: 2px dashed red;
+	overflow: hidden;
+}
+
+img {
+	width: 300px;
+	height: 500px;
+}
+
+a {
+	background-color: yellow;
+	width: 100px;
+	height: 80px;
+	display: inline-block;
+}
+</style>
+</head>
+<body>
+<h1>레이아웃</h1>
+<div id="container">
+	<div id="box1">box1</div>
+	<div id="box2">box2</div>
+ 	<div id="box3">box3</div> 
+</div>
+<div id="container2">
+	<div id="box4">box4</div>
+	<div id="box5">box5</div> 
+</div>
+<hr/>
+<h1>display와 overflow</h1>
+<div id="box6">
+	<img src="../img/image1.jpg" />
+</div>
+<div id="box7">
+	<a href="#">하이퍼링크</a>
+	<a href="#">하이퍼링크</a>
+</div>
+</body>
+</html>
+
+
+

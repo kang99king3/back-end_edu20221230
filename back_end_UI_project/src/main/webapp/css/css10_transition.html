@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css10_transition</title>
+<style type="text/css">
+	div{
+		width: 200px;
+		height: 100px;
+		border: 1px solid black;
+	}
+	
+	.box1{
+		transform: translate(400px, 150px);
+	}
+	.box2{
+		transform: rotate(45deg);
+	}
+	.box3{
+		transform: scale(0.8,0.8);
+	}
+	.box4{
+		transform: skew(15deg,15deg);
+	}
+	
+	div{transition: transform 0.5s linear, width 0.5s linear ;}
+	
+	.box1:hover{
+		transform: translate(350px,120px);
+	}
+	
+	.box2:hover{
+		transform: rotate(0deg);
+	}
+	
+	.box{background-color: red; margin-left: -50px;}
+	.box:hover{width:500px;}
+	
+	.cube{
+		animation:myfirst 5s infinite;
+	}
+	
+	@keyframes myfirst{
+		0%{background:red;width:140px; height:120px;}
+		25%{transform:translate(50px,50px); background:blue; width:100px;}
+		50%{transform:translate(100px,70px); background:yellow; width:200px;}
+		70%{transform:translate(150px,30px); background:orange; width:300px;}
+		90%{transform:translate(60px,40px); background:pink; width:150px;}
+	}
+	
+</style>
+</head>
+<body>
+<h1>2차원 변형</h1>
+<div class="box1">translate</div>
+<div class="box2">rotate</div>
+<div class="box3">scale</div>
+<div class="box4">skew</div>
+<div class="box">box</div>
+<div class="cube">cube</div>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</body>
+</html>

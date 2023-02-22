@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js01_작성방법</title>
+<script type="text/javascript" src="js/test.js" ></script>
+<style type="text/css">
+	dt{cursor: pointer;}
+</style>
+<script type="text/javascript">
+// 작성 위치: head태그 내부,   body태그 끝
+//         실행코드(함수단위), 실행코드 그냥 실행됨
+// 작성 방법: 인라인, 내부, 외부 작성방식
+// 함수를 정의할때 키워드는 function을 사용한다.
+// public void[int/double/float..] name(){ } --> java에서 작성법 	
+	function embedded(){
+		var txt="내부작성방식";//문자열을 txt변수에 저장함
+// 		alert(txt);
+		console.log(txt);
+		console.log(typeof txt);
+	}
+	
+	var txt="aaa";
+	// head태그 내부에서는 실행코드를 함수 단위로 작성해야 한다.
+	console.log(txt);
+</script>
+</head>
+<body>
+<h1>자바스크립트의 구성</h1>
+<dl>
+	<dt onclick="var txt='inline방식입니다.'; alert(txt);">Core</dt>
+	<dd>문법(변수,제어문,객체,프로토타입,클로져...)</dd>
+	<dd>내장객체의 사용법</dd>
+	<dt onclick="embedded();">BOM</dt>
+	<dd>window</dd>
+	<dd>location</dd>
+	<dd>Navigator/history/screen..</dd>
+	<dt onmouseover="linked();">DOM</dt>
+	<dd>Document</dd>
+	<dd>Element</dd>
+	<dd>Attribute</dd>
+	<dd>Text</dd>
+	<dd>Node</dd>
+</dl>
+<script type="text/javascript">
+	var txt="aaa";
+	//body에서는 실행 됨
+	console.log(txt);
+</script>
+<script type="text/javascript" src=""></script>
+</body>
+</html>
+
+
+
+
+

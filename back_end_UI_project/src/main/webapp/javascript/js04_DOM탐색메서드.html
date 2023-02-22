@@ -42,6 +42,25 @@
 		}
 // 		inputs.style.backgroundColor="blue";(X)
 	}
+	function searchTagName(){
+		//span태그에 배경색을 yellow
+		var spans=document.getElementsByTagName("span");
+		for (var i = 0; i < spans.length; i++) {
+			spans[i].style.backgroundColor="yellow";
+			spans[i].style.display="block";
+			spans[i].style.margin="5px";
+		}
+	}
+	function searchClassName(){
+		var spans=document.getElementsByClassName("a");
+		spans[0].style.fontSize="20px";
+		spans[1].style.color="red";
+	}
+	function searchQuery(){
+		var pandSpan=document.querySelectorAll("p:last-child > span");
+		//[<span>셀렉터</span>,<span>쿼리</span>,<span>탐색</span>]
+		pandSpan[0].style.color="blue";
+	}
 </script>
 </head>
 <body>
@@ -57,6 +76,22 @@
     <input type="text" name="test02"/>
     <input type="text" name="test02"/>
 </p>   
+<p>3.getElementsByTagName("tag 이름"):태그의 이름으로 탐색
+    -반환값은 엘리먼트 여러개(배열타입)<button onclick="searchTagName()">확인</button>
+	<br/>
+	<span>태그</span><span>이름</span><span>탐색</span>
+</p>
+<p>4.getElementsByClassName("class속성 이름"): class속성 이름으로 탐색
+    -반환값은 엘리먼트 여러개(배열타입)<button onclick="searchClassName()">확인</button>
+	<br/>
+	<span class="a">클래스</span><span class="a">이름</span><span class="a">탐색</span>
+</p>
+<p>5.querySelectorAll("selector표현식"): 반환값은 엘리먼트 여러개(배열)
+  <br/>querySelector("selector표현식"):반환값은 엘리먼트 한개
+    <button onclick="searchQuery()">확인</button>
+	<br/>
+	<span>셀렉터</span><span>쿼리</span><span>탐색</span>
+</p>
 </body>
 </html>
 

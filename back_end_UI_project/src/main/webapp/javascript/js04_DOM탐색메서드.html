@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS04_DOM탐색메서드</title>
+<script type="text/javascript">
+	
+
+// 	public class p{
+		
+// 		public Style style;
+// 		public String id;
+// 		public String class;
+// 		public String onClick;
+// 		public String title="제목";
+		
+		
+// 	}
+// 	<p title="제목"></p>
+	
+// 	P p=new p();        var p=document.getElementById("test")
+// 	p.title="제목변경";       p.title="aaa"
+
+
+	function searchId(){
+		//"ID로 탐색" 추가, 배경색 지정
+		var doc=document.getElementById("test1");//p태그를 객체로 생성(객체타입은 Element)
+		doc.textContent="ID로 탐색";
+		console.log(doc.style.color);
+		doc.style.color="yellow";
+		doc.style.backgroundColor="green";
+		doc.title="안녕";
+	}
+	function searchName(){
+		var inputs=document.getElementsByName("test02");// 배열[input,input,input]
+// 		inputs[0].style.backgroundColor="blue";
+// 		inputs[1].style.backgroundColor="blue";
+// 		inputs[2].style.backgroundColor="blue";
+		
+		for (var i = 0; i < inputs.length; i++) {
+			inputs[i].style.backgroundColor="blue";
+		}
+// 		inputs.style.backgroundColor="blue";(X)
+	}
+</script>
+</head>
+<body>
+<h1>DOM탐색메서드의 종류</h1>
+<p>1.getElementById("#idname"):태그의 id속성 이름으로 탐색
+	-반환값은 엘리먼트 1개 <button onclick="searchId()">확인</button>
+</p>
+<p id="test1" style="color:red;"></p>  
+<p>2.getElementsByName("name속성이름"):input 태그의 name속성 이름으로 탐색
+    -반환값은 엘리먼트 여러개(배열타입)<button onclick="searchName()">확인</button>
+    <br/>
+    <input type="text" name="test02"/>
+    <input type="text" name="test02"/>
+    <input type="text" name="test02"/>
+</p>   
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

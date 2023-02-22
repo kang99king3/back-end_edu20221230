@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js03_변수와 타입</title>
+<script type="text/javascript">
+	var variable=10; // 전역변수: 여러 함수에서 접근 가능 선언(공용으로 사용)
+	
+	function test01(){
+		variable=variable+5;
+		console.log(variable);
+	}
+	
+	function test02(){
+		//지역변수: 함수 안에서만 접근 가능(함수 실행이 종료되면 저장된 값이 사라짐)
+		var variable=5;
+		var variable=10;
+		
+		let a=10;//var 예약어의 단점을 보완하기 위해 추가된 기능
+// 		let a=15;
+		let bb;
+		const b=8;//상수:값 변경 금지
+		console.log(a);
+// 			variable+=5;
+// 		console.log(variable);
+		
+		console.log(val);
+// 		var val;// 호이스팅 현상: 값을 선언만했을 경우 (초기화X) 자바스크립트에서 미리 변수를 위로 선언되게 인식함.
+		let val;
+	}
+	
+	function test03(){
+	// 	 Type Script 예시	const message:string = 'hello world';
+		var variable = 5;// 숫자(Number)타입
+			variable = "문자열";//문자열(String)타입
+			variable = [1,2,true,"문자",5,6];// 배열타입
+			variable = true;//boolean타입
+			variable = null;//null타입
+			variable = function(){alert("난 함수야");};//Function 객체타입
+			variable = {"key":5,"key2":10,"key3":15};//json 객체타입
+			console.log(variable.key);
+	}
+</script>
+</head>
+<body>
+
+<div id="root"></div>
+<h1>변수의 선언 규칙</h1>
+<p>1.대소문자 구별</p>
+<p>2.영문자, _, $로만 시작해야 한다.</p>
+<p>3.영문자, _, $, 숫자를 포함할 수 있다.</p>
+<p>4.키워드나 예약어는 사용할 수 없다</p>
+<h1>변수의 적용범위</h1>
+<p>1.전역변수 <button onclick="test01()">확인</button></p>
+<p>2.지역변수 <button onclick="test02()">확인</button> </p>
+<h1>변수의 선언과 저장</h1>
+<p>1. var 키워드를 사용하여 변수 선언(const, let)</p>
+<p>2.변수의 타입은 저장되는 타입에 따라 결정된다.<button onclick="test03()">확인</button></p>
+</body>
+</html>
+
+

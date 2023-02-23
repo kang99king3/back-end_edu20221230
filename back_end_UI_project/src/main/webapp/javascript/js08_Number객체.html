@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js08_Number객체</title>
+<script type="text/javascript">
+	function numberObj(){
+		//1.작성방식
+		var num= new Number(10);//객체타입 선언
+		var num2=20; //리터럴 선언
+		
+		//2.Number 객체의 속성
+		//NaN속성
+		console.log("NaN속성:"+parseInt("a"));
+		
+		//Infinity속성
+		console.log("Infinity속성:"+(Number.MAX_VALUE+0.00001e+308));
+		
+		//undefined속성
+		var a;
+		if(a==null||a==""||a==undefined){
+			
+		}else{
+			
+		}
+		console.log("undefined속성:"+(a+"단어"));
+		
+		//그밖에 메서드 종류: toExponential(), toFixed(), toPrecision()
+		console.log("toFixed():"+(Number(33.1234).toFixed(2)));
+	}
+	
+	function isNum(){
+		var num=prompt("숫자만 입력하세요!!","");
+		
+		if(num==null||num==""){
+			alert('입력을 반드시 해주세요~');
+		}else{
+			if(isNaN(num)){ // 숫자가 아니면 true
+				alert("숫자가 아닙니다. 숫자를 정확하게 입력하세요");
+			}else{
+				alert(parseInt(num)+10);
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<h1>Number객체</h1>
+<pre>
+	- 정수와 실수를 다루는 객체<button onclick="numberObj()">클릭</button>
+	- 속성: NaN(숫자가 아닌 값), Infinity(표현할 수 있는 숫자의 범위를 벗어남)
+	- 그밖에 예외를 나타내는 속성
+	  undefined: 값이 정의되지 않아서 자바스크립트가 인식을 못하는 상황: var num=5+b 
+	  null:변수는 선언되어 있지만 값이 비어 있는 상태    var a;   var a=null;
+	  <button onclick="isNum()">숫자판별(isNaN())</button>
+</pre>
+</body>
+</html>
+

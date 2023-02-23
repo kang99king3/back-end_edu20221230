@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js07_함수의사용</title>
+<script type="text/javascript">
+	//선언적 함수 사용: function키워드를 사용하여 정의, 이름이 있다.
+	//               다른 객체에서 호출을 할 수 있다. --> 재사용이 가능
+	//               파라미터의 개수만큼 작성해서 호출할 필요 없다.
+	//               리턴(반환)값이 없을 수도 있다.(사용자 마음대로``)
+	
+	
+	function func01(){
+		console.log("선언적 함수");
+// 		func01_2(10,"20"); // 파라미터를 전달
+		var val=func01_2();// 함수에서 파라미터를 사용하지 않는다면 파라미터를 전달하지 않고 호출 가능
+	}
+	
+	function func01_2(val01,val02){ // 파라미터를 정의
+		//alert(val01+","+val02);
+		console.log("함수2");
+		return "값";
+	}
+	
+	
+	//익명함수: 객체 내부에서 사용되고 종료 --> 이름이 없기때문에 다른 객체에서 호출할 수 없다.
+	//        변수에 저장해서 변수이름으로 호출 가능: 변수명()
+	//        파라미터로 기능을 전달할때 익명함수로 가능하다.
+	//        ES6에서 추가된 화살표 함수(표현방식을 단순화) 
+	var i=0;
+	var func02=function (){
+		console.log("익명함수");
+		
+		//setInterval(function(){코드 구현} , 3000(milliseconds));
+		
+		setInterval(function() {
+						console.log(i++);
+					}, 2000);
+// 		setInterval(() => {
+// 			console.log(i++);
+// 		}, milliseconds);
+	}
+	
+	//화살표 함수(ES6추가)
+	var test=(val1,val2)=>{
+		console.log(val1,vla2);
+	}
+	
+	//onload는 페이지가 로딩되는 이벤트: 페이지가 로딩되면 기능을 실행해라~~
+	onload=function(){
+		document.getElementsByTagName("h1")[0].onclick=function(){
+			alert("익명함수지롱~~");
+		}
+		document.getElementsByTagName("h1")[1].onclick=()=>alert("화살표함수~~");
+		
+		//함수로 객체 생성하는 방법
+		//1.객체 리터럴 방식
+		document.getElementsByClassName("a")[0].onclick=()=>{
+			//리터럴??? 값자체    var a=5;   var b=10;   var c=a+b
+			var array=[1,2,3,4,45,65];//배열선언
+			var jobj={                //Json 객체생성방법
+						subject:"javascript",
+						credit:1,
+						printout:()=>{
+							return jobj.subject+","+jobj.credit+"학점";
+						}
+					}
+			
+			console.log(jobj.printout()); // javascript에서는 함수호출시 이름만 쓰는경우, 괄호()까지 쓰는 경우
+			                             //                           기능 X      ,  기능 O 실행
+			printCredit(jobj.printout);//기능을 전달하고 싶다면.
+		
+			//객체의 값을 변경하는 기능
+			jobj.subject="JS";//set
+			jobj["test"]="value";//add
+			delete jobj["credit"]; //del
+		   	
+			let {subject,credit,test}=jobj;
+			
+			alert(`결과:${subject},${credit},${test}`);
+		}	
+			
+		//객체 생성자 함수 방식
+		document.getElementsByClassName("a")[1].onclick=()=>{
+			var info=new Info();//객체생성하기: new 키워드 사용
+			console.log(info.subject2);
+			console.log(info.printout());
+			console.log(info.getSubject);
+		}
+		
+		//프로토타입
+		document.getElementsByClassName("a")[2].onclick=()=>{
+			
+			Info.prototype.addFunc=function(){
+				alert("기능추가:"+this.subject2+":"+this.getSubject);
+			}
+			
+			var info=new Info();//객체생성하기: new 키워드 사용
+			
+			console.log(info.subject2);
+			console.log(info.printout());
+			console.log(info.getSubject);
+			info.addFunc();
+		}
+		
+	}//onload종료
+	
+	//생성자함수
+	function Info(){
+		var subject="html"; 
+		this.subject2="javascript";
+		this.credit=2;
+		this.printout=function(){
+			return this.subject2+","+this.credit+"학점";
+		}
+		this.getSubject=subject;
+	}
+	
+	
+	function printCredit(func){
+		alert(func());//함수를 받아서 실행하려면 func() 괄호를 작성한다.
+	}
+</script>
+</head>
+<body>
+<h1>선언적 함수</h1>
+<p>이름이 정의되어 있는 기본적인 함수<button onclick="func01()">클릭</button></p>
+<h1>익명함수</h1>
+<p>이름이 없는 함수<button onclick="func02()">클릭</button></p>
+<h1>자바스크립트에서 객체 만들기</h1>
+<p class="a">1.객체 리터럴 방식</p>
+<p class="a">2.객체 생성자 함수방식</p>
+<p class="a">- 프로토타입 사용하기</p>
+</body>
+</html>

@@ -4,7 +4,29 @@
 <meta charset="UTF-8">
 <title>js05_DOM탐색메서드연습문제</title>
 <script type="text/javascript">
-	
+	function idChk(){
+		var pA=document.getElementById("a");	
+		var pB=document.getElementById("b");
+		var pC=document.getElementById("c");
+		pA.style.backgroundColor="red";
+		pB.style.backgroundColor="red";
+		pC.style.backgroundColor="red";
+// 		pA.innerHTML="<a href='js01.html'>링크</a>";
+	}
+	function nameChk(){
+		var inputs=document.getElementsByName("nameval01");//[input,input]배열
+		var id=inputs[0].value;// input요소에 값을 입력하면 value속성에 저장된다.
+		var pwd=inputs[1].value;// input요소에 입력한 값을 가져온다.
+		
+		var msg="id:"+id+"/pwd:"+pwd;//java에서 문자열 더하기 하던 방식과 동일.
+// 		alert(msg);
+		var spans=document.getElementsByTagName("span");
+		spans[0].textContent=id;
+		spans[1].textContent=pwd;
+	}
+	function tagNameChk(){
+		document.getElementsByTagName("div")[1].style.backgroundColor="yellow";
+	}
 </script>
 </head>
 <body>
@@ -16,9 +38,9 @@
 <p id="c">id탐색하기03</p>
 <hr>
 <h2>2.엘리먼트를 name속성을 사용하여 탐색하고 화면에서 입력한 값을 alert()대화창으로 출력하세요.
-	<br/><small>출력 내용 -  id:**/pwd:** </small>
- </h2>
-id:<input type="text" name="nameval01" value=""  ><br>
+	<br/><small>출력 내용 -  id:<span>**</span>/pwd:<span>**</span> </small>
+</h2>
+<label>id:</label><input type="text" name="nameval01" value=""  ><br>
 패스워드:<input type="text" name="nameval01"><br>
 <input type="button" value="입력" onclick="nameChk()">
 <hr>
@@ -29,3 +51,5 @@ id:<input type="text" name="nameval01" value=""  ><br>
 <input type="button" value="클릭!" onclick="tagNameChk()">
 </body>
 </html>
+
+

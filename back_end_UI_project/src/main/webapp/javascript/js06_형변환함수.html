@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>6.형변환함수</title>
+<script type="text/javascript">
+	function numTest(){
+		var inputVal=document.getElementById("num1").value;
+		//문자열을 합칠 때 "문자열"+"합치자"="문자열합치자";
+		//concatenation이 발생 --> "10"+10="1010";
+		var inputInt=Number(inputVal);//숫자형태의 문자열을 숫자형으로 변환
+		alert(typeof inputVal+":"+(inputVal+10));
+		alert(typeof inputInt+":"+(inputInt+10));
+	}
+	
+	function intTest(inp){ // id속성을 통해서 객체를 파라미터로 전달 가능
+		console.log(inp.nodeName);
+		var paramVal=parseInt(inp.value);
+		console.log(paramVal+10);
+	}
+	
+	function floatTest(inp){
+		var paramVal=parseFloat(inp.value);
+		console.log(paramVal+5);
+	}
+	
+</script>
+</head>
+<body>
+<h1>1.숫자형 형변환 Number()함수</h1>
+<p>문자열이 정수형태든 실수형태든 모두 <strong>숫자형</strong>으로 변환</p>
+<input type="text" name="num" id="num1"/>
+<button onclick="numTest()">확인</button>
+
+<h1>2.정수형 형변환 parseInt()함수</h1>
+<p>문자열이 정수형태든 실수형태든 모두 <strong>정수형</strong>으로 변환</p>
+<input type="text" name="int" id="int1"/>
+<button onclick="intTest(int1)">확인</button>
+
+<h1>3.실수형 형변환 parseFloat()함수</h1>
+<p>문자열이 정수형태든 실수형태든 모두 <strong>실수형</strong>으로 변환</p>
+<input type="text" name="float" id="float1"/>
+<button onclick="floatTest(float1)">확인</button>
+
+<h1>4.검증함수 eval()함수</h1>
+<p>문자열로 된 코드를 자바스크립트로 해석한다.</p>
+<input type="text" name="evalue" id="evalue1" onclick="this.value='';" placeholder="예) 5+6"/>
+<button onclick="evalTest(evalue1)">확인</button>
+<span>계산결과:</span><span></span>
+<script type="text/javascript">
+	function evalTest(val){
+		if(confirm("작성하신 코드가 맞나요?"+val.value)){
+			//계산결과를 출력(span태그에..)
+// 			var evalue=eval("var a=5; var b=10; console.log(a+b);");
+			var evalue=eval(val.value);
+			document.getElementsByTagName("span")[1].textContent=evalue;
+		}else{
+			//입력한 내용을 수정해야 되니 다시 새로운 값을 입력할 준비 작업
+			var inputEle=document.getElementById("evalue1");
+			//입력박스 객체 탐색, 내용 지우고, 커서를 넣어준다
+			//1.입력박스에 입력내용을 ""로 설정---> 전에 입력한 값 삭제
+			inputEle.value="";
+			//2.마우스 커서가 입력박스 내부에 들어가도록 구현
+			inputEle.focus();
+		}
+	}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

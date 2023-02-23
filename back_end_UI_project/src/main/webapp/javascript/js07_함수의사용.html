@@ -75,8 +75,9 @@
 			jobj["test"]="value";//add
 			delete jobj["credit"]; //del
 		   	
+			//구조분해할당
 			let {subject,credit,test}=jobj;
-			
+			//템플릿 리터럴
 			alert(`결과:${subject},${credit},${test}`);
 		}	
 			

@@ -48,6 +48,63 @@
 			}			
 		}
 	}
+	
+	function strTest03_2(){
+		//대소문자를 구분한다. --> 대소문자 구별없이 비교
+		//toUpperCase(), toLowerCase() : 모두 대문자,소문자로 변환
+		
+		var strVal="String";
+		
+		if(strVal.toUpperCase()=="STRING"){
+			console.log("대문자 변환해서 비교");
+		}else{
+			console.log("값이 다르다");
+		}
+		
+		//동등연산자를 사용하면, 비교하는 자료형도 자동형변환이 된다.
+		var numVal=10;//숫자형
+		if(numVal=="10"){
+			alert("==연산자사용:숫자10이 맞습니다.");
+		}
+		
+		// 동등연사자 중 엄격한 비교 ===
+		if(numVal==="10"){
+			alert("==연산자사용:숫자10이 맞습니다.");
+		}else{
+			alert("숫자10과 같지 않다.");
+		}	
+		
+		//객체비교
+		const strObj=new String("한경");//객체로 정의
+		var strLit="한경";//리터럴 정의
+		if(strObj==strLit){
+			alert("객체와 리터럴비교: 문자열이 같다");
+		}
+		if(strObj===strLit){
+			alert("객체와 리터럴비교: 문자열이 같다");
+		}else{
+			alert("객체와 리터럴비교: 문자열이 다르다")
+		}
+	}
+	
+	function strTest04(){
+		/* 
+			문자열에서 원하는 문자열 검색하기
+			indexOf():문자열의 왼쪽 --> 오른쪽으로 검색, 검색한 단어의 첫글자 인덱스를 반환
+			lastIndexOf():오른쪽 --> 왼쪽으로 검색	
+		    만약에 검색한 단어가 존재하지 않는다면 -1을 반환. (존재여부만 알고싶을 때 )
+		*/
+		var strValue="최찬희 류주연 정재영 민시우 고도흔";
+		var inputObj=document.getElementsByName("name")[0];
+		if(inputObj.value==null||inputObj.vlaue==""){
+			alert("입력값을 확인하세요!!");
+			//포커스 기능 
+		}else if(조건){ // 해당 이름이 존재하지 않는다면
+			alert(입력된 이름같이 출력+"이름이 존재하지 않습니다.");//템플릿 리터럴방식
+		}else{
+			alert(입력된 이름같이 출력+"이름이 존재합니다.");//템플릿 리터럴방식
+		}
+	}
 </script>
 </head>
 <body>
@@ -56,8 +113,21 @@
 <h1>다른 자료형 합치기<button onclick="strTest02()">클릭</button></h1>
 <h1>문자열 비교하기<button onclick="strTest03()">클릭</button><span id="content"></span></h1>
 <h1>문자열 비교하기2<button onclick="strTest03_2()">클릭</button></h1>
+<h1>
+	<span>부분문자열 검색하기:</span>
+	<label>이름검색</label>
+	<input type="text" name="name"/>
+	<button onclick="strTest04()">검색</button>
+</h1>
 </body>
 </html>
+
+
+
+
+
+
+
 
 
 

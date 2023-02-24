@@ -77,8 +77,16 @@
 		   	
 			//구조분해할당
 			let {subject,credit,test}=jobj;
+			var subject1=jobj["subject"]; // jobj["name"], jobj.name
+			var credit1=jobj["credit"];
+			var test1=jobj["test"];
+			
+			alert(subject);
+			let tesaaaa=subject;
 			//템플릿 리터럴
 			alert(`결과:${subject},${credit},${test}`);
+			alert("결과:"+subject+","+credit+","+test);
+			
 		}	
 			
 		//객체 생성자 함수 방식

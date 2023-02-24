@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js09_String객체</title>
+<script type="text/javascript">
+	function strTest01(){
+		let string01="string";
+		let string02="test";
+		
+		//+연산자사용
+		let string03="string"+"test";
+		console.log(string01+","+string02);
+		
+		//concat():여러문자열을 하나의 문자열로 합칠 때 사용
+		var newString="String".concat("test","java","script","test");
+		console.log(newString);
+		
+		//배열객체의 메서드 join():특정값을 배열요소 사이에 추가해서 문자열로 반환
+		var joinTest=["1","2","3","4"].join("+") ;// json{key:value}
+		console.log(eval(joinTest));
+	}
+	
+	function strTest02(){
+		//다른 자료형을 문자열로 변환한 다음 더한다. +연산할 때 일어남
+		var numVal=12.7;//숫자형(실수형)
+		var bool=true;//boolean형
+		var str="숫자:"+numVal+"불린:"+bool;//문자열+숫자+문자열+불린형
+		console.log(typeof str);
+	}
+	
+	function strTest03(){
+		//동등연산자 == , 문자열 패턴(match())
+		var strVal=prompt("당신의 이름은?","");
+		var span=document.getElementById("content");// span{id:"content"}
+		
+		
+		//strVal에 숫자가 포함되는 확인  
+		if(strVal.match(/[0-9]/)){
+			alert("숫자가 포함되어 있어~~ 잘좀 확인해서 이름을 입력해줘");
+		}else{
+			if(strVal=="한경"){
+				console.log("한경입니다.");
+				span.textContent=strVal+"님 환영합니다.";
+			}else{
+				console.log('한경이 아닙니다.');
+				span.innerHTML=`<strong>${strVal}님은 한경이 아닙니다.</strong>`;
+			}			
+		}
+	}
+</script>
+</head>
+<body>
+<h1>Sring 객체의 사용</h1>
+<h1>문자열합치기<button onclick="strTest01()">클릭</button></h1>
+<h1>다른 자료형 합치기<button onclick="strTest02()">클릭</button></h1>
+<h1>문자열 비교하기<button onclick="strTest03()">클릭</button><span id="content"></span></h1>
+<h1>문자열 비교하기2<button onclick="strTest03_2()">클릭</button></h1>
+</body>
+</html>
+
+
+

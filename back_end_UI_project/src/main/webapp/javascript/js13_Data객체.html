@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js13_Data객체</title>
+<script type="text/javascript">
+	function testDate01(){
+		var date=new Date();//오늘에 대한 정보를 가지고 있는 객체가 생성됨
+		var spanDate=document.getElementById("today");
+		spanDate.innerHTML=date.toLocaleString();
+	}
+	function testDate02(){
+		var spanDate=document.getElementById("today");
+		var dayOfWeek=["일","월","화","수","목","금","토"];
+		var date=new Date();
+		var year=date.getFullYear();//오늘 날짜에 대한 년도 정보 2023년도
+		var month=date.getMonth()+1;//API에서는 0월~11월로 구성
+		var day=date.getDate(); 
+		var week=dayOfWeek[date.getDay()];//0~6 정수형태로 요일을 반환
+		
+		spanDate.innerHTML=`${year}/${month}/${day}/${week}요일`;
+	}
+	
+	function testDate03(){
+// 		var date=new Date("2023-03-01");// 문자열로 정의 (월에 -1을 하지 않아도 됨)
+		var date=new Date(2023,3-1,1);// 각각의 정수형태로 3개 입력(월에 -1을 해야함)
+		document.getElementById("specific").innerHTML=date.toLocaleDateString();
+	}
+	
+	//onload: 페이지로딩을 이벤트로 감지하여 코드 실행
+	onload=function(){
+		var date=new Date();
+		document.getElementById("dates").value=date.toLocaleString();
+		document.getElementById("dates2").value=date.toLocaleString();
+	}
+	
+	function testDate04(){
+		var inputDate=document.getElementById("inputDate").value;//화면에 입력한 경과일 구하기
+		var date=new Date();
+		//현재 일수+경과 일수 ---> 27+10 = 37일 --> 3/6 --> 원래는 3/9 (29,30,31 X)
+		date.setDate(date.getDate()+parseInt(inputDate));
+		//--> setDate()가 경과일 만큼, 알아서 계산해서 날짜를 처리해줌
+		document.getElementById("result").value=date.toLocaleString();
+	}
+	
+	//Date객체에 getTime(): 1970년1월1일부터 ~~ 현재까지에 대한 경과 시간을 구함
+	//경과후에 날짜 시간 - 오늘 날짜에 대한 경과 시간---> 경과일 구할 수 있다.
+	function testDate05(){
+		var day=document.getElementById("d_day").value;
+		console.log(day);
+		var nowDate=new Date();//현재날짜
+		var afterDate=new Date(day);//수료날짜
+		        //                             ms         / 1000*1*60*60*24    
+		var period=Math.ceil((afterDate.getTime()-nowDate.getTime())/(1000*1*60*60*24))   //하루시간
+		//        32.8일,,   32.56842일
+		
+		document.getElementById("period").value=period;
+	}
+</script>
+</head>
+<body>
+<h1>오늘 날짜 출력하기</h1>
+<span id="today"></span><br/>
+<button onclick="testDate01()">오늘날짜</button>
+<button onclick="testDate02()">오늘날짜(표현방식설정)</button>
+<hr>
+<h1>특정날짜 출력하기</h1>
+<span id="specific"></span>
+<button onclick="testDate03()">특정날짜</button>
+<hr>
+<h1>경과날짜구하기</h1>
+<label>현재날짜:</label><input type="text" id="dates" readonly="readonly"/><br/>
+<label>경과일:</label><input type="number" id="inputDate" min="1" />일<br/>
+<label>경과후 날짜:</label><input type="text" id="result" readonly="readonly"/><br/>
+<button onclick="testDate04()">경과날짜조회</button>
+<hr>
+<h1>D-Day기능 만들기</h1>
+<label>현재날짜</label><input type="text" id="dates2" readonly="readonly"/><br/>
+<label>수료일:</label>
+<input type="date" id="d_day" /><br/>
+<label>남은 일수:</label><input type="text" id="period" readonly="readonly"/>
+<button type="button" onclick="testDate05()" >확인</button>
+</body>
+</html>

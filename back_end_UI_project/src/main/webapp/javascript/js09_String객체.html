@@ -96,14 +96,65 @@
 		*/
 		var strValue="최찬희 류주연 정재영 민시우 고도흔";
 		var inputObj=document.getElementsByName("name")[0];
-		if(inputObj.value==null||inputObj.vlaue==""){
+		if(inputObj.value==null||inputObj.value==""){
 			alert("입력값을 확인하세요!!");
 			//포커스 기능 
-		}else if(조건){ // 해당 이름이 존재하지 않는다면
-			alert(입력된 이름같이 출력+"이름이 존재하지 않습니다.");//템플릿 리터럴방식
+			inputObj.focus();
+		}else if(strValue.indexOf(inputObj.value)==-1){ // 해당 이름이 존재하지 않는다면
+			alert(`${inputObj.value} 이름이 존재하지 않습니다.`);//템플릿 리터럴방식
 		}else{
-			alert(입력된 이름같이 출력+"이름이 존재합니다.");//템플릿 리터럴방식
+			alert(`${inputObj.value} 이름이 존재합니다.`);//템플릿 리터럴방식
 		}
+	}
+	
+	function strTest05(){
+		//substring():문자열을 시작 인덱스와 종료 인덱스로 추출
+		//split():문자열 중에 기준이 되는 요소로 나누어 배열로 반환
+		var strVal="문자열 추출하기. 관련메서드:indexOf메서드, substring()메서드.";
+		var sIdx=strVal.indexOf(":");//":"의 인덱스 구하기
+		var eIdx=strVal.lastIndexOf(".");//"."의 인덱스 구하기
+		var result=strVal.substring(sIdx+1,eIdx);
+		console.log(result);
+		var splitVal=result.split(",");//","로 문자열을 나누어 배열로 반환
+		alert(`${splitVal[0]}/${splitVal[1]}/길이값:${splitVal.length}`);
+	}
+	
+	
+	var count=6;//초기 제한 개수 정의(전역변수)
+	
+	function strTest06(){
+		//문제:입력 키워드 최대 개수는 6개로 제한 --> 7이상 입력되면 안된다고 alert로 경고하기
+		//prop변수에 "사과,수박,바나나" 저장되면 --> "<br/>키워드:사과<br/>키워드:수박<br/>키워드:바나나"
+		var prop=prompt("쉼표로 구분하여 키워드를 입력하세요", "예시:사과,수박,바나나");
+		console.log(prop);
+		
+		//문자열을 자르면 배열을 반환한다.
+		var propArray=prop.split(",");
+		console.log(propArray);
+		
+		if(propArray.length>count){//제한 개수를 확인(배열의 길이를 통해 키워드 개수를 알 수 있다.)
+			alert(count+"개까지만 입력 가능합니다.");
+		}else{
+			//자른 문자열을 "<br/>키워드:사과<br/>키워드:수박<br/>키워드:바나나" 형식으로 만든다
+	// 		var propVal="<br/>키워드:"+propArray[0]+"<br/>키워드:"+propArray[1];(X)
+			var propVal="";
+			for (var i = 0; i < propArray.length; i++) {
+				propVal+="<br/>키워드:"+propArray[i];
+			}
+			//만든 문자열을 span태그 내부에 출력한다.
+			var span=document.getElementById("key");
+			span.innerHTML=propVal;
+			//폰트색은 파란색으로 설정한다.
+			span.style.color="blue";
+		}
+	}
+	
+	//입력 키워드 개수 제한을 설정하는 기능
+	function numCount(btn){ // <--- 파라미터 btn은 body영역에 numCount(this): this를 통해 전달(button태그)
+		var number=document.getElementById("num");
+		count= number.value;//count전역변수에 입력값을 저장
+		number.disabled="disabled";//비활성화
+		btn.style.color="red";
 	}
 </script>
 </head>
@@ -119,6 +170,14 @@
 	<input type="text" name="name"/>
 	<button onclick="strTest04()">검색</button>
 </h1>
+<h1>부분문자열 추출하기<button onclick="strTest05()">클릭</button></h1>
+<h1>키워드 나누기 <button onclick="strTest06()">클릭</button></h1>
+<fieldset>
+	<label>최대입력수:</label>
+	<input type="number" max="100" min="0"  id="num" />
+	<button  onclick="numCount(this)">설정</button>
+</fieldset>
+<span id="key"></span>
 </body>
 </html>
 

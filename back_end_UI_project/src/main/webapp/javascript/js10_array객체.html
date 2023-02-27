@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js10_array객체</title>
+<script type="text/javascript">
+	function multiArray(){
+		var arr=new Array(3);
+		for (var i = 0; i < arr.length; i++) {
+			arr[i]=new Array(3);
+		}
+		
+		var arrLit=[[1,2,3,4],[5,6,7],[8,9]];
+		
+		console.log(arrLit[1][1]);
+		console.log(arrLit[0]);
+	}
+	
+	//join():배열에 값들 사이에 문자열이 추가되어 텍스트로 반환
+	function joinTest(){
+		var fruitArray=["apple","peach","lemon","lime"];
+		console.log(fruitArray.join("-"));
+	}
+	
+	//sort():배열의 값을 정렬한다.
+	function sortTest01(){
+		var arrayTest=['a','b','e','d','c'];
+		arrayTest.sort();//정렬된거임
+		arrayTest.reverse();
+		console.log(arrayTest.toString());
+	}
+	//기본이 사전식정렬이라 크기순 정렬을 할 수 없다.
+	function sortTest02(){
+		var arrayTest=[3,10,5,4,90,55];
+// 		arrayTest.sort(compareNum);//정렬된거임
+		arrayTest.sort(function(a,b){return a-b;});
+// 		arrayTest.sort((a,b)=>{return a-b});
+// 		arrayTest.sort((a,b)=>a-b);
+// 		arrayTest.reverse();
+		console.log(arrayTest.toString());
+	}
+	
+	function compareNum(a,b){
+		return a-b;//오름차순
+// 		return b-a;//내림차순
+	}
+	
+	//배열의 저장과 접근에 관련된 메서드 3가지
+	//push():배열에 값을 저장할때 사용. 자동으로 인덱스 길이가 증가--> java에 List객체: list.add("값")
+	//shift():배열에서 첫번째요소의 값을 잘라내서 가져옴
+	//pop():배열에서 마지막요소의 값을 잘라내서 가져옴
+	function pushAndShift(){
+		var queue=new Array();//선언
+		queue.push("first");
+		queue.push("second");
+		queue.push("third");
+		console.log(queue+":"+queue.length);
+		
+		var sVal=queue.shift();
+		console.log('가져온값:'+sVal+",기존배열:"+queue);
+		
+		var pVal=queue.pop();
+		console.log('가져온값:'+pVal+",기존배열:"+queue);
+	}       
+	
+	//slice():대상 배열의 일부를 새로운 배열로 생성
+	//배열의 값이 객체라면 참조복사한다.(얕은 복사)
+	//---> 생성된 배열에서 값을 바꾸면 원본 배열에서도 값이 변경된다.
+	function sliceTest(){
+		var arrayTest=new Array(4);//길이가 4인 배열 생성
+		arrayTest[0]=new Array(1,2);//[1,2]배열 저장
+		arrayTest[1]=new Array(3,4);
+		arrayTest[2]=new Array(5,6);
+		arrayTest[3]=new Array(7,8);
+		//--> [[1,2],[3,4],[5,6],[7,8]] 
+		//       0     1     2     3
+		var arrayTest02=arrayTest.slice(1,3);// [[3,4],[5,6]]
+		console.log(arrayTest+":"+arrayTest02);
+		
+		arrayTest02[1][0]=9;//추출한 배열에서 값을 바꾸면
+		console.log(arrayTest+":"+arrayTest02);
+		
+		
+		
+		//spread 연산자(ES6추가 문법)
+		var aa=[[1,2,5,6,7,8,9],[3,4],[5,6]]; // 얕은 복사--> 깊은 복사(리터럴:정수등등..)
+// 		var bb=[[aa[0][0],aa[0][1]],[aa[1][0],aa[1][1]]];//[[1,2],[3,4]]
+		var bb=[[...aa[0]],[...aa[1]]];
+		                              
+// 		var bb=[...aa];
+		bb[0][0]=90;
+		console.log(aa+":"+bb);
+		spreadTest(1,3,4,5,6);
+	}
+	
+	function func(a,b,c,d,e){}
+	
+	function spreadTest(...test){
+		for (var i = 0; i < test.length; i++) {
+			console.log(test[i]);
+		}
+	}
+		
+	
+	
+	
+	//splice(): 배열요소 삭제/바꾸기
+	/*인자값1개: 인자값의 인덱스부터 끝까지 삭제한다. "1234" --> splice(2) : "12"만 남음
+	  인자값2개: 시작인덱스부터 제거할 요소의 개수를 설정 (1,3)	
+	  인자값3개이상: (시작인덱스, 길이, 바꿔줄 값1,바꿔줄 값2,...)	
+	*/
+	function spliceTest(){
+		var testArray=['a','b','c','d','e','f'];
+		//요소제거
+// 		testArray.splice(3);
+// 		testArray.splice(1,3);
+		testArray.splice(1,3,"11","22","33","44");
+		console.log(testArray);
+		
+		//배열에 특정값(여러개의 값)을 다른 값으로 대체
+		var testArray2=["ab","bc","cd","ab","de","ab","ef","fg"];
+		//특정값("ab")--> "##" 변경하기 
+		while(testArray2.indexOf("ab")!=-1){ //배열에 해당 값이 존재하지 않으면 -1 반환 => 반대로 조건 작성
+			testArray2.splice(testArray2.indexOf("ab"),1,"##");		
+		}
+
+		console.log(testArray2);
+	}
+</script>
+</head>
+<body>
+<script type="text/javascript">
+	//배열 선언 방법
+	var arrayObj=new Array("v1","v2","v3");//객체 생성
+	var arrayLit=["v1","v2","v3"];//리터럴 생성(대부분 이 방식 사용)
+	
+	//자료형이 서로 다른 값 저장이 가능
+	var arrayObj02=["v1",7,true];
+	
+	//배열선언 방법 
+	var array03=new Array();// 배열 선언
+	var array04=new Array(10);//배열 선언, 자릿수 정의, 자동초기화X
+	array04[0]="배열1";//값을 저장
+	array04[0];//값을 가져옴
+</script>
+<h1>배열객체</h1>
+<ol>
+	<li onclick="multiArray()">다중배열</li>
+	<li onclick="joinTest()">join메서드</li>
+	<li>배열값 정렬(기본:오름차순정렬-사전식정렬)
+		<ol>
+			<li onclick="sortTest01()">sort():문자정렬</li>
+			<li onclick="sortTest02()">sort():숫자정렬</li>
+			<li onclick="reverseTest()">reverse():역순정렬</li>
+		</ol>
+	</li>
+	<li onclick="pushAndShift()">배열저장/접근
+		<ol>
+			<li>push()</li>
+			<li>shift()</li>
+			<li>pop()</li>
+		</ol>
+	</li>
+		
+	<li onclick="sliceTest()">slice():배열에서 부분적으로 추출해서 새로운 배열로 생성하기
+	</li>
+	<li>배열탐색하기
+		<ol>
+			<li onclick="arraySearch()">indexOf()</li>
+			<li>lastIndexOf()</li>   
+		</ol>                       
+	</li>
+	<li onclick="concatTest()">concat():다차원배열을 1차원 배열로 변환하기</li>
+<!-- 							[[cc],[aa],[bb]] -->
+<!-- 	                        [cc].concat([aa],[bb],[dd])=[ccaabbdd] -->
+	<li onclick="spliceTest()">splice():배열요소를 검색하고 삭제/바꾸기</li>
+</ol>
+</body>
+</html>
+
+
+
+
+
+

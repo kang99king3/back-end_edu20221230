@@ -24,16 +24,29 @@
 			}
 		}
 		console.log(balls);
+		return balls;
 	}
 	//화면에 출력하는 기능
 	function lottoPrint(){
-		lottoBalls();
 		//문제: 정렬된 당첨번호 6개와 보너스 번호 1개로 나눠서 화면에 출력(각각에 span요소 내부)
 		//     생성했을때 [1,20,16,19,5,35,42] --> 마지막번호가 보너스번호 나누고 나서 나머지 6개는 정렬해서 출력
 		//출력 형식:   로또번호:1-5-16-19-20-35 보너스번호: 42
 		//배열에 관련된 메서드를 사용해서 구현
 		//배열나누기(어떤방법?), 정렬, 포맷(형식)-,-,- 
+		var balls7=lottoBalls();
+		var bonus=balls7.pop();// [1,2,3,4,5].pop()  --> 마지막 요소 가져오기 5  기존배열 [1,2,3,4]
+// 		var balls6=balls7.sort((a,b)=>{return a-b;})
+		var balls6=balls7.sort((a,b)=>a-b).join("-");// "1-5-16-19-20-35"
+		console.log(typeof balls6);
+		
+		var spans=document.getElementsByTagName("span");//[s,s,s,s]
+		spans[1].innerHTML=`<strong>${balls6}</strong>`;
+		spans[3].innerHTML=`<strong>${bonus}</strong>`;
+// 		spans[1].innerHTML="<strong>"+balls6+"</strong>";
+// 		spans[3].innerHTML="<strong>"+bonus+"</strong>";
 	}
+	
+// 	function compare(a,b){return a-b;}
 </script>
 </head>
 <body>

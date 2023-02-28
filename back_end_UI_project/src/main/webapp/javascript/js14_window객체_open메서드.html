@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js14_window객체_open메서드</title>
+<script type="text/javascript">
+	//onload: 페이지 로딩될때 이벤트
+	window.onload=()=>{
+		document.getElementById("btn").onclick=(event)=>{
+			alert(event.target.nodeName);//event라는 변수가 실제 실행된 이벤트객체를 받는다.
+			event.target.style.backgroundColor="yellow";//target은 이벤트가 발생한 요소를 구함
+			event.target.previousElementSibling.style.backgroundColor="blue";
+			
+			var url="js14_pop.html";
+			var title="팝업창연습페이지";
+			var prop="width=400px,height=400px,top=300px,left=400px";
+			window.open(url,title,prop);
+		}
+	}
+</script>
+</head>
+<body>
+<h1>팝업창띄우기</h1>
+<input type="text" name="val01"/>
+<button id="btn">팝업창</button>
+</body>
+</html>
+
+
+
+

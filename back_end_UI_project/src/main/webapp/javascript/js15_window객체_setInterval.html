@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js15_window객체_setInterval</title>
+<style type="text/css">
+	#clock{
+		height: 300px;
+		width: 300px;
+		background-image: url("https://previews.123rf.com/images/jeedruethai/jeedruethai1411/jeedruethai141100030/33654548-%EC%8B%9C%EA%B3%84-%EC%96%BC%EA%B5%B4-%EB%B9%88.jpg");
+		background-size: 300px;
+	}
+	#btn{
+		width:50px;
+		position: relative;
+		top:20px;
+		left:130px;
+		cursor: pointer;
+		background-color: orange;
+		text-align: center;
+		border-radius: 5px;
+	}
+	
+	#se{
+		width:200px;
+		position: relative;
+		top:100px;
+		left:100px;
+		font-size: 20px;
+		
+	}
+	
+	#setAlarm{
+		position: relative;
+		top:150px;
+		left:50px;
+		
+	}
+	#alarm{
+		width:50px;
+	}
+</style>
+<script type="text/javascript">
+	/*
+		-일정 시간 간격으로 기능을 반복적 실행
+		 setInterval()/clearInterval()
+		-일정 시간 후에 기능을 실행
+		 setTimeout()/clearTimeout()
+	*/
+	var timeViewInterval;
+	window.onload=()=>{
+// 		window.setInterval(기능,시간);
+		timeViewInterval = window.setInterval(timeView,1000);
+		
+		document.getElementsByTagName("button")[0].onclick=()=>{
+			window.clearInterval(timeViewInterval);
+		}
+	}
+	
+	function timeView(){
+		var date=new Date();
+		document.getElementById("se").innerHTML=date.toLocaleTimeString();
+	}
+</script>
+</head>
+<body>
+<div id="clock">
+	<div id="btn" onclick="view()" title="알람을 설정하세요!!">알람</div>
+	<div id="se"></div>
+	<div id="setAlarm">
+		<input type="number" id="alarm"/><b>초 후</b>
+		<button id="on" onclick="stAlarm()">설정</button>
+		<button id="off" onclick="finishAlarm()" disabled="disabled">끄기</button>
+	</div>
+</div>
+<button>멈추기</button>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

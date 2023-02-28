@@ -34,7 +34,7 @@
 		position: relative;
 		top:150px;
 		left:50px;
-		
+/* 		display: none; */
 	}
 	#alarm{
 		width:50px;
@@ -52,14 +52,45 @@
 // 		window.setInterval(기능,시간);
 		timeViewInterval = window.setInterval(timeView,1000);
 		
-		document.getElementsByTagName("button")[0].onclick=()=>{
-			window.clearInterval(timeViewInterval);
-		}
+// 		document.getElementsByTagName("button")[0].onclick=()=>{
+// 			window.clearInterval(timeViewInterval);
+// 		}
 	}
 	
 	function timeView(){
 		var date=new Date();
 		document.getElementById("se").innerHTML=date.toLocaleTimeString();
+	}
+	
+	//알람버튼을 클릭하면 알람설정 폼이 보이게 하는 기능
+	function view(){
+		var doc=document.getElementById("setAlarm");
+		if(doc.style.display=="none"){//설정폼이 감춰져 있으면
+			doc.style.display="block";//보이게하고			
+		}else{
+			doc.style.display="none";//아니면 감추고..	
+		}
+	}
+	
+	function setAlarm(){
+		var inputAlarmEle=document.getElementById("alarm");
+		var inputAlarm=inputAlarmEle.value;//알람시간 입력값
+		var aTime=inputAlarm*1000;// 1초==1000ms 환산
+		console.log(inputAlarm);
+		
+		document.getElementById("on").style.color="red";//설정버튼 폰트색 변경
+		
+		setTimeout(function(){
+			console.log("test");
+			var musicEle='<embed src="Kalimba.mp3" autoplay="true" hidden="true">';
+			document.getElementById("song").innerHTML=musicEle;
+			document.getElementById("off").disabled="";//비활성화--> 활성화
+		},aTime);
+	}
+	
+	//알람끄기??
+	function finishAlarm(){
+		
 	}
 </script>
 </head>
@@ -67,13 +98,14 @@
 <div id="clock">
 	<div id="btn" onclick="view()" title="알람을 설정하세요!!">알람</div>
 	<div id="se"></div>
-	<div id="setAlarm">
+	<div id="setAlarm" style="display: none;">
 		<input type="number" id="alarm"/><b>초 후</b>
-		<button id="on" onclick="stAlarm()">설정</button>
+		<button id="on" onclick="setAlarm()">설정</button>
 		<button id="off" onclick="finishAlarm()" disabled="disabled">끄기</button>
 	</div>
 </div>
 <button>멈추기</button>
+<div id="song"></div>
 </body>
 </html>
 

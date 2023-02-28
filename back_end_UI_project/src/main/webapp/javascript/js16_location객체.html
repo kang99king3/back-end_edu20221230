@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js16_location객체</title>
+<script type="text/javascript">
+
+	window.onload=function(){
+		var paramStr=location.search;
+		var splitParam=paramStr.split("&");// "?id=hk&name=hankyung"
+	}
+
+	function locTest(){
+// 		location.href="js13_Date객체.html";
+// 		location.assign("js13_Date객체.html");//href와 동일한 기능 제공
+// 		location.reload();//페이지 새로고침
+// 		location.replace("js13_Date객체.html");//페이지 이동 -> 이력이 남지 않는다.
+		
+		//top, parent, self, name속성
+// 		top.location.href
+		subframe.location.href="js12_Math객체.html";
+	}
+</script>
+</head>
+<body>
+<h1>Location객체</h1>
+<script type="text/javascript">
+	document.write("hash:"+location.hash+"<br/>");
+	document.write("search:"+location.search+"<br/>");
+	document.write("host:"+location.host+"<br/>");
+	document.write("port:"+location.port+"<br/>");
+	document.write("pathname:"+location.pathname+"<br/>");
+	document.write("protocol:"+location.protocol+"<br/>");
+	document.write("href:"+location.href+"<br/>");
+</script>
+<a href="js16_location객체.html?id=hk&name=hankyung">전송</a>
+<button onclick="locTest()">이동</button>
+<iframe name="subframe" src="js13_Date객체.html" width="500px" height="500px"></iframe>
+</body>
+</html>
+
+
+
+

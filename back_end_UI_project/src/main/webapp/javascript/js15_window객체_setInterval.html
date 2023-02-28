@@ -90,7 +90,10 @@
 	
 	//알람끄기??
 	function finishAlarm(){
-		
+		document.getElementById("song").innerHTML="";
+		document.getElementById("off").disabled="disabled";//비활성화--> 활성화
+		document.getElementById("on").style.color="black";//설정버튼 폰트색 변경
+		document.getElementById("setAlarm").style.display="none";
 	}
 </script>
 </head>

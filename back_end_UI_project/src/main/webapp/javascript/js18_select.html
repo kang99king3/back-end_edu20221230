@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js18_select</title>
+<script type="text/javascript">
+	//selected속성:선택여부(true/false)
+	//selectedIndex속성:선택한 option태그의 인덱스를 반환
+	//options: option태그들을 배열로 반환  --> body, forms, options, images..
+	function show(){
+		var food=document.getElementsByName("food")[0];
+		var idx=food.selectedIndex;//선택한 option태그의 인덱스 구함
+		alert(food.options[idx].value);
+	}
+</script>
+</head>
+<body>
+<h1>가장 먹고 싶은 음식은?</h1>
+<form>
+	<select name="food" onchange="show()">
+		<option value="라면">라면</option>
+		<option value="만두">만두</option>
+		<option value="불고기">불고기</option>
+		<option value="국수" selected="selected">국수</option>
+		<option value="피자">피자</option>
+	</select>
+	<br/>
+	<h1>리스트로 만들기(다중선택)</h1>
+	<select name="food" multiple="multiple" size="5">
+		<option value="라면">라면</option>
+		<option value="만두">만두</option>
+		<option value="불고기">불고기</option>
+		<option value="국수" selected="selected">국수</option>
+		<option value="피자">피자</option>
+	</select>
+	<input type="button" value="선택" onclick="show2()"/>
+</form>
+<script type="text/javascript">
+	function show2(){
+		//forms 내부에 요소들(input,select)
+		var food=document.forms[0].food[1];
+// 		alert(food.nodeName);
+		var str="";
+		for (var i = 0; i < food.options.length; i++) {
+			if(food.options[i].selected){ // 선택여부 확인
+				str+=food.options[i].value+",";
+			}
+		}
+		alert(str);
+	}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js17_checkbox</title>
+<style type="text/css">
+ 	#red,#yellow,#blue,#black{
+ 		width:150px;
+ 		height:150px;
+ 		border:1px solid gray;
+ 		color:gray;
+ 		text-align: center;
+ 		line-height: 150px;
+ 		position:absolute;
+ 	}
+ 	
+ 	#yellow{
+ 		left:160px;
+ 	}
+ 	#blue{
+ 		top:160px;
+ 	}
+ 	#black{
+ 		left:160px;
+ 		top:160px;
+ 	}
+ 	#base{
+ 		top:320px;
+ 		position: absolute;
+ 	}
+</style>
+<script type="text/javascript">
+	
+// 	onload=function(){
+// 		document.getElementsByName("all")[0].onclick=(event)=>{
+// 			console.log(event.target.name);
+// 		}
+// 	}
+
+
+	function allSel(chkAll){
+		//checked속성: 체크박스의 체크여부 
+		console.log(chkAll.name+':'+chkAll.checked);// 객체명.속성:get개념, 객체명.속성=값:set개념 
+		//체크박스여러개를 탐색
+		var chks=document.getElementsByName("chk");
+		//체크박스여러개의 길이만큼 반복
+		for (var i = 0; i < chks.length; i++) {
+			//체크박스 각각에 대해 인덱스로 접근하여 체크여부 적용
+			chks[i].checked=chkAll.checked;			
+		}
+	}
+	
+	function sel(){
+		var chks=document.getElementsByName("chk");
+// 		var chks=document.querySelectorAll("input:checked");//체크된 상태의 input요소 탐색
+// 		console.log(aaa.length);
+		
+		//1번 과제: 선택에 대한 유효값처리: "최소한 하나 이상 체크하세요~~" 알려주기
+		
+		//----선택된 체크박스가 있다면 실행될 코드
+		for (var i = 0; i < chks.length; i++) {
+			if(chks[i].checked){ //체크여부 판단
+				document.getElementById(chks[i].value).style.backgroundColor=chks[i].value;							
+			}else{
+				document.getElementById(chks[i].value).style.backgroundColor="white";	
+			}
+		}
+		//----
+	}
+	
+	function clearDiv(){
+		var divs=document.getElementsByTagName("div");
+		for (var i = 0; i < divs.length; i++) {
+			divs[i].style.backgroundColor="white";
+		}
+// 		document.body
+		document.forms[0].reset();//form요소 내부를 초기상태로 돌리는 기능
+	}
+	
+	//2번 과제: 전체선택 체크박스를 클릭한 후 나머지 박스 일부를 해제했을때, 전체선택박스도 해제되도록 구현
+	
+</script>
+</head>
+<body>
+<div id="red">red</div><div id="yellow">yellow</div>
+<div id="blue">blue</div><div id="black">black</div>
+<div id="base">
+	<form action="">
+		<input type="checkbox" name="all" onclick="allSel(this)" />전체선택<br/>
+		<input type="checkbox" name="chk" value="red"  /><label>빨강</label><br/>
+		<input type="checkbox" name="chk" value="yellow" /><label>노랑</label><br/>
+		<input type="checkbox" name="chk" value="blue" /><label>파랑</label><br/>
+		<input type="checkbox" name="chk" value="black"/><label>검정</label><br/>
+	</form>
+	<button onclick="sel()">선택</button>
+	<button onclick="clearDiv()">clear</button>
+</div>
+</body>
+</html>

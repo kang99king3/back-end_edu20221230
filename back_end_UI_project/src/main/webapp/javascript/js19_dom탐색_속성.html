@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js19_dom탐색_속성</title>
+<script type="text/javascript">
+	/*
+		DOM 객체의  종류
+		- Document: 문서에 접근할 때 사용 -> 문서 객체
+		- Element: tag, 요소, 엘리먼트 등으로 불림 -> 태그 객체 -> 객체생성 : getElementBy...()이용해서 생성
+		           var doc=document.getEle..  -> doc.title  doc.class , doc.onclick 
+		- Attribute: 속성 id, class, title, style... -> 속성 객체
+		- Text: <p>text</p> "text" -> 텍스트 객체
+		- Node: html을 구성하는 모든 요소들을 포함하는 객체
+		
+		객체를 생성하는 방법
+		1. DOM탐색 메서드를 이용(직접선택)
+		2. 속성을 이용(간접선택: 상대적 위치 선택)
+		  - parentNode속성:타겟 요소의 부모 요소를 구하는 속성 : 반환타입은 Node
+		  - parentElement속성: 동일한 기능 : 반환타입은 Element
+		  
+		  - childNodes속성: 타켓 요소의 자식 요소들을 구하는 속성 : 반환타입은 Node
+		  - children속성: 동일한 기능 : 반환타입은 Element
+		  
+		  - firstChild/lastChild : 자식요소 중에 첫번째/마지막 요소를 구한다. : 반환타입은 Node (모든요소)
+		  - firstElementChild/lastElementChild : 기능 동일 : 반환타입은 Element (tag요소)
+		  
+		  - previousSibling/nextSibling : 형제 요소를 구함 : 반환타입 Node
+		  - previousElementSibling/nextElementSibling : 기능 동일 : 반환타입 Element
+		  
+		  
+		3. create 메서드를 이용하여 새롭게 생성
+	*/
+	//parent관련 속성 
+	function searchPar(){
+		var child02=document.getElementsByTagName("p")[1];
+// 		var div=child02.parentNode;//p태그의 부모인 div를 구함
+		var div=child02.parentElement;
+		console.log(div.tagName);//태그의 이름을 반환
+		div.style.backgroundColor="yellow";
+	}
+		
+	//child관련 속성
+	function searchChi(){
+		var div=document.getElementsByTagName("div")[0];//target 요소
+		
+		//Node를 반환하는 속성 이용
+		var divChildNodes=div.childNodes; //[n,p,n,p,n,p,n]
+		console.log(divChildNodes.length+":"+divChildNodes[1].textContent);
+		
+		//Element를 반환하는 속성 이용
+		var divChildElements=div.children;//[p,p,p]
+		console.log(divChildElements.length+":"+divChildElements[0].textContent);
+	}
+	
+	function firstLastChi(){
+		var div=document.getElementsByTagName("div")[0]; //target 요소
+		var firstChi=div.firstChild;
+		var firstChiEle=div.firstElementChild;
+		console.log(firstChi.nodeName+":"+firstChiEle.textContent);
+		
+		var lastChi=div.lastChild;
+		var lastChiEle=div.lastElementChild;
+		console.log(lastChi.nodeName+":"+lastChiEle.textContent);
+	}
+	
+	function siblingTest(){
+		var child02=document.getElementsByTagName("p")[1];
+		var preP = child02.previousSibling;
+		var nextP = child02.nextSibling;
+		
+		var prePEle = child02.previousElementSibling;
+		var nextPEle = child02.nextElementSibling;
+		console.log(preP.nodeName+":"+prePEle.textContent);
+	}
+</script>
+</head>
+<body>
+<div>
+	<p>child01</p>
+	<p>child02</p>
+	<p>child03</p>
+</div>
+<button onclick="searchPar()">부모탐색</button>
+<button onclick="searchChi()">자식탐색</button>
+<button onclick="firstLastChi()">자식탐색</button>
+<button onclick="siblingTest()">자식탐색</button>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

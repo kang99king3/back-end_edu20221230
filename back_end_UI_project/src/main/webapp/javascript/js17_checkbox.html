@@ -50,22 +50,51 @@
 		}
 	}
 	
+	//체크박스의 체크개수 반환 기능
+	// isCheck(chks): param(input type:checkbox 객체타입:array) : 반환타입 number(체크개수)
+	function isCheck(chks){
+		var count=0;
+		for (var i = 0; i < chks.length; i++) {
+			if(chks[i].checked){
+				count++;
+			}
+		}
+		return count;
+	}
+	
 	function sel(){
 		var chks=document.getElementsByName("chk");
+		
+		//document.querySelectorAll()사용하면 바로 체크된 개수를 구할 수 있다.
 // 		var chks=document.querySelectorAll("input:checked");//체크된 상태의 input요소 탐색
+// 		var count=(chks==null||chks==undefined)?0:chks.length;//체크가 하나도 안됐을 경우 상태확인후 0으로 저장
+// 		console.log(typeof chks);
 // 		console.log(aaa.length);
 		
 		//1번 과제: 선택에 대한 유효값처리: "최소한 하나 이상 체크하세요~~" 알려주기
 		
-		//----선택된 체크박스가 있다면 실행될 코드
-		for (var i = 0; i < chks.length; i++) {
-			if(chks[i].checked){ //체크여부 판단
-				document.getElementById(chks[i].value).style.backgroundColor=chks[i].value;							
-			}else{
-				document.getElementById(chks[i].value).style.backgroundColor="white";	
+		var count=isCheck(chks);//isCheck()함수에 따로 만들어서 재사용할 수 있도록 함
+// 		for (var i = 0; i < chks.length; i++) {
+// 			if(chks[i].checked){
+// 				count++;
+// 			}
+// 		}
+		
+		if(count==0){
+			alert("최소 하나 이상은 체크해야 됩니다.");
+			clearDiv();
+		}else{
+			//----선택된 체크박스가 있다면 실행될 코드
+			for (var i = 0; i < chks.length; i++) {
+				if(chks[i].checked){ //체크여부 판단
+					document.getElementById(chks[i].value).style.backgroundColor=chks[i].value;							
+				}else{
+					document.getElementById(chks[i].value).style.backgroundColor="white";	
+				}
 			}
+			//----
 		}
-		//----
+		
 	}
 	
 	function clearDiv(){
@@ -78,6 +107,18 @@
 	}
 	
 	//2번 과제: 전체선택 체크박스를 클릭한 후 나머지 박스 일부를 해제했을때, 전체선택박스도 해제되도록 구현
+	onload=()=>{
+		var chks=document.getElementsByName("chk");
+		for (var i = 0; i < chks.length; i++) {
+			chks[i].onclick=()=>{
+				if(isCheck(chks)==chks.length){
+					document.getElementsByName("all")[0].checked=true;
+				}else{
+					document.getElementsByName("all")[0].checked=false;
+				}
+			}			
+		}
+	}
 	
 </script>
 </head>
@@ -87,7 +128,7 @@
 <div id="base">
 	<form action="">
 		<input type="checkbox" name="all" onclick="allSel(this)" />전체선택<br/>
-		<input type="checkbox" name="chk" value="red"  /><label>빨강</label><br/>
+		<input type="checkbox" name="chk" value="red"/><label>빨강</label><br/>
 		<input type="checkbox" name="chk" value="yellow" /><label>노랑</label><br/>
 		<input type="checkbox" name="chk" value="blue" /><label>파랑</label><br/>
 		<input type="checkbox" name="chk" value="black"/><label>검정</label><br/>

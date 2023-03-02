@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js21_domcreate(dom생성하기)</title>
+<script type="text/javascript">
+	//Element 객체 생성하기: createElement("태그이름") -> Element객체 반환
+	// - setAttribute() : p.setAttribute("속성명","속성값")  --> 재사용 X
+	// - setAttributeNode() : p.setAttributeNode(Attr 객체이름) --> 속성의 재사용이 가능
+	
+	//Arribute 객체: createAttribute("속성이름") -> Attribute객체 반환
+	// - nodeValue: 속성객체에 값을 지정할때
+	
+	//Text 객체: createTextNode("text") -> Text객체 반환
+	
+	function eleCreate(){
+		var div=document.createElement("div");// 1. <div></div> 생성
+		var styleAttr=document.createAttribute("style");//2.style="" 생성
+		var txt=document.createTextNode("엘리먼트생성메서드");//3."엘리먼트생성메서드" 생성
+		
+//      기존 방식대로 해보면 아래와 같이 할 수 도 있다.		
+// 		div.textContent="엘리먼트생성메서드";
+// 		div.style.border="2px solid black";
+		
+		//속성적용하기
+		styleAttr.nodeValue="border:2px solid red;";
+		//1번 방법
+		div.setAttributeNode(styleAttr);//Attr객체가 필요
+		//2번 방법
+// 		div.setAttribute("style","border:2px solid red;");
+		
+		//Text 적용하기
+		div.appendChild(txt);
+		//---여기까지 완성된 div요소의 상태는 ->  <div style="border:2px solid red;">엘리먼트생성메서드</div>
+		
+		document.getElementById("main").appendChild(div);
+	}
+</script>
+</head>
+<body>
+<button onclick="eleCreate()">엘리먼트 생성하기</button>
+<div id="main"></div>
+</body>
+</html>
+
+
+
+
+
+

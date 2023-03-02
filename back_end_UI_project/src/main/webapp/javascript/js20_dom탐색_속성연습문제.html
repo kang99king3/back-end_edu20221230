@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js20_dom탐색_속성연습문제</title>
+<script type="text/javascript">
+	function testSearch(){
+		var div=document.getElementsByTagName("p")[0].parentNode;
+		div.style.backgroundColor="yellow";
+		
+// 		var pElements=document.getElementsByTagName("div")[2].children;
+// 		pElements[1].style.fontSize="20pt";
+
+		var p=document.getElementsByTagName("div")[2].lastElementChild;
+		p.style.fontSize="20pt";
+	}
+	
+	function testSibling(){
+		var span=document.getElementsByClassName("sub");
+		span[0].nextElementSibling.firstElementChild.textContent="첫번째요소";
+		span[1].nextElementSibling.firstElementChild.textContent="첫번째요소";
+	}
+	
+	//target에 따라 탐색하는 엘리먼트 대상이 달라진다.--> 간접탐색
+	onload=()=>{
+		var span=document.getElementsByClassName("sub");
+		for (var i = 0; i < span.length; i++) {
+			span[i].onclick=(event)=>{
+				event.target.nextElementSibling.firstElementChild.textContent="첫번째요소";
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<h1>1. test01태그(id='a')를 포함한 div태그의 배경색을 적용하세요(parentNode속성사용)</h1>
+<h1>2. id="b"인 div태그에 포함된 test04태그의 폰트 크기를 20pt로 적용하세요(childNodes사용)</h1>
+<div onclick="testSearch()" style="width: 100px;background: yellow;">적용하기</div>
+<hr/>
+<div>
+	<p id="a">test01</p>
+	<p>test02</p>
+</div>
+<div id="b">
+	<p>test03</p>
+	<p>test04</p>
+</div>
+<h1>3.목록에서 &lt;li&gt;test08&lt;/li&gt; 요소를 &lt;li&gt;첫번째요소&lt;/li&gt;로 바꾸시오
+     (nextElementSibling,firstElementChild사용): class="sub"인 태그 첫번째가 타겟임</h1>
+<div onclick="testSibling()" style="width: 100px;background: yellow;">적용하기</div>
+<ul>
+	<li>test05</li>
+	<li>test06</li>
+	<li>
+		<span class="sub">test07</span>
+		<ul>
+			<li>test08</li>
+			<li>test09</li>
+			<li>test10</li>
+			<li>test11</li>
+			<li>test12</li>
+		</ul>
+	</li>
+	<li>
+		<span class="sub">test08</span>
+		<ul>
+			<li>test13</li>
+			<li>test14</li>
+			<li>test15</li>
+			<li>test16</li>
+			<li>test17</li>
+		</ul>
+	</li>
+</ul>
+</body>
+</html>

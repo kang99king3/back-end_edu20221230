@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js22_domcreate활용</title>
+<style type="text/css">
+	img{
+		width:300px;
+		height: 200px;
+		vertical-align: middle;
+	}
+	a{
+		text-decoration: none;
+		font-size: 40px;
+	}
+</style>
+<script type="text/javascript">
+	function creatImg(){
+		//라디오 버튼을 탐색해서 선택된 버튼의 값을 가져오기
+		
+		//체크한 라디오 버튼을 찾아야 함---> checked 속성
+		//바로 input:checked 셀렉터 표현식으로 바로 찾거나...
+		
+		var rdoValue=document.querySelector("input:checked").value;
+		console.log(rdoValue);
+		
+		//img 태그를 생성
+		var img = document.createElement("img");//<img/> 생성
+		//생성된 객체에 src 속성에 이미지 경로를 설정(setAttribute() 사용)
+		img.setAttribute("src",rdoValue);// <img src="..img/0.jpg"/>
+		console.log(img.tagName+":"+img.src);
+		
+		//완성된 img요소를 div요소에 추가하기
+		//문제점: appendChild()를 사용해서 추가하면 기존에 추가된 이미지가 남아있는 문제 발생
+		var div=document.getElementById("imgview");
+		//코드 추가
+		div.innerHTML="";
+		
+		div.appendChild(img);
+		
+	}
+	
+	/*
+		속성에 관련된 메서드 정리
+		1.setAttribute("name","value"): 속성을 엘리먼트에 추가(리터럴)
+		2.setAttributeNode(Attr name): 속성을 엘리먼트에 추가(객체)
+		3.getAttribute("name"): "name"속성의 값을 가져온다
+		4.hasAttribute("name"): "name"속성이 존재하는 여부 (true/false)
+	*/
+	
+	onload=()=>{
+		//a태그의 객체를 구함
+		var anchs=document.getElementsByTagName("a");// [a,a]
+		var img=document.getElementsByTagName("a")[0].nextElementSibling;
+		console.log(img.tagName);
+		console.log("img요소에 alt속성있는지 여부:"+img.hasAttribute("alt"));
+		var count=0;//이미지의 이름 순서에 의해 바꿔주기 위한 변수
+		//왼쪽 a태그를 클릭하면 이미지 바꾸기
+		anchs[0].onclick=()=>{
+			//첫번째 이미지라면 alert로 "첫번째 이미지입니다."라고 알려주고 밑에 코드 실행하지 않기
+			img.setAttribute("title","img"+(--count));// --count-- : 1 --count 0적용, count-- 1적용
+			img.setAttribute("src","../img/"+(count)+".jpg");
+		}
+		//오른쪽 a태그를 클릭하면 이미지 바꾸기
+		anchs[1].onclick=function(){
+			//마지막 이미지라면 alert로 "마지막 이미지입니다."라고 알려주고 밑에 코드 실행하지 않기
+			img.setAttribute("title","img"+(++count));// --count-- : 1 --count 0적용, count-- 1적용
+			img.setAttribute("src","../img/"+(count)+".jpg");
+		}
+	}
+</script>
+</head>
+<body>
+<h1>선택된 목록에 해당하는 이미지 보여주기</h1>
+<input type="radio" name="rbtn" value="../img/0.jpg"/><label>자장면</label><br/>
+<input type="radio" name="rbtn" value="../img/1.jpg"/><label>치킨</label><br/>
+<input type="radio" name="rbtn" value="../img/2.jpg"/><label>떡복이</label><br/>
+<button onclick="creatImg()">이미지 생성</button>
+<div id="imgview"></div>
+<h1>화살표 방향에 따라 이미지가 바뀌는 기능</h1>
+<div>
+	<a href="#" id="lt">◀</a>
+	<img src="../img/0.jpg" title="img0" alt="음식사진"/>
+	<a href="#" id="rt">▶</a>
+</div>
+
+</body>
+</html>
+
+
+

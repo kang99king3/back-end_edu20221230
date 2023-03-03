@@ -3,6 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <title>jq02_셀렉터표현식</title>
+<script type="text/javascript" src="jquery-3.6.3.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#d1").css({"border":"1px solid red","width":"300px"});
+		$("#view").css({"border":"1px solid red","width":"400px","height":"150px"});
+	});
+	
+	function a1(){
+		//span태그가 화면에 여러개이면 배열형태로 반환하지만 그냥 CSS 적용하면 알아서 각각의 요소에 적용
+		$("span").css("color","red").toggle();
+		$("#view").text('$("span").css("color","red");');
+	}
+	
+	function a2(){
+		var $t1=$("#t1"); // t1은 jquery 객체
+// 		$t1.style.color="blue";// JS와 JQ를 혼합해서 사용할 수 없다(.으로 연결했을 경우)
+//      jsobj -> jqobj = t1 -> $(t1) 변환가능
+		$t1.css("color","blue");
+		$("#view").text('$t1.css("color","blue");');
+	}
+	
+	function a3(){
+		$(".t2").css("color","yellow");
+		$("#view").text('$(".t2").css("color","yellow");');
+	}
+	
+	function a4(){
+		//li 태그에 포함 되어 있는 span태그 선택
+		$("li span").css("color","green");
+		$("#view").text('$("li span").css("color","green");');
+	}
+	
+	function a5(){
+		//li 태그와 자식관계에 있는 span태그 선택
+		$("li > span").css("color","red");
+		$("#view").text('$("li > span").css("color","red");');
+	}
+	
+	function a6(){
+		//nth-child() : 인자값 even/odd/n
+		//index값이 1부터 시작
+		//2n+1 : 일반항을 적용할 때 n의 값이 0부터 증가함
+// 		$("li:nth-child(1)").css("background-color","green");
+		$("li:nth-child(2n+3)").css("background-color","green");
+	}
+	
+	function a7(){
+		$("li:first-child").css("color","red");
+	}
+	function a8(){
+		$("li:last-child").css("color","red");
+	}
+</script>
 </head>
 <body>
 <h1>셀렉터표현식</h1>

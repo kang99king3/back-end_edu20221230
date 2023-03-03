@@ -3,6 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <title>js24_domadd_createtable</title>
+<script type="text/javascript">
+	function tableVal(){
+		//1. 입력폼에 값을 모두 입력 안했을때 경고메시지 보여주고 다시 입력할 수 있게 처리
+		//   --> 입력 안된 목록도 같이 알려주기
+		//2. 10개까지만 입력되도록 처리(더이상 입력안되게..)
+		
+		
+		// form 태그 내부에 name속성을 가지고 있는 input 요소들 탐색 
+		var inputs=document.querySelectorAll("form[name=formTest] input[name]");
+// 		var inputs=document.formTest.id...
+		console.log(inputs.length);//input의 개수가 4개
+		
+// 		var tr=document.createElement("tr");//tr 1개
+		
+// 		for (var i = 0; i < inputs.length; i++) {
+// 			var td=document.createElement("td");//td 4개
+// 			td.textContent=inputs[i].value;//<td>입력값</td>
+// 			tr.appendChild(td);//<tr><td>입력값</td>...</tr>
+// 		}
+		
+		var count=0;
+		var msg="";
+		for (var i = 0; i < inputs.length; i++) {
+			if(inputs[i].value==null||inputs[i].value==""||inputs[i].value==undefined){
+				count++;
+				msg+=inputs[i].parentNode.previousElementSibling.textContent+" ";
+				//      input .    td    .       th             . th내부 텍스트 
+			}
+		}
+		                                   
+		if(count>0){
+			alert("모두 입력하세요 ["+msg+"]");
+		}else{
+			//addr(tbody)의 자식요소들을 구하고 그 요소들의 개수를 구해서 비교
+			if(document.getElementById("addtr").childElementCount<10){
+	// 			if(document.getElementById("addtr").children.length)
+				var tr=createTr(inputs);//새로운 tr 만들어주는 함수
+				console.log(tr.children[0].textContent);
+				
+				//테이블에 새로운 행을 추가하는 코드
+				document.getElementById("addtr").appendChild(tr);			
+			}else{
+				alert("10개까지만 추가 가능합니다.");
+			}
+		}
+		
+// 		alert(document.getElementById("addtr").childElementCount);
+	}
+	// createTr(inputs): inputs form에 input 요소들을 배열타입으로 전달
+	function createTr(inputs){
+		var tr=document.createElement("tr");//tr 1개
+		
+		for (var i = 0; i < inputs.length; i++) {
+			var td=document.createElement("td");//td 4개
+			td.textContent=inputs[i].value;//<td>입력값</td>
+			tr.appendChild(td);//<tr><td>입력값</td>...</tr>
+		}
+		return tr;
+	}
+</script>
+<!-- <script type="text/javascript" src="createTr.js"></script> -->
 </head>
 <body>
 <form name="formTest">
@@ -11,7 +72,7 @@
 		<col width="100px"><col width="300px">
 		<tr>
 			<th>아이디</th>
-			<td><input type="text" name="id"/></td>
+			<td><input type="text" name="id" /></td>
 		</tr>
 		<tr>
 			<th>비밀번호</th>
@@ -52,6 +113,7 @@
 				<td>영등포구 양평동 </td>
 				<td>02-1234-5678</td>
 			</tr>
+			
 		</tbody>
 	</table>
 </div>

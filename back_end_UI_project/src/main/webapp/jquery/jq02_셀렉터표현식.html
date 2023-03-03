@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq02_셀렉터표현식</title>
+</head>
+<body>
+<h1>셀렉터표현식</h1>
+<div id="d1">
+	<ul>
+		<li><span>tag로선택하기</span></li>
+		<li id="t1">ID로 선택하기</li>
+		<li class="t2">class로 선택하기</li>
+		<li><span>상위 하위의 포함관계로 선택하기</span></li>
+		<li><b><span>parent &gt; child로 선택하기</span></b></li>
+		<li>:nth-child(n/even/odd)로 선택하기</li>
+		<li>:first-child로 선택하기</li>
+		<li>:last-child로 선택하기</li>
+	</ul>
+	<ul>
+		<li><span>tag로선택하기</span></li>
+		<li id="t1">ID로 선택하기</li>
+		<li class="t2">class로 선택하기</li>
+		<li><span>상위 하위의 포함관계로 선택하기</span></li>
+		<li><b><span>parent &gt; child로 선택하기</span></b></li>
+		<li>:nth-child(n/even/odd)로 선택하기</li>
+		<li>:first-child로 선택하기</li>
+		<li>:last-child로 선택하기</li>
+	</ul>
+</div>
+<div>
+	<button onclick="a1()">태그선택</button>
+	<button onclick="a2()">ID선택</button>
+	<button onclick="a3()">Class선택</button>
+	<button onclick="a4()">포함관계선택</button>
+	<button onclick="a5()">부모자식관계선택</button>
+	<button onclick="a6()">nth-child선택</button>
+	<button onclick="a7()">first-child선택</button>
+	<button onclick="a8()">last-child선택</button>
+</div>
+<h2>코드 내용</h2>
+<div id="view"></div>
+</body>
+</html>

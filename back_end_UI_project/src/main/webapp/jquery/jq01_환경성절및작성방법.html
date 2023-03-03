@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq01_환경성절및작성방법</title>
+<!-- <script type="text/javascript" src="jquery-3.6.3.js"></script> -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	/*
+		설정하기: - 내부파일링크: 홈페이지에서 jquery.js파일을 다운받아 링크(안정적,CDN보다 빠름)
+				- URL링크(CDN): 간편하게 설정해서 사용 가능, 항상 최신버전사용(불안정)
+	
+		작성방식
+		$문자를 사용한다. $의 의미 -> $() == jquery()
+		js: load 이벤트를 작성 -> onload=function(){}
+		jq: load 이벤트를 작성 -> $(function(){코드...}) 1번방법
+		                       $(document).ready(function(){code..}) 2번방법
+	*/
+	$(function(){
+// 		alert("Hello~ jQuery");
+	});
+	
+		
+	function imgSize(){
+// 		var img=document.querySelectorAll("div > img");
+// 			img[0].style.width="100px";
+		var img=$("div > img");
+		
+		//배열객체에 바로 적용가능
+// 		img.css("width","100px");
+// 		img.css("height","80px");
+
+		//배열객체에 인덱스로도 적용 가능
+		img.eq(1).css("width","100px");
+		img.eq(1).css("height","80px");
+		
+		img.css({"width":"100px","height":"80px"});
+	}
+	
+	function highlight(){
+		//목록 중에 인덱스가 1인 항목을 강조하기
+		$("ol > li").eq(1).css("background-color","yellow");
+		$("ol > li").last().css("background-color","yellow");
+	}
+	
+	function addImg(){
+		$("div").eq(0).append("<img src='../img/1.jpg'/>");
+		
+// 		var img=$("<img src='' />");//create 개념
+// 		img.attr("src","url");
+// 		$("div").append(img);
+
+		var img=document.createElement("img");
+		img.setAttribute("src","../img/2.jpg");
+		document.querySelectorAll("div")[1].appendChild(img);
+	}
+	
+	function hideImg(){
+// 		$("img").css("display","none");
+		$("img").eq(2).hide(2000);
+	}
+</script>
+</head>
+<body>
+	<h1>jQuery의 내용</h1>
+	<ol>
+		<li>셀렉터표현식</li>
+		<li>DOM탐색메서드</li>
+		<li>DOM처리메서드</li>
+		<li>이벤트메서드</li>
+		<li>이팩트메서드</li>
+		<li>Ajax메서드</li>
+		<li>기타메서드</li>
+	</ol>
+<button onclick="imgSize()">이미지 축소</button>
+<button onclick="highlight()">리스트강조하기</button>
+<button onclick="addImg()">이미지 추가</button>
+<button onclick="hideImg()">이미지 숨기기</button>
+<hr/>
+<div>
+	<img src="../img/0.jpg" alt="자장면"/>
+</div>	
+<div>
+	<img src="../img/0.jpg" alt="자장면"/>
+</div>	
+<div>
+	<img src="../img/0.jpg" alt="자장면"/>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

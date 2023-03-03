@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js24_domadd_createtable</title>
+</head>
+<body>
+<form name="formTest">
+	<table border="1">
+		<caption>회원정보입력</caption>
+		<col width="100px"><col width="300px">
+		<tr>
+			<th>아이디</th>
+			<td><input type="text" name="id"/></td>
+		</tr>
+		<tr>
+			<th>비밀번호</th>
+			<td><input type="password" name="pw"/></td>
+		</tr>
+		<tr>
+			<th>주소</th>
+			<td><input type="text" name="addr"/></td>
+		</tr>
+		<tr>
+			<th>전화번호</th>
+			<td><input type="text" name="phone"/></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="button" value="추가" onclick="tableVal()" /></td>
+		</tr>
+	</table>
+</form>
+<hr>
+<div id="addTable">
+	<table border="1" id="ctb">
+		<col width="100px">
+		<col width="100px">
+		<col width="300px">
+		<col width="200px">
+		<thead>
+			<tr>
+				<th>아이디</th>
+				<th>비밀번호</th>
+				<th>주 소</th>
+				<th>전화번호</th>
+			</tr>
+		</thead>
+		<tbody id="addtr">
+			<tr>
+				<td>hk</td>
+				<td>1234</td>
+				<td>영등포구 양평동 </td>
+				<td>02-1234-5678</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

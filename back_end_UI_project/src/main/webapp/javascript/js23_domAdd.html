@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js23_domAdd</title>
+<style type="text/css">
+	#addEle p{
+		background-color: yellow;
+	}
+	
+	#addEle{
+		margin-top: 100px; border: 1px solid red;
+	}
+	
+	#addEle2{
+		margin-top: 100px; border: 1px solid blue;
+	}
+</style>
+<script type="text/javascript">
+	/*
+		appendChild(node객체):자식요소들 중에 마지막 위치에 추가
+		insertBefore(node new, node old): 특정 엘리먼트 앞에 추가
+		innerHTML : HTML요소를 태그 내부에 추가(덮어씌우기)
+		textContent : Text요소를 태그 내부에 추가(덮어씌우기)
+		
+    --- 예시
+		div.appendChild("<p>text</p>") (X)
+		
+		var p=document.getElementById("p");
+		var p=document.createElement("p");
+		div.appendChild(p) (O)
+		
+		div.innerHTML="<p>text</p>"; (O)
+	*/
+	var count=0;
+	function addAppend(){
+		var fieldset=document.getElementById("addEle");
+		var p = document.createElement("p");
+// 		p.textContent="자식태그들 중에 마지막에 붙여 넣는다"+(count++);// <p>자식태그들 중에...</p>
+		var txt=document.createTextNode("자식태그들 중에 마지막에 붙여 넣는다"+(count++));
+		p.appendChild(txt);
+		fieldset.appendChild(p);
+	}
+	
+	function addBefore(){
+		var fieldset=document.getElementById("addEle");
+		
+		var newP=document.createElement("p");
+		newP.textContent="엘리먼트의 앞에 붙여 넣는다";
+		
+// 		var oldDiv=document.getElementsByTagName("div")[0];
+		var oldDiv=document.querySelectorAll("#addEle > div")[0];
+		
+		//oldDiv 요소 앞에 newP요소를 추가한다.
+		fieldset.insertBefore(newP,oldDiv);
+	}
+	
+	function moveEle(){
+		//문서에 존재하는 요소를 탐색하고, appendChild하면 이동한다.
+		var moveLast=document.getElementById("addEle").lastElementChild;
+		document.getElementById("addEle2").appendChild(moveLast);
+	}
+</script>
+</head>
+<body>
+<h1>태그추가하기</h1>
+<button onclick="addAppend()">appendChild()실행</button>
+<button onclick="addBefore()">insertBefore()실행</button>
+<button onclick="moveEle()">appendChild()활용 요소이동</button>
+<fieldset id="addEle">
+	<legend>부모태그</legend>
+	<div>div태그</div>
+</fieldset>
+<fieldset id="addEle2">
+	<legend>이동할 요소박스</legend>
+	
+</fieldset>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

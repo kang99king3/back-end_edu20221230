@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq06_이벤트메서드</title>
+<script type="text/javascript" src="jquery-3.6.3.js"></script>
+<style type="text/css">
+	div{
+		width: 400px;
+		height: 400px;
+		border: 1px solid red;
+		padding:20px;
+	}
+	div p{
+		width: 150px;
+		height: 150px;
+		border: 1px solid green;
+	}
+</style>
+<script type="text/javascript">
+	/*
+		이벤트 전파 및 기본 기능을 금지시키는 메서드:
+			stopPropagation() : 이벤트 전파를 막음
+			preventDefault() : 태그의 기본 기능을 막음
+			return false : 동시에 둘다 처리가 가능
+	*/
+	$(function(){
+		$("a").eq(0).click(function(e){
+			alert($(this).prop("tagName"));
+			e.preventDefault();//a요소에 적용되어 있는 링크 페이지로 이동하는 기능을 막는다.
+			e.stopPropagation();//이벤트 전파를 막는다.
+// 			return false;
+		});
+		
+		$("div p").click(function(){
+			alert($(this).prop("tagName"));
+		});
+		$("div").click(function(){
+			alert($(this).prop("tagName"));
+		});
+		
+		
+		/*
+			이벤트 메서드의 종류 :  click(), keydown(), change(), focus()....
+			이벤트 핸들러 메서드의 종류 : bind()/unbind() , delegate()/undelegate(),
+			                        live()/die() , on()/off(), one()
+			
+			JS 이벤트 핸들러
+			document.body.addEventListener("click",function(){});
+		*/
+		
+		
+		//동적으로 요소를 추가할 경우 그 요소들은 이벤트 적용이 안됨
+		$("#btn01").click(function(){
+			$("body").append("<p>새로 추가된 p태그</p>");
+		});
+		
+// 		$("body > p").click(function(){
+// 			alert("이벤트가 발생합니다.");
+// 		});
+		
+		//on("이벤트 타입","추가 셀렉터 표현식",기능() )
+		$("body").on("click","> p",function(){
+			alert("이벤트가 발생합니다.");
+		});
+		
+		//bind()메서드 사용하기 : bind("이벤트타입",기능(){})
+		$("a").bind("mouseover mouseout", function(e){
+			console.log(e.type);//이벤트의 속성 
+			if(e.type=="mouseover"){
+				$(this).css("background-color","red");
+			}
+			
+			if(e.type=="mouseout"){
+				$(this).css("background-color","blue");
+			}
+		});
+		
+		//unbind()사용하기 : bind 기능 해제
+		$("#btn02").click(function(){
+			alert("bind메서드 기능 중지!!");
+			$("a").unbind();
+		});
+	});
+</script>
+</head>
+<body>
+<h1>이벤트 전파 막기</h1>
+<div id="test01">
+	<p class="ptest01">
+		<a href="jq05_DOM탐색메서드_메뉴만들기.html">이동</a>
+	</p>
+	<p class="ptest01">클릭</p>
+</div>
+<h1>동적으로 추가된 요소에 대한 이벤트 처리</h1>
+<button id="btn01">새로운p태그추가</button>
+<button id="btn02">이벤트해제</button>
+<p>이미 작성되어 있는 p태그</p>
+
+</body>
+</html>
+
+
+
+
+
+

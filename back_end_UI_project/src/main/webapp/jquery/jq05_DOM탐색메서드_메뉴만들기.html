@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq05_DOM탐색메서드_메뉴만들기</title>
+<script type="text/javascript" src="jquery-3.6.3.js"></script>
+<style type="text/css">
+	.menu{
+		width:120px;
+		background-color: orange;
+		position: absolute;
+	}
+	
+	#menu02{
+		left:140px;
+	}
+	
+	#menu03{
+		left:270px;
+	}
+	
+	a{
+		text-decoration: none;
+		display: inline-block;
+		height: 30px;
+		width: 120px;
+		text-align: center;
+		line-height: 30px;
+		font-weight: bold;
+		color:white;
+	}
+	
+	.menu > div{
+		background-color: aqua;
+		display:none;
+	}
+	
+	.menu > div:hover{
+		background-color: olive;
+		cursor: pointer;
+	}
+	
+/* 	a:hover + div { */
+/* 		display:block; */
+/* 	} */
+</style>
+<script type="text/javascript">
+	$(function(){
+		//a태그위에 마우스를 올려면 기능을 실행해라
+// 		JS: docu.getE("a").onclick=function(event){event.taget}
+// 		$("a").mouseover(function(){
+// 			$(this).nextAll("div").css("display","block");
+// 		});
+		
+// 		$("a").mouseout(function(){
+// 			$(this).nextAll("div").css("display","none");
+// 		});
+		
+// 		$("a").hover(function(){
+// 			$(this).nextAll("div").css("display","block");
+// 		},function(){
+// 			$(this).nextAll("div").css("display","none");
+// 		});
+		
+		//문제: 1.마우스 올렸을때 하위메뉴가 사라지는 현상을 해결해보자!!
+		//     2.구현하려는 효과는 하위메뉴가 그냥 사라지게 하는게 아니다~~ 슬라이드효과로 사라지게 하는거임
+		//힌트: 타겟에 문제가 있다는것!~
+// 		$(".menu").hover(function(){
+// 			$(this).children("div").slideDown();
+// 		},function(){
+// 			$(this).children("div").slideUp();
+// 		});
+		
+		//hover()는 아규먼트1개, 2개 ---> 1개에 경우는 마우스오버/아웃할때 1개만 실행
+		$(".menu").hover(function(){
+			//stop():앞에 적용된 여러 효과들을 정지시키고, 현재 효과만 적용시키자.
+			$(this).children("div").stop().slideToggle();
+		});
+		
+		//이벤트 전파 막기
+// 		$("div").click(function(event){
+// 			event.stopPropagation();
+// 			alert("클릭");
+// 		});
+	});
+</script>
+</head>
+<body>
+<h1>메뉴 만들기</h1>
+<div id="menu01" class="menu">
+	<a href="#">필터링메서드</a>
+	<div>.eq()</div>
+	<div>.slice()</div>
+	<div>.first()</div>
+	<div>.last()</div>
+</div>
+<div id="menu02" class="menu">
+	<a href="#">트리탐색메서드</a>
+	<div>.find()</div>
+	<div>.children()</div>
+	<div>.parent()</div>
+	<div>.prev()</div>
+	<div>.next()</div>	
+</div>
+<div id="menu03" class="menu">
+	<a href="#">기타메서드</a>
+	<div>.add()</div>
+	<div>.is()</div>
+	<div>.end()</div>
+</div>
+</body>
+</html>

@@ -3,6 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <title>js03_셀렉터표현식연습문제</title>
+<script type="text/javascript" src="jquery-3.6.3.js"></script>
+<script type="text/javascript">
+	//$(function(){})
+	onload=function(){
+		
+		$("#simpletext1").css("background-color","#ff0");
+		//               .attr("style","background-color:#ff0")
+		
+		$(".simpletest1").css("color","#f00");
+// 		$("span").eq(1).css("font-size","30pt");
+		$("span:eq(1)").css("font-size","30pt");//selector표현식에서 사용되기도 함(eq)
+		$("div").eq(1).css("font-style","italic");
+// 		$("#count").text($("div").length); // js: textContent
+		$("#count").html("<strong>"+$("div").length+"</strong>"); // JS: innerHTML 
+		$("div em").css("background-color","blue");
+		$("span > em").css("color","red");
+		$("div > p:first-child").css("background-color","yellow");
+		$("div > p:last-child").css("background-color","red");
+		$("div > p[title]").css("border","1px solid red");
+		//form요소
+// 		$("input:checked")
+// 		$("select:seleted")
+	}
+	
+</script>
 </head>
 <body>
 <span id="simpletext1">1.simple[현재요소의 배경색:#ff0]</span>
@@ -32,3 +57,5 @@
 </div>
 </body>
 </html>
+
+

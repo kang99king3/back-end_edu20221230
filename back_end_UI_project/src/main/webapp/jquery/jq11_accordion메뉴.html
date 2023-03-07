@@ -20,7 +20,25 @@
    4.힌트: :not, siblings, class속성을 다루는 메서드들(...Class())
    5.조건: body내부에 요소들에 대해 id, class등을 추가하여 사용할 수 없음.(제시된 태그(속성등)는 수정하지마세요!)
  */
+$(function(){
+	//1
+// 	$(".accordion > p").slice(1).hide();
+	$(".accordion > p:not(:first)").hide();
+	$(".accordion > h3").eq(0).addClass("active");
+	
+	$(".accordion > h3").click(function(){
+		//해당 메뉴에 하위 목록을 보여주자
+		$(this).next("p").slideDown();
+		
+		$(this).next("p").siblings("p").slideUp();
+		
+		//화살표 방향 바꾸기
+// 		$(this).addClass("active");
+// 		$(this).siblings("h3").removeClass("active");
+		$(this).addClass("active").siblings("h3").removeClass("active");
 
+	});
+});
 </script>
 
 <style type="text/css">
@@ -30,18 +48,39 @@ body {
 	font: 75%/120% Arial, Helvetica, sans-serif;
 }
 /* div 요소에 너비 480px , 테두리 아래(bottom)를 실선 1px 색상 #c4c4c4 정의하시오.  */
-
+div{
+	width:480px;
+	border-bottom: 1px solid #c4c4c4;
+}
 /* div 요소내부에 h3요소를 배경색 #e9e7e7, 배경이미지설정 arrow-square.gif, 배경이미지 반복금지, 위치는 right -51px 적용 
                            안쪽 여백 7px 15px,  외부 여백 0px , 폰트 bold 120%/100% Arial , 테두리 굵기 1px 실선  색은 #c4c4c4
 			   아래 테두리 none, 커서 pointer
 */
-
+.accordion > h3{
+	background: #e9e7e7 url("arrow-square.gif") no-repeat right -51px  ;
+	padding: 7px 15px;
+	margin: 0px;
+	font: bold 120%/100% Arial;
+	border: 1px solid #c4c4c4;
+	border-bottom: none;
+	cursor: pointer;
+}
 /* h3요소에 마우스 커서를 올리면 배경색이 #e3e2e2로 바뀌고, 마우스커서가 나가면 원상태로 복귀되도록 설정 */
-
+div > h3:hover{
+	background-color: #e3e2e2;
+}
 /* h3요소에 class 이름이 active인 요소에 대한 배경이미지 위치를 right 5px이 되도록 설정*/
-
+h3.active{
+ 	background-position: right 5px;
+}
 /* p요소들에 대해 배경색 #f7f7f7 , 외부 여백 상하좌우 0px, 내부여백 상 10px 좌우 15px 하 10px , 테두리 좌우 실선 1px 색상  #c4c4c4 로 설정 */
-
+div > p{
+	background-color: #f7f7f7;
+	margin: 0px;
+	padding: 10px 15px;
+	border-left: 1px solid #c4c4c4;
+	border-right: 1px solid #c4c4c4;
+}
 
 </style>
 </head>
@@ -55,7 +94,7 @@ body {
 	   	ante at feugiat tincidunt, enim massa gravida metus, commodo lacinia massa diam vel eros.
 	   	Proin eget urna. Nunc fringilla neque vitae odio. Vivamus vitae ligula.
 	</p>
-	<h3>This is Question Two</h3>
+	<h3 >This is Question Two</h3>
 	<p>
 		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi malesuada, 
 		ante at feugiat tincidunt, enim massa gravida metus, commodo lacinia massa diam vel eros. 

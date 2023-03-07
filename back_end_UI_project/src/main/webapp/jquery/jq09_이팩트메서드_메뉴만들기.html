@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq09_이팩트메서드_메뉴만들기</title>
+<script type="text/javascript" src="jquery-3.6.3.js"></script>
+<style type="text/css">
+	.main_menu>li{
+		width:300px;
+	}
+	li{list-style: none;}
+	ul{margin-left: 0px; padding-left:0px;}
+	.sub_menu1{cursor:pointer;}
+	.sub_menu2{display:none; height: 200px;}
+</style>
+<script type="text/javascript">
+	$(function(){
+		$("b").click(function(){
+			//클릭된 b태그의 하위 메뉴를 슬라이드로 보여주자~~
+			//단, 항상 클릭한 b태그의 하위메뉴만 보여야 된다.
+			//적용효과: slideUp, slideDown
+			$(this).next().slideDown();// ----> click이 발생된 b태그의 하위메뉴가 타겟
+			//형제요소구하는 메서드: prev(), prevAll(), next(), nextAll(), siblings()
+			var $b=$(this);
+			$b.parent("li").siblings().children("ul").slideUp();
+// 			$(this).next().slideUp();//수정 ----> click이 발생되지 않은 다른 b태그들의 하위메뉴가 타겟
+// 			$(this).next().slideToggle();
+		});
+	});
+</script>
+</head>
+<body>
+<h1>메뉴만들기</h1>
+<ul class="main_menu">
+	<li class="sub_menu1">
+		<b>(1)CSS셀렉터</b>
+		<ul class="sub_menu2">
+			<li><span>tag로선택하기</span></li>
+			<li id="t1">ID로 선택하기</li>
+			<li class="t2">class로 선택하기</li>
+			<li><span>상위 하위의 포함관계로 선택하기</span></li>
+			<li><b><span>parent &gt; child로 선택하기</span></b></li>
+			<li>:nth-child(n/even/odd)로 선택하기</li>
+			<li>:first-child로 선택하기</li>
+			<li>:last-child로 선택하기</li>
+		</ul>
+	</li>
+	<li class="sub_menu1">
+		<b>(2)속성셀렉터</b>
+		<ul class="sub_menu2">
+			<li>[attr]</li>
+			<li>[attr=value]</li>
+			<li>[attr!=value]</li>
+		</ul>
+	</li>
+	<li class="sub_menu1">
+		<b>(3)폼셀렉터</b>
+		<ul class="sub_menu2">
+			<li>input:type</li>
+			<li>input:상태(checked)</li>
+		</ul>
+	</li>
+	<li class="sub_menu1">
+		<b>(4)사용자정의셀렉터</b>
+		<ul class="sub_menu2">
+			<li>:eq(n)</li>
+			<li>:first</li>
+			<li>:last</li>
+			<li>:even</li>
+			<li>:odd</li>
+			<li>:parent</li>
+		</ul>
+	</li>
+</ul>
+</body>
+</html>
+
+

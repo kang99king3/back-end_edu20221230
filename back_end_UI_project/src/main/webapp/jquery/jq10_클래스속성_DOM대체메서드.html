@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq10_클래스속성_DOM대체메서드</title>
+<script type="text/javascript" src="jquery-3.6.3.js"></script>
+<script type="text/javascript">
+/*
+	class속성관련 메서드 4가지
+	- addClass():class속성을 엘리먼트에 추가 addClass("test") 
+	                                     attr("class","test");
+	- removeClass(): class속성을 삭제
+	- hasClass(): class속성이 존재하는지 여부 확인 -> true/false반환
+	- toggleClass(): addClass()와 removeClass() 의 기능을 동시에 가지고 있음
+*/
+	$(function(){
+		$("#btn").click(function(){
+			$("img").toggleClass("onoffimg");
+		});
+		$("img").click(function(e){
+			if($(this).hasClass("addSize")){
+				$(this).removeClass("addSize");
+			}else{
+				$(this).addClass("addSize");
+			}
+		});
+		
+	//엘리먼트 대체 메서드
+	// 타겟 요소를 새로운 요소로 바꿔주는 기능 : 2가지 제공(기능은 똑같다)
+	// - replaceWith()
+	// - replaceAll()
+		$("#btn2").click(function(){
+// 			$("div > p").replaceWith("<string>요소 바꾸기</strong>");
+			$("<string>요소 바꾸기</strong>").replaceAll("div > p");
+		});
+	});
+</script>
+<style type="text/css">
+	img{width:300px; height:250px;}
+	.onoffimg{display: none;}
+	.addSize{width:400px; height:350px;}
+</style>
+</head>
+<body>
+<button id="btn">이미지켜고끄기</button><br/>
+<img src="../img/0.jpg" />
+<img src="../img/0.jpg" />
+<img src="../img/0.jpg" />
+<div>
+	<p>DOM 대체 메서드</p>
+</div>
+<button id="btn2">바꾸기</button>
+</body>
+</html>
+
+
+
+
+

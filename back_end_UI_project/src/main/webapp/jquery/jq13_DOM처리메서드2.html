@@ -37,6 +37,25 @@
 			$(this).wrap("<div class='box'></div>");
 		});
 	});
+	
+	//삭제하는 메서드
+// 	 JQ: remove(): 타겟 요소를 삭제
+// 		      empty() : 타겟의 내부를 삭제
+// 		      detach(): 타겟을 잘라내기 한다.-> 삭제한 요소를 저장할 수 있다.
+	$(function(){
+		$("#container > p").eq(0).click(function(){
+			$("#container > p:eq(0)").remove(); //선택한 타겟 요소를 삭제
+		});
+		$("#container > p").eq(1).click(function(){
+			$("#container").empty();// div의 내부 요소들을 모두 삭제
+		});
+		$("#container > p").eq(2).click(function(){
+			var p=$("#container > p:eq(2)").detach();//선택한 타겟 요소를 잘라내서 저장한다.
+// 			alert(p.prop("tagName"));
+			p.css("background-color","blue").text("잘라내서 저장함");
+			$("body").append(p);
+		});
+	});
 </script>
 </head>
 <body>
@@ -54,5 +73,22 @@
 		<a href="#">인재채용</a>
 	</div>
 </div>
+<h1>삭제메서드</h1>
+<div id="container" style="border:1px solid red;">
+	<p>타겟삭제하기</p>
+	<p>내부요소 삭제하기</p>
+	<p>잘라내기</p>
+</div>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

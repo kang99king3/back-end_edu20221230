@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>jq13_DOM처리메서드2</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="jquery-3.6.3.js"></script>
 <style type="text/css">
 	#menu{
 		background-color: orange;
@@ -24,6 +24,20 @@
 		display: inline-block;
 	}
 </style>
+<script type="text/javascript">
+// - 부모로 추가: 타겟을 감싼다 
+// wrap()  : 타겟에 부모요소를 추가 
+// unwrap(): 타겟에 부모요소를 삭제
+	$(function(){
+		$(".sub_menu:first").wrap("<div class='box'></div>");
+		
+		//sub_menu div태그를 클릭하면 그 div 태그에 새로운 박스를 씌워준다
+		$(".sub_menu").click(function(){	
+			$(".sub_menu").unwrap(".box");
+			$(this).wrap("<div class='box'></div>");
+		});
+	});
+</script>
 </head>
 <body>
 <div id="menu">

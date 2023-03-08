@@ -3,6 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <title>jq15_AJAX_비동기구현1</title>
+<script type="text/javascript" src="jquery-3.6.3.js"></script>
+<script type="text/javascript">
+	/*
+		ajax()에서 기본 필요한 속성
+		-url:요청할 페이지의 위치(emplist.xml)       /test.do
+		-method: 요청방식 (get/post)
+		-data: 요청할 페이지에 전송할 데이터
+		-dataType: 응답 받을 데이터의 타입 정의(json/xml/html 등등...)
+		-async: 자바스크립트 코드를 비동기로 실행할지 여부 정의(true/false)
+		-success: 서버통신에 성공했다면 함수(기능)를 실행시킴
+		-error: 서버통신에 실패했을 때 함수(기능)를 실행시킴
+		
+		get방식: <a href='test.html?id=a&addr=영등포구'>
+	*/
+	$(function(){
+		$("#emp_search").click(function(){
+			//사원번호 구함
+			var empId=$("input[name=empId]").val();//val() -> value속성의 값
+			
+			$.ajax({
+				url:"emplist.xml",
+				method:"get",
+				async:false,
+				dataType:"xml",
+// 				data:{"empId":"105"},  //"empId=105" 또는 {"empId":105,"addr":"영등포",....} 
+				success:function(data){   //data에 요청한 값이 전달된다.
+					//json : data.test.empId
+					var obj=$(data); // data: XML객체 -> jquery객체 변환 
+// 					console.log(obj.find("ROW").length);
+// 					console.log(obj.find("ROW").eq(0).find("EMAIL").text());
+					
+					var empRow=null;//검색한 사원의 정보를 담고 있는 ROW 객체
+					
+					obj.find("EMPLOYEE_ID").each(function(){
+						if($(this).text()==empId){
+							empRow=$(this).parent();//ROW객체를 구함 [id,name,email,phone,hiredate]
+							return; //함수 종료
+// 							$("table input").eq(0).val(row.children("EMPLOYEE_ID").text());
+// 							$("table input").eq(1).val(row.children("LAST_NAME").text());
+							
+						}
+					});
+					
+					//구한 empRow객체에 사원 정보를 화면에 출력하자
+					$("table input").each(function(i){
+						$(this).val(empRow.children().eq(i).text());
+					});
+					
+					//문제1:
+					//숫자를 입력받아야 되기때문에 문자를 입력했을때도 알려주자.
+					//결과가 없을 경우 알려주기 -> "검색결과가 없습니다."
+				},
+				error:function(request, error){
+					alert("통신실패: "+request.status+","+error);
+				}
+			});
+			
+		});
+	});
+</script>
 </head>
 <body>
 <h1>사원정보조회하기(1명에 대한 정보)</h1>

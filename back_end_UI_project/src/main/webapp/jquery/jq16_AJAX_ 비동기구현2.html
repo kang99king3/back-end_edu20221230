@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq16_AJAX_ 비동기구현2</title>
+<script type="text/javascript" src="jquery-3.6.3.js"></script>
+<script type="text/javascript">
+//문제
+//1. 사원번호를 입력하지 않고 조회하면 전체 사원 정보가 조회되도록 구현하기
+//   id가 searchList인 div태그에 조회결과 보여주기(table로 만들어서 보여주기)
+
+//2. 검색결과를 출력하는 표에서 컬럼을 표현하기---> 컬럼명은 태그이름에서 구해오기
+//<tr><th>EMPLOYEE_ID</th><th>LAST_NAME</th><th>EMAIL</th><th>PHONE_NUMBER</th><th>HIRE_DATE</th></tr>
+//<td>data</td>......
+//관련 키워드 : 태그의 이름을 구하는 메서드??
+		
+</script>
+</head>
+<body>
+<h1>사원정보가져오기</h1>
+<fieldset>
+	<legend>사원정보조회</legend>
+	<label>사원번호:</label><input type="text" name="empId"/>
+	<input type="button" value="조회" id="emp_search"/>
+</fieldset>
+<div id="searchList"></div>
+</body>
+</html>

@@ -41,6 +41,26 @@
 	//3. 버튼을 클릭하면 이미지 이동이 멈추게 구현
 	//4. 선택된 메뉴를 id="message"div요소에 알려주는 기능
 	//       출력내용 : "오늘의 메뉴는"+menu이름+"입니다."
+	
+	$(function(){
+		var moveImg;
+		$("button").click(function(){
+			var $btn=$(this);
+			if($btn.text()=="start"){
+				moveImg=setInterval(function(){
+					$("#menu").append($("#menu > img").eq(0));				
+				},100);
+				
+				$btn.text("stop");
+			}else{
+				window.clearInterval(moveImg);
+				$btn.text("start");
+				var idx=parseInt($("img").length/2);//중간 인덱스 구하기
+				var imgName=$("img").eq(idx).attr("alt");
+				$("#message").text("오늘의 메뉴는 "+imgName+"입니다.")
+			}
+		});
+	})
 </script>
 </head>
 <body>
@@ -55,7 +75,7 @@
 		<img src="img/don.JPG" alt="돈까스" />
 	</div>
 	<button>start</button>
-	<div id="message"></div>
+	<div id="message" style="text-align: center;"></div>
 </div>
 </body>
 </html>

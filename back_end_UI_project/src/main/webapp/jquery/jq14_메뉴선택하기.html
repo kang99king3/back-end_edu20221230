@@ -3,6 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <title>jq14_메뉴선택하기</title>
+<script type="text/javascript" src="jquery-3.6.3.js"></script>
+<style type="text/css">
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+	img{
+		width: 150px;
+		height: 150px;
+		float: left;
+	}
+	#menu{
+		overflow:auto;
+	}
+	.sel{
+		width:140px;
+		height: 140px;
+		border: 5px dotted yellow;
+		position: absolute;
+		left:300px;
+	}
+	button{
+		width: 150px;
+		height: 50px;
+		margin-left: 300px;
+		margin-top: 30px;
+	}
+</style>
+<script type="text/javascript">
+	//문제: 메뉴목록을 동적으로 표현하고, 처리하기
+	//처리내용
+	//1. 버튼을 클릭하면 이미지들이 이동되도록 처리(계속 반복해서 이미지가 이동)
+	//   setInterval(기능,1000) : 기능을 1초간격으로 무한 반복 실행 
+	//   append()
+	//2. 버튼의 이름이 "start"일 경우 클릭하면 "stop"으로, "stop"일경우 "start"로 변경
+	//3. 버튼을 클릭하면 이미지 이동이 멈추게 구현
+	//4. 선택된 메뉴를 id="message"div요소에 알려주는 기능
+	//       출력내용 : "오늘의 메뉴는"+menu이름+"입니다."
+</script>
 </head>
 <body>
 <h1>식사 메뉴를 선택해 주세요!!</h1>

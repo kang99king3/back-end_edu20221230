@@ -25,7 +25,7 @@
 			$.ajax({
 				url:"emplist.xml",
 				method:"get",
-				async:false,
+				async:false,  // ajax 내부 코드를 동기/비동기로 실행 여부 정의  (자바스크립트 코드를 순차적으로 실행하기 위해)
 				dataType:"xml",
 // 				data:{"empId":"105"},  //"empId=105" 또는 {"empId":105,"addr":"영등포",....} 
 				success:function(data){   //data에 요청한 값이 전달된다.

@@ -31,7 +31,7 @@
 			<tr>
 				<td><%=dto.getSeq()%></td>
 				<td><%=dto.getId()%></td>
-				<td><%=dto.getTitle()%></td>
+				<td><a href="board_detail.jsp?seq=<%=dto.getSeq()%>"><%=dto.getTitle()%></a></td>
 				<td><%=dto.getRegdate()%></td>
 			</tr>
 			<%

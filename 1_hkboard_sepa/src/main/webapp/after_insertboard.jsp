@@ -15,18 +15,27 @@
 	//파라미터를 받는 메서드 : getParameter("값이름")
 	String id = request.getParameter("id");
 	String title= request.getParameter("title");
-	String content=request.getParameter("content");
+	String content= request.getParameter("content");
 	
-	HkDao dao=new HkDao();
-// 	HkDto dto=new HkDto();
-// 	dto.setId(id);
-// 	dto.setTitle(title);
-// 	dto.setContent(content);
-	boolean isS = dao.insertBoard(new HkDto(id,title,content));
-	if(isS){
-		response.sendRedirect("boardlist.jsp");
+	if(id==""||title==""||content==""){
+		%>
+		<script type="text/javascript">
+			alert("값을 모두 입력하세요~");
+			location.href="insertboard.jsp";
+		</script>
+		<%
 	}else{
-		response.sendRedirect("insertboard.jsp");
+		HkDao dao=new HkDao();
+	// 	HkDto dto=new HkDto();
+	// 	dto.setId(id);
+	// 	dto.setTitle(title);
+	// 	dto.setContent(content);
+		boolean isS = dao.insertBoard(new HkDto(id,title,content));
+		if(isS){
+			response.sendRedirect("boardlist.jsp");
+		}else{
+			response.sendRedirect("insertboard.jsp");
+		}
 	}
 %>
 </body>

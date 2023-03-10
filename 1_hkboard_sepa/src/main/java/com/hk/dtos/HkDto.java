@@ -25,6 +25,13 @@ public class HkDto {
 		this.regdate = regdate;
 	}
 
+	public HkDto(String id, String title, String content) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.content = content;
+	}
+
 	public int getSeq() {
 		return seq;
 	}

@@ -9,6 +9,11 @@
 <head>
 <meta charset="UTF-8">
 <title>글목록</title>
+<script type="text/javascript">
+	function insertBoardForm(){
+		location.href="insertboard.jsp";
+	}
+</script>
 </head>
 <% //scriptlet: java의 실행코드를 작성할 수 있는 영역 
 	HkDao dao=new HkDao();
@@ -32,6 +37,9 @@
 			<%
 		}
 	%>
+	<tr>
+		<td colspan="4"><button type="button" onclick="insertBoardForm()" >글쓰기</button></td>
+	</tr>
 </table>
 </body>
 </html>

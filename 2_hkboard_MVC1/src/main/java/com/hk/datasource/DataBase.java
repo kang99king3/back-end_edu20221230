@@ -25,7 +25,7 @@ public class DataBase {
 	}
 	//2단계: DB연결
 	public Connection getConnection() throws SQLException {
-		String url="jdbc:mariadb://192.168.55.23:3306/hk";
+		String url="jdbc:mariadb://localhost:3306/hk";
 		String user="root";
 		String password="manager";
 		Connection conn=DriverManager.getConnection(url, user, password);

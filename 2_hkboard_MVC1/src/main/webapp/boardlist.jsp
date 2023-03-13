@@ -11,13 +11,18 @@
 <title>글목록</title>
 <script type="text/javascript">
 	function insertBoardForm(){
-		location.href="insertboard.jsp";
+		location.href="hkController.jsp?command=insertBoardForm";
 	}
 </script>
 </head>
 <% //scriptlet: java의 실행코드를 작성할 수 있는 영역   
-  	HkDao dao=new HkDao(); 
-  	List<HkDto> lists=dao.getAllList();  // boardlist.jsp -> boardlist_jsp.class
+//   	HkDao dao=new HkDao(); 
+//   	List<HkDto> lists=dao.getAllList();  // boardlist.jsp -> boardlist_jsp.class
+
+//   request객체에 저장을 하게 되면 모두 Object객체로 자동형변환이 된다.
+//   List<> list  ---> list.add("text") ---> "text"는 Object 변환
+//                ---> String str=(String)list.get(0);
+	List<HkDto> lists =(List<HkDto>) request.getAttribute("lists");
 %> 
 
 <body>
@@ -32,7 +37,7 @@
 			<tr>
 				<td><%=dto.getSeq()%></td>
 				<td><%=dto.getId()%></td>
-				<td><a href="board_detail.jsp?seq=<%=dto.getSeq()%>"><%=dto.getTitle()%></a></td>
+				<td><a href="hkController.jsp?command=board_detail&seq=<%=dto.getSeq()%>"><%=dto.getTitle()%></a></td>
 				<td><%=dto.getRegdate()%></td>
 			</tr>
 			<%

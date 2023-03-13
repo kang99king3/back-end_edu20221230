@@ -8,16 +8,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글상세보기</title>
+<title>Insert title here</title>
 </head>
 <%
-	//상세보기 기능을 실행하기 위해 seq값을 전달 받는다.
-	int seq =Integer.parseInt(request.getParameter("seq"));
+	//상세보기 코드와 동일함
+	int seq=Integer.parseInt(request.getParameter("seq"));
 	HkDao dao=new HkDao();
 	HkDto dto=dao.getBoard(seq);
 %>
 <body>
-<h1>상세보기</h1>
+<h1>작성글 수정하기</h1>
+<form action="after_board_update.jsp" method="post">
+<input type="hidden" name="seq" value="<%=dto.getSeq()%>"/>
 <table border="1">
 	<tr>
 		<th>작성자</th>
@@ -25,31 +27,23 @@
 	</tr>
 	<tr>
 		<th>제목</th>
-		<td><%=dto.getTitle()%></td>
+		<td><input type="text" name="title" value="<%=dto.getTitle()%>"/></td>
 	</tr>
 	<tr>
 		<th>내용</th>
-		<td><textarea rows="10" cols="60" readonly="readonly"><%=dto.getContent()%></textarea></td>
+		<td><textarea rows="10" cols="60" name="content"><%=dto.getContent()%></textarea></td>
 	</tr>
 	<tr>
 		<td colspan="2">
-			<button type="button" 
-			onclick="location.href='board_update.jsp?seq=<%=dto.getSeq()%>'">수정</button>
-			
-			<button type="button"
-			    onclick="location.href='board_delete.jsp?seq='">삭제</button>
+			<input type="submit" value="수정완료"/>
+			<button type="button">삭제</button>
 			<button type="button"
 				onclick="location.href='boardlist.jsp'">목록</button>
 		</td>
 	</tr>
 </table>
+</form>
 </body>
 </html>
-
-
-
-
-
-
 
 

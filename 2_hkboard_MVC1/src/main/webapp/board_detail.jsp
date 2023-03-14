@@ -12,9 +12,12 @@
 </head>
 <%
 	//상세보기 기능을 실행하기 위해 seq값을 전달 받는다.
-	int seq =Integer.parseInt(request.getParameter("seq"));
-	HkDao dao=new HkDao();
-	HkDto dto=dao.getBoard(seq);
+// 	int seq =Integer.parseInt(request.getParameter("seq"));
+// 	HkDao dao=new HkDao();
+// 	HkDto dto=dao.getBoard(seq);
+
+//  controller에서 전달된 dto 객체를 받는다.
+	HkDto dto=(HkDto)request.getAttribute("dto");
 %>
 <body>
 <h1>상세보기</h1>
@@ -34,12 +37,11 @@
 	<tr>
 		<td colspan="2">
 			<button type="button" 
-			onclick="location.href='board_update.jsp?seq=<%=dto.getSeq()%>'">수정</button>
-			
+			onclick="location.href='hkController.jsp?command=board_update_form&seq=<%=dto.getSeq()%>'">수정</button>
 			<button type="button"
-			    onclick="location.href='board_delete.jsp?seq='">삭제</button>
+			    onclick="location.href='hkController.jsp?command=board_delete&seq=<%=dto.getSeq()%>'">삭제</button>
 			<button type="button"
-				onclick="location.href='boardlist.jsp'">목록</button>
+				onclick="location.href='hkController.jsp?command=boardlist'">목록</button>
 		</td>
 	</tr>
 </table>

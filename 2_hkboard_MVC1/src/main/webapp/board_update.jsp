@@ -12,13 +12,16 @@
 </head>
 <%
 	//상세보기 코드와 동일함
-	int seq=Integer.parseInt(request.getParameter("seq"));
-	HkDao dao=new HkDao();
-	HkDto dto=dao.getBoard(seq);
+// 	int seq=Integer.parseInt(request.getParameter("seq"));
+// 	HkDao dao=new HkDao();
+// 	HkDto dto=dao.getBoard(seq);
+
+	HkDto dto=(HkDto)request.getAttribute("dto");
 %>
 <body>
 <h1>작성글 수정하기</h1>
-<form action="after_board_update.jsp" method="post">
+<form action="hkController.jsp" method="post">
+<input type="hidden" name="command" value="board_update"/>
 <input type="hidden" name="seq" value="<%=dto.getSeq()%>"/>
 <table border="1">
 	<tr>
@@ -36,9 +39,8 @@
 	<tr>
 		<td colspan="2">
 			<input type="submit" value="수정완료"/>
-			<button type="button">삭제</button>
 			<button type="button"
-				onclick="location.href='boardlist.jsp'">목록</button>
+				onclick="location.href='hkController.jsp?command=boardlist'">목록</button>
 		</td>
 	</tr>
 </table>

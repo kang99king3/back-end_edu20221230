@@ -57,7 +57,37 @@
 		HkDto dto=dao.getBoard(seq);//글 상세내용 구함
 		request.setAttribute("dto", dto);
 		pageContext.forward("board_detail.jsp");
+	}else if(command.equals("board_update_form")){
+		int seq=Integer.parseInt(request.getParameter("seq"));
+		HkDto dto=dao.getBoard(seq);
+		request.setAttribute("dto", dto);
+		pageContext.forward("board_update.jsp");
+	}else if(command.equals("board_update")){
+		int seq=Integer.parseInt(request.getParameter("seq"));
+		String title=request.getParameter("title");
+		String content=request.getParameter("content");
+		
+		boolean isS=dao.updateBoard(seq, title, content);
+		if(isS){
+			response.sendRedirect("hkController.jsp?command=board_detail&seq="+seq);
+		}else{
+			request.setAttribute("msg", "글 수정 실패!!");
+			pageContext.forward("error.jsp");
+		}
+	}else if(command.equals("board_delete")){
+		String seq=request.getParameter("seq");
+		boolean isS=dao.delBoard(seq);
+		if(isS){
+			//boardlist페이지를 보여주기위한 코드는 이미 컨트롤러에 구현되어 있기때문에 
+			//브라우저한테 컨트롤러로 다시 요청하게 해주면 알아서 글목록 보여주기를 실행한다.
+			response.sendRedirect("hkController.jsp?command=boardlist");
+		}else{
+			request.setAttribute("msg", "글삭제실패~~");
+			pageContext.forward("error.jsp");
+		}
 	}
+	
+	
 %>
 </body>
 </html>

@@ -23,8 +23,9 @@
 //   List<> list  ---> list.add("text") ---> "text"는 Object 변환
 //                ---> String str=(String)list.get(0);
 	List<HkDto> lists =(List<HkDto>) request.getAttribute("lists");
+	//javastandard: 개념 확인 --> 형변환[업/다운캐스팅], 
+	//                         참조타입 형변환 --> 계층구조(상속) 만들어서 형변환 개념을 적용             
 %> 
-
 <body>
 <h1>글목록 조회</h1>
 <table border="1">

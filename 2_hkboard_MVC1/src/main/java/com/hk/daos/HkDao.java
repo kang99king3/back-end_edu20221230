@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.hk.datasource.DataBase;
@@ -178,6 +179,47 @@ public class HkDao extends DataBase{
 			close(null, psmt, conn);
 		}
 		return count>0?true:false;
+	}
+	
+	//글 여러개 삭제하기
+	// seq값이 [seq,seq,seq,seq] 일때, 배열의 길이만큼 반복시켜서 쿼리를 실행
+	//쿼리: delete from hkboard where seq=?
+	//     delete from hkbaord where seq in (3,4,45,6)
+	public boolean mulDel(String[] seqs) {
+		boolean isS=true;//성공여부
+		int [] count=null;//실행결과를 담을 배열
+		
+		Connection conn=null;
+		PreparedStatement psmt=null;
+		
+		String sql = " delete from hkboard where seq=? ";
+		
+		try {
+			conn=getConnection();
+			psmt=conn.prepareStatement(sql);
+			for (int i = 0; i < seqs.length; i++) {
+				psmt.setString(1, seqs[i]);//쿼리 하나 완성 
+				psmt.addBatch();    //    delete from hkboard where seq=2  
+			}                       //    delete from hkboard where seq=4 여러개 준비해놓고 한번에 실행
+			//int타입으로 결과값을 배열로 반환: 결과값은 성공하면 1을 반환 [1,1,1..]
+			count=psmt.executeBatch();//준비된 여러 쿼리가 한번에 실행됨
+			System.out.println(Arrays.toString(count));
+		} catch (SQLException e) {        
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(null, psmt, conn);
+			
+			//화면처리를 위한 성공여부 확인
+			for (int i = 0; i < count.length; i++) {
+				if(count[i]!=1) {
+					isS=false;
+					break;
+				}
+			}
+		}
+		
+		return isS;
 	}
 }
 

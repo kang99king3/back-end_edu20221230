@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="com.hk.dtos.HkDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.hk.daos.HkDao"%>
@@ -84,6 +85,20 @@
 		}else{
 			request.setAttribute("msg", "글삭제실패~~");
 			pageContext.forward("error.jsp");
+
+						
+		}
+	}else if(command.equals("muldel")){
+		// 체크박스중에 체크가 된 값들만 전달된다. : "chk"이름의 값이 여러개 전달되고 있음
+		// ---> 동일한 이름의 여러 값들은 배열로 받아서 처리한다.
+// 		request.getParameter("chk");// 파라미터 1개값을 받는 메서드
+		String[] chks = request.getParameterValues("chk");
+		boolean isS=dao.mulDel(chks);
+		if(isS){
+			response.sendRedirect("hkController.jsp?command=boardlist");
+		}else{
+			response.sendRedirect("error.jsp?msg="
+								+URLEncoder.encode("글삭제실패", "utf-8"));
 		}
 	}
 	

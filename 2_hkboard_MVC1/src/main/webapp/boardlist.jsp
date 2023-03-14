@@ -20,6 +20,25 @@
 			chks[i].checked=bool;//각각의 체크박스에 체크여부를 true/false로 적용
 		}
 	}
+	
+	//체크박스에 체크여부를 확인: 하나이상 체크가 되어 있는지..
+	function isAllCheck(){
+		
+		if(confirm("정말 삭제 하시겠습니까?")){
+			var count=0;
+			var chks=document.getElementsByName("chk");// [chk,chk,chk,chk..]
+			for (var i = 0; i < chks.length; i++) {
+				if(chks[i].checked){
+					count++;
+				}
+			}
+	// 		javascript에서 submit취소하는 방법
+	// 		docuemnt.getElementsByTagName("form")[0].submit();
+			return count>0?true:false;
+		}
+		
+		return false;
+	}
 </script>
 </head>
 <% //scriptlet: java의 실행코드를 작성할 수 있는 영역   
@@ -35,9 +54,8 @@
 %> 
 <body>
 <h1>글목록 조회</h1>
-<form action="hkController.jsp" method="post">
-	<input type="hidden" name="command" value="muldel"/>
-
+<form action="hkController.jsp" method="post" onsubmit="return isAllCheck()">
+<input type="hidden" name="command" value="muldel"/>
 <table border="1">
 	<col width="50px">
 	<col width="50px">
@@ -72,6 +90,7 @@
 		<td colspan="5">
 			<button type="button" onclick="insertBoardForm()" >글쓰기</button>
 			<input type="submit" value="삭제"/>
+<!-- 		<input type="button"  value="삭제" onclick="func()"/> -->
 		</td>
 	</tr>
 </table>

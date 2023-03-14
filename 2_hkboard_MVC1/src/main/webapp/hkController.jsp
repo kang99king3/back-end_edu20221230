@@ -93,6 +93,14 @@
 		// ---> 동일한 이름의 여러 값들은 배열로 받아서 처리한다.
 // 		request.getParameter("chk");// 파라미터 1개값을 받는 메서드
 		String[] chks = request.getParameterValues("chk");
+
+//     유효값을 java(서버쪽)에서 처리할 수 도 있지만.....쩝..
+// 		if(chks==null||chks.length==0){
+// 			//하나이상체크해야된다 라는 메시지를 보여주고 목록으로 돌아가는 코드 구현
+// 		}else{
+// 			//삭제 기능 실행 코드
+// 		}
+		
 		boolean isS=dao.mulDel(chks);
 		if(isS){
 			response.sendRedirect("hkController.jsp?command=boardlist");

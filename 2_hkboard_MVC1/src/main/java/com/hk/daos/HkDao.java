@@ -185,6 +185,11 @@ public class HkDao extends DataBase{
 	// seq값이 [seq,seq,seq,seq] 일때, 배열의 길이만큼 반복시켜서 쿼리를 실행
 	//쿼리: delete from hkboard where seq=?
 	//     delete from hkbaord where seq in (3,4,45,6)
+	
+	//transaction개념: 성공할꺼면 다 성공하고, 실패할거면 다 실패로 치자
+	// 삭제 작업 여러개를 하나의 작업처럼 만들자
+	// 삭제해줘 ------> del(O), del(X), del(O), del(X) --> 결론은 실패 --> 성공한것도 실패로 돌려놓자!!
+	// autocommit설정 ->  commit -> rollback
 	public boolean mulDel(String[] seqs) {
 		boolean isS=true;//성공여부
 		int [] count=null;//실행결과를 담을 배열
@@ -192,10 +197,11 @@ public class HkDao extends DataBase{
 		Connection conn=null;
 		PreparedStatement psmt=null;
 		
-		String sql = " delete from hkboard where seq=? ";
+		String sql = " delete from hkboard whe seq=? ";
 		
 		try {
 			conn=getConnection();
+			conn.setAutoCommit(false);//자동커밋해제 -> 커밋후에는 rollback이 안돼~~
 			psmt=conn.prepareStatement(sql);
 			for (int i = 0; i < seqs.length; i++) {
 				psmt.setString(1, seqs[i]);//쿼리 하나 완성 
@@ -203,13 +209,24 @@ public class HkDao extends DataBase{
 			}                       //    delete from hkboard where seq=4 여러개 준비해놓고 한번에 실행
 			//int타입으로 결과값을 배열로 반환: 결과값은 성공하면 1을 반환 [1,1,1..]
 			count=psmt.executeBatch();//준비된 여러 쿼리가 한번에 실행됨
+			conn.commit();//DB에 반영하기
 			System.out.println(Arrays.toString(count));
 		} catch (SQLException e) {        
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			try {
+				conn.rollback();//일부가 실패하면 성공한 것도 모두 되돌리기
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}finally {
+			try {
+				conn.setAutoCommit(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			close(null, psmt, conn);
-			
 			//화면처리를 위한 성공여부 확인
 			for (int i = 0; i < count.length; i++) {
 				if(count[i]!=1) {

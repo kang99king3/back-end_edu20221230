@@ -46,6 +46,15 @@ public class LoginDto implements Serializable{
 		this.regdate = regdate;
 	}
 
+	public LoginDto(String id, String name, String password, String address, String email) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.address = address;
+		this.email = email;
+	}
+
 	public int getSeq() {
 		return seq;
 	}

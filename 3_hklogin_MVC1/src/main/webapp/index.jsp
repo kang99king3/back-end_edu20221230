@@ -29,9 +29,9 @@
 		  <input type="hidden" name="command" value="login"/>
 		  <h2 class="form-signin-heading">Please sign in</h2>
 		  <label for="inputEmail" class="sr-only">Email address</label>
-		  <input type="text" id="inputEmail" class="form-control" placeholder="ID" required autofocus>
+		  <input type="text" name="id" id="inputEmail" class="form-control" placeholder="ID" required autofocus>
 		  <label for="inputPassword" class="sr-only">Password</label>
-		  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+		  <input type="password" name="password"  id="inputPassword" class="form-control" placeholder="Password" required>
 		  <div class="checkbox">
 		    <label>
 		      <input type="checkbox" value="remember-me"> Remember me

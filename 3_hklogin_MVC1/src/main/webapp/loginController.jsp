@@ -41,6 +41,33 @@
 			</script>
 			<%
 		}
+	}else if(command.equals("login")){
+		String id=request.getParameter("id");
+		String password=request.getParameter("password");
+		
+		LoginDto ldto=dao.getLogin(id, password);
+		
+		if(ldto==null||ldto.getId()==null){
+			
+		}else{
+			//id와 password가 맞다면
+			session.setAttribute("ldto", ldto);// sessionScope에 ldto를 담기
+			session.setMaxInactiveInterval(10*60);//10분간 요청이 없으면 세션 삭제
+			
+			//등급[ADMIN, MANAGER, USER]을 확인해서 해당 MAIN 페이지로 이동하자
+			if(ldto.getRole().toUpperCase().equals("ADMIN")){
+				response.sendRedirect("admin_main.jsp");
+			}else if(ldto.getRole().toUpperCase().equals("MANAGER")){
+// 				response.sendRedirect("manager_main.jsp");
+				response.sendRedirect("user_main.jsp");
+			}else if(ldto.getRole().toUpperCase().equals("USER")){
+				response.sendRedirect("user_main.jsp");
+			}
+		}
+	}else if(command.equals("logout")){
+		session.invalidate();//session안에 저장되어 있던 객체들을 모두 삭제
+// 		session.removeAttribute("ldto");//원하는 객체 삭제
+		response.sendRedirect("index.jsp");
 	}
 %>
 </body>

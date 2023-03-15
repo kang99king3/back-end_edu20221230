@@ -30,6 +30,9 @@ response.setDateHeader("Expires", 0L); // Do not cache in proxy server
 </head>
 <%
 	LoginDto ldto =(LoginDto)session.getAttribute("ldto");
+	
+	//로그인이 안된 상태에 화면 처리
+	//로그인이 안된 상태에서는 현재 화면을 볼 수 없도록 한다.
 	if(ldto==null){
 		pageContext.forward("index.jsp");
 	}

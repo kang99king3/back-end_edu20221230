@@ -50,20 +50,23 @@
 			<input type="hidden" name="command" value="adduser" />
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label">ID</label>
-				<div class="col-xs-10 form-inline">
-					<input type="text" name="id" class="form-control col-xs-10" id="inputEmail3" placeholder="ID"> 
-					<input type="button"class="btn btn-default" value="중복체크" onclick="" />
-			</div>
+				<div class="col-sm-7">
+					<input type="text" name="id" class="form-control " id="inputEmail3" placeholder="ID"> 
+					
+				</div>
+				<label class="col-sm-1 control-label">
+					<a href="#">중복체크</a>
+				</label>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword3" class="col-sm-2 control-label">이름</label>
-				<div class="col-sm-10">
+				<div class="col-sm-8">
 					<input type="text" name="name" class="form-control" id="inputPassword3" placeholder="이름">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-				<div class="col-sm-10">
+				<div class="col-sm-8">
 					<input type="password" name="password" class="form-control"
 						id="inputPassword3" placeholder="Password">
 				</div>
@@ -71,21 +74,21 @@
 			<div class="form-group">
 				<label for="inputPassword3" class="col-sm-2 control-label">Password
 					확인</label>
-				<div class="col-sm-10">
+				<div class="col-sm-8">
 					<input type="password" name="password2" class="form-control"
 						id="inputPassword3" placeholder="Password 확인">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword3" class="col-sm-2 control-label">주소</label>
-				<div class="col-sm-10">
+				<div class="col-sm-8">
 					<input type="text" name="address" class="form-control"
 						id="inputPassword3" placeholder="주소">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword3" class="col-sm-2 control-label">이메일</label>
-				<div class="col-sm-10">
+				<div class="col-sm-8">
 					<input type="email" name="email" class="form-control"
 						id="inputPassword3" placeholder="email">
 				</div>

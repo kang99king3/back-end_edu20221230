@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="com.hk.dtos.LoginDto"%>
 <%@page import="com.hk.daos.LoginDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -77,12 +78,29 @@
 		pageContext.forward("idchkform.jsp");
 	}else if(command.equals("myinfo")){
 		String id =request.getParameter("id");
-		
 		LoginDto dto=dao.getUserInfo(id);
 		
 		request.setAttribute("dto",dto);
 		pageContext.forward("userinfo.jsp");
 		
+	}else if(command.equals("updateUserForm")){
+		String id =request.getParameter("id");
+		LoginDto dto=dao.getUserInfo(id);
+		
+		request.setAttribute("dto", dto);
+		pageContext.forward("userupdateform.jsp");
+	}else if(command.equals("updateuser")){
+		String id =request.getParameter("id");
+		String address=request.getParameter("address");
+		String email=request.getParameter("email");
+		
+		boolean isS=dao.updateUser(new LoginDto(id,address,email));
+		
+		if(isS){
+			response.sendRedirect("loginController.jsp?command=userinfo&id="+id);
+		}else{
+			response.sendRedirect("error.jsp?msg="+URLEncoder.encode("수정실패", "utf-8"));
+		}
 	}
 %>
 </body>

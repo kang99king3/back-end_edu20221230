@@ -1,6 +1,6 @@
 <%@page import="com.hk.dtos.LoginDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="index.jsp"%>
 <%request.setCharacterEncoding("utf-8"); %>    
 <%response.setContentType("text/html; charset=utf-8"); %>      
 <!DOCTYPE html>
@@ -24,6 +24,10 @@
 </head>
 <%
 	LoginDto ldto =(LoginDto)session.getAttribute("ldto");
+	if(ldto==null){
+// 		pageContext.forward("index.jsp");
+		response.sendRedirect("index.jsp");
+	}
 %>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">

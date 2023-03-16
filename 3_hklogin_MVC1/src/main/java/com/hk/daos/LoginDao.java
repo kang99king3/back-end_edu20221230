@@ -150,8 +150,29 @@ public class LoginDao extends DataBase{
 		return dto;
 	}
 	
-	//나의 정보 수정하기
-	
+	//나의 정보 수정하기: update문 작성 , 파라미터: loginDto, 반환타입 boolean
+	public boolean updateUser(LoginDto dto) {
+		int count=0;
+		Connection conn=null;
+		PreparedStatement psmt=null;
+		
+		String sql="update userinfo set address=? , email=? where id=? ";
+		
+		try {
+			conn=getConnection();
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, dto.getAddress());
+			psmt.setString(2, dto.getEmail());
+			psmt.setString(3, dto.getId());
+			count=psmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("jdbc실패:updateUser():"+getClass());
+			e.printStackTrace();
+		}finally {
+			close(null, psmt, conn);
+		}
+		return count>0?true:false;
+	}
 	//회원 탈퇴하기
 }
 

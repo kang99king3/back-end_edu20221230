@@ -56,8 +56,11 @@
 			<span>${ldto.id} [${ldto.role}]님이 로그인함</span>
 			<a href="loginController.jsp?command=logout">로그아웃</a>
 		</div>
-		<h1>나의 정보 조회</h1>
+		<h1>나의 정보 수정하기</h1>
 		<div style="width:60%; margin: 0 auto;">
+			<form action="loginController.jsp" method="post">
+			<input type="hidden" name="command" value="updateuser"/>
+			<input type="hidden" name="id" value="${dto.id}"/>
 			<table class="table w-auto">
 				<tr>
 					<th>아이디</th>
@@ -73,20 +76,19 @@
 				</tr>
 				<tr>
 					<th>주소</th>
-					<td>${dto.address}</td>
+					<td><input type="text" name="address" value="${dto.address}"/></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td>${dto.email}</td>
+					<td><input type="email" name="eamil" value="${dto.email}"/></td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<button onclick="updateUserForm()">수정</button>
-						<button>탈퇴</button>
+						<button type="submit" >수정완료</button>
 					</td>
 				</tr>
 			</table>
-		
+			</form>
 		</div>
 	</div>
 </div>

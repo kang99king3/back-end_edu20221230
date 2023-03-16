@@ -91,7 +91,7 @@
 	</div>
 </div>
 <script type="text/javascript">
-	function updateUserform(){
+	function updateUserForm(){
 		location.href="loginController.jsp?command=updateUserForm&id=${dto.id}";
 	}
 </script>

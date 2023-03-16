@@ -97,7 +97,7 @@
 		boolean isS=dao.updateUser(new LoginDto(id,address,email));
 		
 		if(isS){
-			response.sendRedirect("loginController.jsp?command=userinfo&id="+id);
+			response.sendRedirect("loginController.jsp?command=myinfo&id="+id);
 		}else{
 			response.sendRedirect("error.jsp?msg="+URLEncoder.encode("수정실패", "utf-8"));
 		}

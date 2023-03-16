@@ -80,7 +80,7 @@
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="email" name="eamil" value="${dto.email}"/></td>
+					<td><input type="email" name="email" value="${dto.email}"/></td>
 				</tr>
 				<tr>
 					<td colspan="2">

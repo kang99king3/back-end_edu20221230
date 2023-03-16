@@ -84,6 +84,36 @@ public class LoginDao extends DataBase{
 		
 		return dto;
 	}
+	
+	//아이디 중복 체크하기
+	//select문 작성 : 
+	public String idCheck(String id) {
+		String resultId=null;//조회된 결과 id를 저장할 변수
+		
+		Connection conn=null;
+		PreparedStatement psmt=null;
+		ResultSet rs=null;
+		
+		String sql=" select id from userinfo "
+				 + " where id=? ";
+		
+		try {
+			conn=getConnection();
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs=psmt.executeQuery();
+			while(rs.next()) {  
+				resultId=rs.getString(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("jdbc실패:idCheck():"+getClass());
+			e.printStackTrace();
+		}finally {
+			close(rs, psmt, conn);
+		}
+		
+		return resultId;
+	}
 }
 
 

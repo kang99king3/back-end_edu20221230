@@ -68,6 +68,13 @@
 		session.invalidate();//session안에 저장되어 있던 객체들을 모두 삭제
 // 		session.removeAttribute("ldto");//원하는 객체 삭제
 		response.sendRedirect("index.jsp");
+	}else if(command.equals("idchk")){//아이디 중복체크
+		String id =request.getParameter("id");
+		//id값을 DB에 존재하는지 확인하기 ----> DAO에 JDBC를 구현해야 함
+		String resultId=dao.idCheck(id);// null이면 사용가능
+		
+		request.setAttribute("resultId", resultId);
+		pageContext.forward("idchkform.jsp");
 	}
 %>
 </body>

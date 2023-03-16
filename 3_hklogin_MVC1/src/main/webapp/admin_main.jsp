@@ -52,8 +52,8 @@ response.setDateHeader("Expires", 0L); // Do not cache in proxy server
 		<div id="navbar" class="collapse navbar-collapse">
 			  <ul class="nav navbar-nav">
 			    <li class="active"><a href="#">Home</a></li>
-			    <li><a href="#about">About</a></li>
-			    <li><a href="#contact">Contact</a></li>
+			    <li><a href="#about">회원전체조회</a></li>
+			    <li><a href="#contact">회원정보[등급]수정</a></li>
 			  </ul>
 		</div><!--/.nav-collapse -->
 	</div>
@@ -68,6 +68,7 @@ response.setDateHeader("Expires", 0L); // Do not cache in proxy server
 		
 	</div>
 </div>
+<div class="footer" style="text-align: center;color:white; line-height:50px; height:50px; background-color: #3c3c3c;">Copyright 1999-2023. 한경닷컴 All rights reserved.</div>
 </body>
 </html>
 

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
 <%request.setCharacterEncoding("utf-8"); %>    
 <%response.setContentType("text/html; charset=utf-8"); %>      
 <!DOCTYPE html>
@@ -34,7 +34,8 @@
 		  <input type="password" name="password"  id="inputPassword" class="form-control" placeholder="Password" required>
 		  <div class="checkbox">
 		    <label>
-		      <input type="checkbox" value="remember-me"> Remember me
+		      <input type="checkbox" value="remember-me"> Remember me<br/>
+		      <span style="color:red;">${param.msg}</span>
 		    </label>
 		  </div>
 		  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

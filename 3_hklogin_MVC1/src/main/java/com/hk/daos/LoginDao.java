@@ -173,7 +173,27 @@ public class LoginDao extends DataBase{
 		}
 		return count>0?true:false;
 	}
-	//회원 탈퇴하기
+	//회원 탈퇴하기: update문 작성 , enabled='Y' ---> 'N' 수정
+	public boolean delUser(String id) {
+		int count=0;
+		Connection conn=null;
+		PreparedStatement psmt=null;
+		
+		String sql="update userinfo set enabled = 'N' where id=? ";
+		
+		try {
+			conn=getConnection();
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			count=psmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("jdbc실패:delUser():"+getClass());
+			e.printStackTrace();
+		}finally {
+			close(null, psmt, conn);
+		}
+		return count>0?true:false;
+	}
 }
 
 

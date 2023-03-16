@@ -39,7 +39,7 @@
 	    <span class="icon-bar"></span>
 	    <span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="#">회원관리</a>
+	  <a class="navbar-brand" href="user_main.jsp">회원관리</a>
 	</div>
 	<div id="navbar" class="collapse navbar-collapse">
 	  <ul class="nav navbar-nav">
@@ -56,8 +56,8 @@
 			<span>${ldto.id} [${ldto.role}]님이 로그인함</span>
 			<a href="loginController.jsp?command=logout">로그아웃</a>
 		</div>
+		<div class="table-responsive" style="width:60%; margin: 230px auto;" >
 		<h1>나의 정보 조회</h1>
-		<div style="width:60%; margin: 0 auto;">
 			<table class="table w-auto">
 				<tr>
 					<th>아이디</th>
@@ -82,7 +82,7 @@
 				<tr>
 					<td colspan="2">
 						<button onclick="updateUserForm()">수정</button>
-						<button>탈퇴</button>
+						<button onclick="delUser()">탈퇴</button>
 					</td>
 				</tr>
 			</table>
@@ -90,9 +90,14 @@
 		</div>
 	</div>
 </div>
+<div class="footer" style="text-align: center;color:white; line-height:50px; height:50px; background-color: #3c3c3c;">Copyright 1999-2023. 한경닷컴 All rights reserved.</div>
 <script type="text/javascript">
 	function updateUserForm(){
 		location.href="loginController.jsp?command=updateUserForm&id=${dto.id}";
+	}
+	
+	function delUser(){
+		location.href="loginController.jsp?command=delUser&id=${dto.id}";
 	}
 </script>
 </body>

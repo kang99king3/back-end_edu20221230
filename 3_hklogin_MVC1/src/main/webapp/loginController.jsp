@@ -49,7 +49,8 @@
 		LoginDto ldto=dao.getLogin(id, password);
 		
 		if(ldto==null||ldto.getId()==null){
-			
+			response.sendRedirect("index.jsp?msg="
+		                      +URLEncoder.encode("회원이 아닙니다. 가입해 주세요", "utf-8"));
 		}else{
 			//id와 password가 맞다면
 			session.setAttribute("ldto", ldto);// sessionScope에 ldto를 담기
@@ -100,6 +101,14 @@
 			response.sendRedirect("loginController.jsp?command=myinfo&id="+id);
 		}else{
 			response.sendRedirect("error.jsp?msg="+URLEncoder.encode("수정실패", "utf-8"));
+		}
+	}else if(command.equals("delUser")){
+		String id =request.getParameter("id");
+		boolean isS=dao.delUser(id);
+		if(isS){
+			response.sendRedirect("index.jsp");
+		}else{
+			response.sendRedirect("error.jsp?msg="+URLEncoder.encode("탈퇴실패", "utf-8"));
 		}
 	}
 %>

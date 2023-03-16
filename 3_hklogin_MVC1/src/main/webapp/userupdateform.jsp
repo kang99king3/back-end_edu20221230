@@ -39,7 +39,7 @@
 	    <span class="icon-bar"></span>
 	    <span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="#">회원관리</a>
+	  <a class="navbar-brand" href="user_main.jsp">회원관리</a>
 	</div>
 	<div id="navbar" class="collapse navbar-collapse">
 	  <ul class="nav navbar-nav">
@@ -56,8 +56,9 @@
 			<span>${ldto.id} [${ldto.role}]님이 로그인함</span>
 			<a href="loginController.jsp?command=logout">로그아웃</a>
 		</div>
-		<h1>나의 정보 수정하기</h1>
-		<div style="width:60%; margin: 0 auto;">
+		
+		<div class="table-responsive" style="width:60%; margin: 250px auto;" >
+			<h1>나의 정보 수정하기</h1>
 			<form action="loginController.jsp" method="post">
 			<input type="hidden" name="command" value="updateuser"/>
 			<input type="hidden" name="id" value="${dto.id}"/>
@@ -92,6 +93,7 @@
 		</div>
 	</div>
 </div>
+<div class="footer" style="text-align: center;color:white; line-height:50px; height:50px; background-color: #3c3c3c;">Copyright 1999-2023. 한경닷컴 All rights reserved.</div>
 <script type="text/javascript">
 	function updateUserform(){
 		location.href="loginController.jsp?command=updateUserForm&id=${dto.id}";

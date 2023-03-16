@@ -17,7 +17,6 @@
 		if(isS){
 			opener.document.getElementsByName("name")[0].focus();
 			parentInputId.textContent='y';//y는 사용가능한 표시
-			
 		}else{
 // 			parentInputId.setAttribute("class","n");//n은 중복 표시
 			parentInputId.textContent='n';

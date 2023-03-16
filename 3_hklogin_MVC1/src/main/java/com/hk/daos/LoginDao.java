@@ -114,6 +114,45 @@ public class LoginDao extends DataBase{
 		
 		return resultId;
 	}
+	
+	//나의 정보 조회하기: select문작성 , 파라미터 ID , 반환타입:LoginDto
+	public LoginDto getUserInfo(String id) {
+		LoginDto dto=new LoginDto();
+		
+		Connection conn=null;
+		PreparedStatement psmt=null;
+		ResultSet rs=null;
+		
+		String sql=" select id,name,address,email,role,regdate "
+				 + " from userinfo where id=? ";
+		
+		try {
+			conn=getConnection();
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs=psmt.executeQuery();
+			while(rs.next()) {  // d d d d d d d  
+				dto.setId(rs.getString(1));
+				dto.setName(rs.getString(2));
+				dto.setAddress(rs.getString(3));
+				dto.setEmail(rs.getString(4));
+				dto.setRole(rs.getString(5));
+				dto.setRegdate(rs.getDate(6));
+				System.out.println(dto);
+			}
+		} catch (SQLException e) {
+			System.out.println("jdbc실패:getUserInfo():"+getClass());
+			e.printStackTrace();
+		}finally {
+			close(rs, psmt, conn);
+		}
+		
+		return dto;
+	}
+	
+	//나의 정보 수정하기
+	
+	//회원 탈퇴하기
 }
 
 

@@ -1,6 +1,6 @@
 <%@page import="com.hk.dtos.LoginDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="index.jsp" %>
 <%request.setCharacterEncoding("utf-8"); %>    
 <%response.setContentType("text/html; charset=utf-8"); %>      
 <!DOCTYPE html>
@@ -22,9 +22,6 @@
 <!--5. Custom styles for this template -->
 <link href="css/starter-template.css" rel="stylesheet">
 </head>
-<%
-	LoginDto ldto =(LoginDto)session.getAttribute("ldto");
-%>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
 <div class="container">
@@ -41,7 +38,7 @@
 	  <ul class="nav navbar-nav">
 	    <li class="active"><a href="#">Home</a></li>
 	    <li><a href="#about">About</a></li>
-	    <li><a href="loginController.jsp?command=myinfo&id=<%=ldto.getId()%>">나의정보</a></li>
+	    <li><a href="loginController.jsp?command=myinfo&id=${ldto.id}">나의정보</a></li>
 	  </ul>
 	</div><!--/.nav-collapse -->
 	</div>
@@ -49,10 +46,38 @@
 <div class="container">
 	<div class="starter-template">
 		<div class="lead" style="text-align: right !important;">
-			<span><%=ldto.getId()%> [<%=ldto.getRole()%>]님이 로그인함</span>
+			<span>${ldto.id} [${ldto.role}]님이 로그인함</span>
 			<a href="loginController.jsp?command=logout">로그아웃</a>
 		</div>
-		<h1>사용자 페이지</h1>
+		<h1>나의 정보 조회</h1>
+		<table class="table">
+			<tr>
+				<th>아이디</th>
+				<td>${dto.id}</td>
+			</tr>
+			<tr>
+				<th>등급</th>
+				<td>${dto.role}</td>
+			</tr>
+			<tr>
+				<th>이름</th>
+				<td>${dto.name}</td>
+			</tr>
+			<tr>
+				<th>주소</th>
+				<td>${dto.address}</td>
+			</tr>
+			<tr>
+				<th>이메일</th>
+				<td>${dto.email}</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<button>수정</button>
+					<button>탈퇴</button>
+				</td>
+			</tr>
+		</table>
 	</div>
 </div>
 </body>

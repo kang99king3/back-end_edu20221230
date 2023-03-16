@@ -75,6 +75,14 @@
 		
 		request.setAttribute("resultId", resultId);
 		pageContext.forward("idchkform.jsp");
+	}else if(command.equals("myinfo")){
+		String id =request.getParameter("id");
+		
+		LoginDto dto=dao.getUserInfo(id);
+		
+		request.setAttribute("dto",dto);
+		pageContext.forward("userinfo.jsp");
+		
 	}
 %>
 </body>

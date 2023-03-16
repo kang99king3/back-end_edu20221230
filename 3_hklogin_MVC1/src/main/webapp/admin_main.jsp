@@ -61,7 +61,7 @@ response.setDateHeader("Expires", 0L); // Do not cache in proxy server
 <div class="container">
 	<div class="starter-template">
 		<div class="lead" style="text-align: right !important;">
-			<span><%=ldto.getId()%>[<%=ldto.getRole()%>]님이 로그인함</span>
+			<span><%=ldto.getId()%> [<%=ldto.getRole()%>]님이 로그인함</span>
 			<a href="loginController.jsp?command=logout">로그아웃</a>
 		</div>
 		<h1>관리자 페이지</h1>

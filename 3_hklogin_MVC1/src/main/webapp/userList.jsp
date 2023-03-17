@@ -80,7 +80,12 @@
 								<td>${dto.id}</td>
 								<td>${dto.name}</td>
 								<td>${dto.role}
-									<button onclick="authForm('${dto.id}')">변경</button>							
+									<c:if test="${dto.id != ldto.id}">
+										<button onclick="authForm('${dto.id}')">변경</button>																
+									</c:if>
+									<c:if test="${dto.id == ldto.id}">
+										<small style="color:red;">자신의 등급을 수정 불가</small>															
+									</c:if>
 								</td>
 								<td>${dto.regdate}</td>
 							</tr>							

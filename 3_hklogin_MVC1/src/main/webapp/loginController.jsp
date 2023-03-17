@@ -127,6 +127,18 @@
 		LoginDto dto=dao.getUserInfo(id);
 		request.setAttribute("dto", dto);
 		pageContext.forward("userUpdateRole.jsp");
+	}else if(command.equals("userUpdateRole")){
+		String id=request.getParameter("id");
+		String role=request.getParameter("role");
+		
+		boolean isS=dao.userUpdateRole(id, role);
+		if(isS){
+			// controller에 요청을 한다면 redirect로 요청하자
+			response.sendRedirect("loginController.jsp?command=userlist");
+		}else{
+			response.sendRedirect("error.jsp?msg="
+								  +URLEncoder.encode("등급수정실패", "utf-8"));
+		}
 	}
 %>
 </body>

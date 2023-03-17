@@ -58,6 +58,9 @@
 		</div>
 		<div class="table-responsive" style="width:60%; margin: 230px auto;" >
 		<h1>회원 등급 변경</h1>
+			<form action="loginController.jsp" method="post">
+			<input type="hidden" name="command" value="userUpdateRole"/>
+			<input type="hidden" name="id" value="${dto.id}"/>
 			<table class="table w-auto">
 				<tr>
 					<th>아이디</th>
@@ -87,12 +90,11 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<button onclick="updateUserForm()">수정</button>
-						<button onclick="delUser()">탈퇴</button>
+						<button type="submit" >수정</button>
 					</td>
 				</tr>
 			</table>
-		
+			</form>
 		</div>
 	</div>
 </div>

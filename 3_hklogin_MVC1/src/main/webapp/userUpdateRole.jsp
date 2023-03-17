@@ -3,7 +3,6 @@
     pageEncoding="UTF-8" errorPage="index.jsp" %>
 <%request.setCharacterEncoding("utf-8"); %>    
 <%response.setContentType("text/html; charset=utf-8"); %>      
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,44 +56,39 @@
 			<span>${ldto.id} [${ldto.role}]님이 로그인함</span>
 			<a href="loginController.jsp?command=logout">로그아웃</a>
 		</div>
-		<div class="table-responsive" style="width:100%; margin: 230px auto;" >
-		<h1>회원 정보 목록 조회[전체조회]</h1>
+		<div class="table-responsive" style="width:60%; margin: 230px auto;" >
+		<h1>회원 등급 변경</h1>
 			<table class="table w-auto">
 				<tr>
-					<th>회원번호</th>
 					<th>아이디</th>
-					<th>이름</th>
-					<th>주소</th>
-					<th>이메일</th>
-					<th>회원등급</th>
-					<th>탈퇴여부</th>
-					<th>가입일</th>
+					<td>${dto.id}</td>
 				</tr>
-				<c:choose>
-					<c:when test="${empty lists}">
-						<tr>
-							<td colspan="8">---회원이 존재하지 않습니다---</td>
-						</tr>					
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${lists}" var="dto" >
-							<tr>
-								<td>${dto.seq}</td>
-								<td>${dto.id}</td>
-								<td>${dto.name}</td>
-								<td>${dto.address}</td>
-								<td>${dto.email}</td>
-								<td>${dto.role}</td>
-								<td>${dto.enabled eq 'Y'?"가입중":"탈퇴"}</td>
-								<td>${dto.regdate}</td>
-							</tr>							
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
+				<tr>
+					<th>등급</th>
+					<td>
+						<select name="role">      
+							<option value="ADMIN" ${dto.role eq "ADMIN"?"selected":""}>관리자</option>
+							<option value="MANAGER" ${dto.role eq "MANAGER"?"selected":""}>정회원</option>
+							<option value="USER" ${dto.role eq "USER"?"selected":""}>일반회원</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>이름</th>
+					<td>${dto.name}</td>
+				</tr>
+				<tr>
+					<th>주소</th>
+					<td>${dto.address}</td>
+				</tr>
+				<tr>
+					<th>이메일</th>
+					<td>${dto.email}</td>
+				</tr>
 				<tr>
 					<td colspan="2">
-<!-- 						<button onclick="updateUserForm()">수정</button> -->
-<!-- 						<button onclick="delUser()">탈퇴</button> -->
+						<button onclick="updateUserForm()">수정</button>
+						<button onclick="delUser()">탈퇴</button>
 					</td>
 				</tr>
 			</table>

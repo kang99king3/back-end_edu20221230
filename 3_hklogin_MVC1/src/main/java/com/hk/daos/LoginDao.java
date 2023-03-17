@@ -236,6 +236,42 @@ public class LoginDao extends DataBase{
 		return list;
 	}
 	
+	//회원목록 전체 조회[사용중]
+		public List<LoginDto> getUserList() {
+			
+			List<LoginDto> list=new ArrayList<>();
+			
+			Connection conn=null;
+			PreparedStatement psmt=null;
+			ResultSet rs=null;
+			
+			String sql=" select seq,id,name,role,regdate "
+					  + "from userinfo where enabled='Y' order by regdate ";
+					 
+			try {
+				conn=getConnection();
+				psmt=conn.prepareStatement(sql);
+				rs=psmt.executeQuery();
+				while(rs.next()) {  // d d d d d d d  
+					LoginDto dto=new LoginDto();
+					dto.setSeq(rs.getInt(1));
+					dto.setId(rs.getString(2));
+					dto.setName(rs.getString(3));
+					dto.setRole(rs.getString(4));
+					dto.setRegdate(rs.getDate(5));
+					list.add(dto);
+					System.out.println(dto);
+				}
+			} catch (SQLException e) {
+				System.out.println("jdbc실패:getUserList():"+getClass());
+				e.printStackTrace();
+			}finally {
+				close(rs, psmt, conn);
+			}
+
+			return list;
+		}
+	
 }
 
 

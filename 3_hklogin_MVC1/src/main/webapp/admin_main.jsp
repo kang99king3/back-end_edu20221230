@@ -54,7 +54,7 @@ response.setDateHeader("Expires", 0L); // Do not cache in proxy server
 			  <ul class="nav navbar-nav">
 			    <li class="active"><a href="#">Home</a></li>
 			    <li><a href="loginController.jsp?command=userAllList">회원전체조회</a></li>
-			    <li><a href="#contact">회원정보[등급]수정</a></li>
+			    <li><a href="loginController.jsp?command=userlist">회원정보[등급]수정</a></li>
 			  </ul>
 		</div><!--/.nav-collapse -->
 	</div>

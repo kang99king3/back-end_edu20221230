@@ -58,22 +58,19 @@
 			<a href="loginController.jsp?command=logout">로그아웃</a>
 		</div>
 		<div class="table-responsive" style="width:100%; margin: 230px auto;" >
-		<h1>회원 정보 목록 조회[전체조회]</h1>
+		<h1>회원 정보 목록 조회[사용자조회]</h1>
 			<table class="table w-auto">
 				<tr>
 					<th>회원번호</th>
 					<th>아이디</th>
 					<th>이름</th>
-					<th>주소</th>
-					<th>이메일</th>
 					<th>회원등급</th>
-					<th>탈퇴여부</th>
 					<th>가입일</th>
 				</tr>
 				<c:choose>
 					<c:when test="${empty lists}">
 						<tr>
-							<td colspan="8">---회원이 존재하지 않습니다---</td>
+							<td colspan="5">---회원이 존재하지 않습니다---</td>
 						</tr>					
 					</c:when>
 					<c:otherwise>
@@ -82,17 +79,16 @@
 								<td>${dto.seq}</td>
 								<td>${dto.id}</td>
 								<td>${dto.name}</td>
-								<td>${dto.address}</td>
-								<td>${dto.email}</td>
-								<td>${dto.role}</td>
-								<td>${dto.enabled eq 'Y'?"가입중":"탈퇴"}</td>
+								<td>${dto.role}
+									<button onclick="authForm('${dto.id}')">변경</button>							
+								</td>
 								<td>${dto.regdate}</td>
 							</tr>							
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
 				<tr>
-					<td colspan="2">
+					<td colspan="5">
 <!-- 						<button onclick="updateUserForm()">수정</button> -->
 <!-- 						<button onclick="delUser()">탈퇴</button> -->
 					</td>
@@ -104,12 +100,9 @@
 </div>
 <div class="footer" style="text-align: center;color:white; line-height:50px; height:50px; background-color: #3c3c3c;">Copyright 1999-2023. 한경닷컴 All rights reserved.</div>
 <script type="text/javascript">
-	function updateUserForm(){
-		location.href="loginController.jsp?command=updateUserForm&id=${dto.id}";
-	}
-	
-	function delUser(){
-		location.href="loginController.jsp?command=delUser&id=${dto.id}";
+	//등급변경 폼으로 이동
+	function authForm(id){
+		location.href="loginController.jsp?command=roleForm&id="+id;
 	}
 </script>
 </body>

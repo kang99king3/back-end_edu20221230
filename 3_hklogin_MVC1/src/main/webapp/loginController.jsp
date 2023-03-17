@@ -116,6 +116,17 @@
 		
 		request.setAttribute("lists", lists);
 		pageContext.forward("userAllList.jsp");
+	}else if(command.equals("userlist")){
+		List<LoginDto> lists=dao.getUserList();
+		
+		request.setAttribute("lists", lists);
+		pageContext.forward("userList.jsp");
+	}else if(command.equals("roleForm")){
+		String id=request.getParameter("id");
+		
+		LoginDto dto=dao.getUserInfo(id);
+		request.setAttribute("dto", dto);
+		pageContext.forward("userUpdateRole.jsp");
 	}
 %>
 </body>

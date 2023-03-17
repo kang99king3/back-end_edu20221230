@@ -35,7 +35,7 @@ public class LoginDao extends DataBase{
 		PreparedStatement psmt=null;
 		
 		String sql=" insert into userinfo values( "
-				 + " null,?,?,?,?,?,'Y','USER',SYSDATE()) ";
+				 + " null,?,?,?,?,?,'Y',?,SYSDATE()) ";
 		
 		try {
 			conn=getConnection();
@@ -45,6 +45,7 @@ public class LoginDao extends DataBase{
 			psmt.setString(3, dto.getPassword());
 			psmt.setString(4, dto.getAddress());
 			psmt.setString(5, dto.getEmail());
+			psmt.setString(6, String.valueOf(RoleStatus.USER));
 //			System.out.println(RoleStatus.ADMIN); 
 			count=psmt.executeUpdate();
 		} catch (SQLException e) {

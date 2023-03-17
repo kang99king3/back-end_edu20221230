@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.hk.datasource.DataBase;
 import com.hk.dtos.LoginDto;
@@ -81,7 +83,7 @@ public class LoginDao extends DataBase{
 		}finally {
 			close(rs, psmt, conn);
 		}
-		
+
 		return dto;
 	}
 	
@@ -194,6 +196,46 @@ public class LoginDao extends DataBase{
 		}
 		return count>0?true:false;
 	}
+	
+	//회원목록 전체 조회
+	public List<LoginDto> getUserAllList() {
+		
+		List<LoginDto> list=new ArrayList<>();
+		
+		Connection conn=null;
+		PreparedStatement psmt=null;
+		ResultSet rs=null;
+		
+		String sql=" select seq,id,name,address,email,role,enabled,regdate "
+				  + "from userinfo order by regdate ";
+				 
+		try {
+			conn=getConnection();
+			psmt=conn.prepareStatement(sql);
+			rs=psmt.executeQuery();
+			while(rs.next()) {  // d d d d d d d  
+				LoginDto dto=new LoginDto();
+				dto.setSeq(rs.getInt(1));
+				dto.setId(rs.getString(2));
+				dto.setName(rs.getString(3));
+				dto.setAddress(rs.getString(4));
+				dto.setEmail(rs.getString(5));
+				dto.setRole(rs.getString(6));
+				dto.setEnabled(rs.getString(7));
+				dto.setRegdate(rs.getDate(8));
+				list.add(dto);
+				System.out.println(dto);
+			}
+		} catch (SQLException e) {
+			System.out.println("jdbc실패:getUserAllList():"+getClass());
+			e.printStackTrace();
+		}finally {
+			close(rs, psmt, conn);
+		}
+
+		return list;
+	}
+	
 }
 
 

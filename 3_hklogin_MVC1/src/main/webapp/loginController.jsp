@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="com.hk.dtos.LoginDto"%>
 <%@page import="com.hk.daos.LoginDao"%>
@@ -110,6 +111,11 @@
 		}else{
 			response.sendRedirect("error.jsp?msg="+URLEncoder.encode("탈퇴실패", "utf-8"));
 		}
+	}else if(command.equals("userAllList")){
+		List<LoginDto> lists=dao.getUserAllList();
+		
+		request.setAttribute("lists", lists);
+		pageContext.forward("userAllList.jsp");
 	}
 %>
 </body>

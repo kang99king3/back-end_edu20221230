@@ -27,6 +27,20 @@
   	<url-pattern>/HelloServletOld.do</url-pattern>
   </servlet-mapping>
   <!-- Url mapping 종료 -->
+  
+<!--   <filter> -->
+<!--   	<filter-name>EncodFilter</filter-name> -->
+<!--   	<filter-class>com.hk.hello.EncodeFilter</filter-class> -->
+<!--   	<init-param> -->
+<!--   		<param-name>encoding</param-name> -->
+<!--   		<param-value>utf-8</param-value> -->
+<!--   	</init-param> -->
+<!--   </filter> -->
+  
+<!--   <filter-mapping> -->
+<!--   	<filter-name>EncodFilter</filter-name> -->
+<!--   	<url-pattern>/*</url-pattern> -->
+<!--   </filter-mapping> -->
 </web-app>
 
 

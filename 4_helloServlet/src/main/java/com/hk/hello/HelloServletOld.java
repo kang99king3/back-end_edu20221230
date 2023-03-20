@@ -3,6 +3,7 @@ package com.hk.hello;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -49,9 +50,9 @@ public class HelloServletOld extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//요청 파라미터가 한글일때 인코딩처리
-		request.setCharacterEncoding("utf-8");
+//		request.setCharacterEncoding("utf-8");
 		//응답할때 브라우저에 표현할 한글 인코딩처리
-		response.setContentType("text/html; charset=utf-8");
+//		response.setContentType("text/html; charset=utf-8");
 		//ServletContext(application)구하는 방법
 		System.out.println(
 		"application파람:"+request.getServletContext().getInitParameter("driver")
@@ -77,8 +78,13 @@ public class HelloServletOld extends HttpServlet{
 		pw.print("<h2>[3대개념알아보기]</h2>");
 		
 		//2. 요청한 페이지로 이동시켜서 보여주는 방법
-//		response.sendRedirect("index.jsp");
+	  // (1)redirect 방식
+      //response.sendRedirect("index.jsp");
 		
+      // (2)forward 방식
+	  //request.getRequestDispatcher("index.jsp").forward(request, response);
+//		RequestDispatcher dispatch=request.getRequestDispatcher("index.jsp");
+//		dispatch.forward(request, response);
 	}
 	
 	@Override

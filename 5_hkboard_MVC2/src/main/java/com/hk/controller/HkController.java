@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.hk.daos.HkDao;
 import com.hk.dtos.HkDto;
 
-@WebServlet("/HkController.do")
+//@WebServlet("/HkController.do")
+// http://localhost:8090/hkboardMVC2/board/boardlist  <- command=boardlist
+//@WebServlet("*.board") 
+@WebServlet("/board/*")    
 public class HkController extends HttpServlet{
 	
 	//HttpServlet은 추상 클래스이다.---> 상속강요를 위해
@@ -28,22 +31,31 @@ public class HkController extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//인코딩 처리 코드 작성--> filter구현
 		
+		String requestURI=request.getRequestURI();
+		String contextPath=request.getContextPath();
+		String pathInfo=request.getPathInfo();
+		StringBuffer requestURL=request.getRequestURL();
+		
+		System.out.println(requestURI+",\n"
+				+contextPath +",\n"
+				+pathInfo +",\n"
+				+requestURL.toString()
+				);
+		
 		//1단계: command값 받기(어떤요청인지 확인을 위해)
-		String command=request.getParameter("command");
-
+//		String command=request.getParameter("command");
+		String command=pathInfo;//  "/boardlist"
+		
 		//2단계: DAO객체 생성하기(DB에 연결해서 작업하기 위한 준비)
 		HkDao dao=new HkDao();
 		
 		//3단계: command값에 의해 분기 실행(요청에 대한 분기 처리)
-		if(command.equals("boardlist")){//글목록 요청 처리
-			List<HkDto> lists=dao.getAllList();//글목록 구하기
+		if(command.equals("/boardlist")){//글목록 요청 처리
+			BoardListController action=new BoardListController();
+			action.execute(request);
 			
-			//6단계:스코프 객체에 lists 담기
-			//setAttribute("name","value"); // Map객체--> key:value
-			request.setAttribute("lists", lists);//lists객체를 request 스코프에 "lists"이름으로 저장
 			//7단계:페이지 이동
-			dispatch("boardlist.jsp", request, response);
-//			pageContext.forward("boardlist.jsp");
+			dispatch("/boardlist.jsp", request, response);
 			
 		}else if(command.equals("insertBoardForm")){//글추가폼으로 이동
 			response.sendRedirect("insertboard.jsp");

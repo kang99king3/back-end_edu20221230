@@ -57,8 +57,9 @@ public class HkController extends HttpServlet{
 			//7단계:페이지 이동
 			dispatch("/boardlist.jsp", request, response);
 			
-		}else if(command.equals("insertBoardForm")){//글추가폼으로 이동
-			response.sendRedirect("insertboard.jsp");
+		}else if(command.equals("/insertBoardForm")){//글추가폼으로 이동
+			
+			response.sendRedirect(contextPath+"/insertboard.jsp");
 		}else if(command.equals("insertboard")){//글추가하기
 			//4단계:파라미터 받기
 			String id=request.getParameter("id");

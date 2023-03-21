@@ -11,7 +11,7 @@
 <title>글목록</title>
 <script type="text/javascript">
 	function insertBoardForm(){
-		location.href="HkController.do?command=insertBoardForm";
+		location.href="${pageContext.request.contextPath}/board/insertBoardForm";
 	}
 	
 	function allSel(bool){

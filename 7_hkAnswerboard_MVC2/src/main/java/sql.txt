@@ -1,0 +1,12 @@
+CREATE TABLE answerboard (
+		seq INT PRIMARY KEY NOT NULL  AUTO_INCREMENT,
+		id VARCHAR(20) NOT NULL, 
+		title VARCHAR(1000) NOT NULL,
+		content VARCHAR(2000) NOT NULL,
+		regdate DATE NOT NULL,
+		refer INT NOT NULL,
+		step INT NOT NULL,
+		depth INT NOT NULL,
+		readcount INT NOT NULL,
+		delflag VARCHAR(2) NOT NULL 
+);

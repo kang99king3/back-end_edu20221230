@@ -16,7 +16,7 @@
 		<table border="1">
 			<tr>
 				<th>작성자(ID)</th>
-				<td><input type="text" name="id"  required="required"/></td>
+				<td><input type="text" name="id" pattern="^[a-zA-Z]+$"  required="required" /></td>
 			</tr>
 			<tr>
 				<th>글제목</th>

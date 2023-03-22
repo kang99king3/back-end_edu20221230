@@ -225,7 +225,66 @@ public class AnsDao extends DataBase{
 	}
 	//7.답글 추가하기:Transaction 처리 
 	//           update문[step수정], insert문[답글추가] 실행
-	
+	public boolean replyBoard(AnsDto dto) {
+		int count=0;
+		Connection conn=null;
+		PreparedStatement psmt=null;
+		
+		//같은 그룹에서 부모의 step보다 큰 글들을 구해서 step+1을 하자~~ 
+		//update작성: 서브쿼리사용
+		String sql1=" UPDATE answerboard SET step=step+1 "
+				+ " WHERE refer=(SELECT refer FROM answerboard WHERE seq=?) "
+				+ " AND step > (SELECT step FROM answerboard WHERE seq=?) ";
+				
+		//insert작성: 서브쿼리사용  , 부모의 refer / step+1 / depth+1		
+		String sql2=" INSERT INTO answerboard "
+				+ " VALUES(NULL, ?,?,?,SYSDATE() "
+				+ "      ,(SELECT refer FROM answerboard ALIAS_FOR_SUBQUERY WHERE seq=?) "
+				+ "      ,(SELECT step FROM answerboard ALIAS_FOR_SUBQUERY WHERE seq=?)+1 "
+				+ "      ,(SELECT depth FROM answerboard ALIAS_FOR_SUBQUERY WHERE seq=?)+1,0,'N') ";
+		
+		
+		try {
+			conn=getConnection();
+			System.out.println("2단계:DB연결성공");
+			//transaction처리[ autocommit = false, commit , rollback , autocommit=true]
+			conn.setAutoCommit(false);//트랜젝션처리
+			
+			psmt=conn.prepareStatement(sql1);//update문 준비
+			psmt.setInt(1, dto.getSeq());
+			psmt.setInt(2, dto.getSeq());
+			System.out.println("3단계:쿼리준비성공");
+			psmt.executeUpdate();//update문 실행
+			
+			psmt=conn.prepareStatement(sql2);//insert문 준비
+			psmt.setString(1, dto.getId());	
+			psmt.setString(2, dto.getTitle());
+			psmt.setString(3, dto.getContent());
+			psmt.setInt(4, dto.getSeq());	
+			psmt.setInt(5, dto.getSeq());
+			psmt.setInt(6, dto.getSeq());
+			count=psmt.executeUpdate();//insert문 실행
+			System.out.println("4단계:쿼리실행성공");
+			conn.commit();//commit실행
+		} catch (SQLException e) {
+			System.out.println("JDBC실패:해당클래스는 "+getClass());
+			e.printStackTrace();
+			try {
+				conn.rollback();//오류가 생기면 되돌리자!
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}finally {
+			try {
+				conn.setAutoCommit(true);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			close(null, psmt, conn);
+		}
+		
+		return count>0?true:false;//삼항연산자
+	}
 	
 }
 

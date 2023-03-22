@@ -9,14 +9,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- <%@include file="header.jsp" %> --%>
-<jsp:include page="header.jsp" />
+<%@include file="header.jsp" %>
 <div id="container">
-<%
-// 	String s="Hello";
-	String s="안녕";
-%>
-<%=s%>
+<h1>메인페이지</h1>
+<a href="boardlist.board">글목록</a>
 </div>
 <%@include file="footer.jsp" %>
 </body>

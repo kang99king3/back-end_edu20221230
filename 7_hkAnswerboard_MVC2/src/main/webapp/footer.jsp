@@ -9,6 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>footer</h1>
+<div class="footer" style="text-align: center;color:white; line-height:50px; height:50px; background-color: #3c3c3c;">Copyright 1999-2023. 한경닷컴 All rights reserved.</div>
 </body>
 </html>

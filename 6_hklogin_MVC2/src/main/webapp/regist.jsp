@@ -64,11 +64,11 @@
 				url:"LoginController.do",
 				method:"post",
 				data:{"command":"idchk","id":id},
-				dataType:"json",
+				dataType:"text", // 서버에서 전달되는 값의 타입에 따라 설정[text, json, html, xml...]
 				async:false,
 				success:function(data){
 // 					alert(typeof data);// 사용가능한 ID: "null"
-					alert(data.dto.id+":"+data.dto.name);
+// 					alert(data.dto.id+":"+data.dto.name);
 					if(data=="null"){
 						//사용 가능
 						$("#enabledID").css("color","red")			
@@ -114,7 +114,7 @@
 	</div>
 </nav>
 
-<div class="container">
+<div class="container1">
 	<div class="starter-template">
 		<h1>회원 가입</h1>
 		<form class="form-horizontal" action="LoginController.do" method="post"
@@ -154,10 +154,17 @@
 			</div>
 			<div class="form-group">
 				<label for="inputPassword3" class="col-sm-2 control-label">주소</label>
-				<div class="col-sm-8">
+				<div class="col-sm-4">
 					<input required="required" type="text" name="address" class="form-control"
 						id="inputPassword3" placeholder="주소">
 				</div>
+				<div class="col-sm-3">
+					<input required="required" type="text" name="address" class="form-control"
+						id="inputPassword3" placeholder="상세주소">
+				</div>
+				<label class="col-sm-1 control-label">
+					<a href="#" onclick="addrSearch()">검색</a>
+				</label>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword3" class="col-sm-2 control-label">이메일</label>
@@ -176,6 +183,20 @@
 		</form>
 	</div>
 </div><!-- /.container -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+	function addrSearch(){
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+	            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+	//             var addressEnglish=data.addressEnglish;
+	               var roadAddress=data.roadAddress;
+	            $("input[name=address]").eq(0).val(roadAddress);
+	        }
+	    }).open();		
+	}
+</script>
 </body>
 </html>
 

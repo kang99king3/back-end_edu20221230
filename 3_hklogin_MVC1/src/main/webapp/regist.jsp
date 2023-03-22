@@ -133,6 +133,7 @@
 					<input required="required" type="text" name="address" class="form-control"
 						id="inputPassword3" placeholder="주소">
 				</div>
+				
 			</div>
 			<div class="form-group">
 				<label for="inputPassword3" class="col-sm-2 control-label">이메일</label>
@@ -151,6 +152,7 @@
 		</form>
 	</div>
 </div><!-- /.container -->
+
 </body>
 </html>
 

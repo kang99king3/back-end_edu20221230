@@ -11,7 +11,7 @@
 <title>글목록</title>
 <script type="text/javascript">
 	function insertBoardForm(){
-		location.href="${pageContext.request.contextPath}/board/insertBoardForm";
+		location.href="insertBoardForm.board";
 	}
 	
 	function allSel(bool){
@@ -54,8 +54,8 @@
 %> 
 <body>
 <h1>글목록 조회</h1>
-<form action="HkController.do" method="post" onsubmit="return isAllCheck()">
-<input type="hidden" name="command" value="muldel"/>
+<form action="muldel.board" method="post" onsubmit="return isAllCheck()">
+<!-- <input type="hidden" name="command" value="muldel"/> -->
 <table border="1">
 	<col width="50px">
 	<col width="50px">
@@ -77,7 +77,7 @@
 					<td><input type="checkbox" name="chk" value="<%=dto.getSeq()%>" /> </td>
 					<td><%=dto.getSeq()%></td>
 					<td><%=dto.getId()%></td>
-					<td><a href="HkController.do?command=board_detail&seq=<%=dto.getSeq()%>"><%=dto.getTitle()%></a></td>
+					<td><a href="board_detail.board?seq=<%=dto.getSeq()%>"><%=dto.getTitle()%></a></td>
 					<td><%=dto.getRegdate()%></td>
 				</tr>
 				<%

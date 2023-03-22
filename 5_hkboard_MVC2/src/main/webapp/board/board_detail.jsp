@@ -37,11 +37,11 @@
 	<tr>
 		<td colspan="2">
 			<button type="button" 
-			onclick="location.href='HkController.do?command=board_update_form&seq=<%=dto.getSeq()%>'">수정</button>
+			onclick="location.href='board_update_form.board?seq=<%=dto.getSeq()%>'">수정</button>
 			<button type="button"
-			    onclick="location.href='HkController.do?command=board_delete&seq=<%=dto.getSeq()%>'">삭제</button>
+			    onclick="location.href='board_delete.board?seq=<%=dto.getSeq()%>'">삭제</button>
 			<button type="button"
-				onclick="location.href='HkController.do?command=boardlist'">목록</button>
+				onclick="location.href='boardlist.board'">목록</button>
 		</td>
 	</tr>
 </table>

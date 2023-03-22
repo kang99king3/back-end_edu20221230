@@ -3,6 +3,7 @@ package com.hk.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +43,11 @@ public class LoginController extends HttpServlet {
 			String id=request.getParameter("id");
 			String name=request.getParameter("name");
 			String password=request.getParameter("password");
-			String address=request.getParameter("address");
+			
+			//name의 값이 address인 파라미터가 2개 전달[주소, 상세주소]
+			String[] addressArray=request.getParameterValues("address");
+			String address=addressArray[0]+" "+addressArray[1];
+	
 			String email=request.getParameter("email");
 			
 			boolean isS=dao.insertUser(new LoginDto(id,name,password,address,email));
@@ -56,7 +61,7 @@ public class LoginController extends HttpServlet {
 				String scriptCode=
 								"<script type='text/javascript'>"
 								+"	alert('회원에 가입이 실패함. ㅜㅜ');"
-								+"	location.href='loginController.do?command=registForm';"
+								+"	location.href='LoginController.do?command=registForm';"
 								+"</script>";
 				response.getWriter().print(scriptCode);
 			}
@@ -89,6 +94,7 @@ public class LoginController extends HttpServlet {
 //	 		session.removeAttribute("ldto");//원하는 객체 삭제
 			response.sendRedirect("index.jsp");
 		}else if(command.equals("idchk")){//아이디 중복체크
+//			response.setContentType("text/json; charset=utf-8");
 			String id =request.getParameter("id");
 			System.out.println("id:"+id);
 
@@ -98,18 +104,26 @@ public class LoginController extends HttpServlet {
 			//AJAX 구현하려면....
 			//java ---> javascript 값을 받는다
 			//Map  ---> json (json으로 변환시켜 주는 작업이 필요)
-			LoginDto ldto=new LoginDto();
-			ldto.setId("test");
-			ldto.setName("한경");
-			Map<String, LoginDto>map=new HashMap<>();
-			map.put("dto", ldto);
+//			LoginDto ldto=new LoginDto();
+//			ldto.setId("test");
+//			ldto.setName("한경");
+//			ldto.setAddress("주소");
+//			ldto.setRegdate("2022-10-20");//date 타입은 전송할 수 없다.
+			//1.여러개의 dto를 전달할때
+//			List<LoginDto>list=new ArrayList();
+//			list.add(ldto); list.add(ldto); //......list[dto,dto,dto..]
+//			Map<String, List<LoginDto>>map2=new HashMap<>();
+//			map2.put("list", list);// data --> data.list[0].id
 			
-			JSONObject obj=JSONObject.fromObject(map);//Map-->Json 변환
-			PrintWriter out=response.getWriter();
-			obj.write(out);//obj는 프린터가 없어서 프린터기를 빌려줌(out)
+			//2.dto 한개 전달할때
+//			Map<String, LoginDto>map=new HashMap<>();
+//			map.put("dto", ldto);
+//			
+//			JSONObject obj=JSONObject.fromObject(map);//Map-->Json 변환
+//			PrintWriter out=response.getWriter();
+//			obj.write(out);//obj는 프린터가 없어서 프린터기를 빌려줌(out)
 			
-			
-			//text ---> text (HTML은 기본이 텍스트 기반)
+			//3.text ---> text (HTML은 기본이 텍스트 기반)
 			PrintWriter pw=response.getWriter();//브라우저 출력용 프린터기
 			pw.print(resultId);
 			

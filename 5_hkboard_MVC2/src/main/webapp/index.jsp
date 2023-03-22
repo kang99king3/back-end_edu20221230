@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- <a href="HkController.do?command=boardlist">글목록 조회</a> -->
-<a href="board/boardlist">글목록 조회</a>
+<a href="boardlist.board">글목록 조회</a>
 </body>
 </html>
 

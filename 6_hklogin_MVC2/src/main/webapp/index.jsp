@@ -25,7 +25,7 @@
 <body>
 <div class="container">
 
-	<form class="form-signin" action="loginController.jsp" method="post">
+	<form class="form-signin" action="LoginController.do" method="post">
 		  <input type="hidden" name="command" value="login"/>
 		  <h2 class="form-signin-heading">Please sign in</h2>
 		  <label for="inputEmail" class="sr-only">Email address</label>
@@ -46,7 +46,7 @@
 <script type="text/javascript">
 	//회원가입 폼으로 이동
 	function registForm(){
-		location.href="loginController.jsp?command=registForm";
+		location.href="LoginController.do?command=registForm";
 	}
 </script>
 </body>

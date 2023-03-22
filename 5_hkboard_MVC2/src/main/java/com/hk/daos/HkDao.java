@@ -197,7 +197,7 @@ public class HkDao extends DataBase{
 		Connection conn=null;
 		PreparedStatement psmt=null;
 		
-		String sql = " delete from hkboard whe seq=? ";
+		String sql = " delete from hkboard where seq=? ";
 		
 		try {
 			conn=getConnection();

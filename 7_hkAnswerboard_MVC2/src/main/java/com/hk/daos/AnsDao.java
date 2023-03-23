@@ -15,20 +15,30 @@ import com.hk.dtos.AnsDto;
 public class AnsDao extends DataBase{
 
 	//1.글목록 조회하기
-	public List<AnsDto> getAllList(){
+	public List<AnsDto> getAllList(String pnum){
 		List<AnsDto> list=new ArrayList<>();
 		Connection conn=null;// DB 연결 객체
 		PreparedStatement psmt=null;// 쿼리 준비,실행 객체
 		ResultSet rs=null;//결과 받는 객체
 		
-		String sql=" select seq,id,title,content,regdate "
-				 + " ,refer,step,depth,readcount,delflag "
-				 + " from answerboard order by refer,step ";
+//		String sql=" select seq,id,title,content,regdate "
+//				 + " ,refer,step,depth,readcount,delflag "
+//				 + " from answerboard order by refer,step ";
+		String sql=" SELECT seq, id, title, content, regdate, refer,step, depth,readcount,delflag "
+				 + " FROM (	"
+				 + "		SELECT ROW_NUMBER() over(ORDER BY refer,step) rn, "
+				 + "		       seq, id, title, content, regdate, refer,step, depth,readcount,delflag "
+				 + "		FROM answerboard "
+				 + "		) a "
+				 + " WHERE ceil(rn/10)=? ";
 		
 		try {
 			conn=getConnection();
 			System.out.println("2단계:DB연결성공");
 			psmt=conn.prepareStatement(sql);//쿼리를 작성한 상태
+			
+			psmt.setString(1, pnum);//페이징을 위해 페이지번호를 받는 코드 추가
+			
 			System.out.println("3단계:쿼리준비성공");
 			rs=psmt.executeQuery();//쿼리를 실행한다.
 			System.out.println("4단계:쿼리실행성공");
@@ -56,6 +66,32 @@ public class AnsDao extends DataBase{
 		}
 		return list;
 	}
+	//1-2.페이지수 구하기
+	public int getPCount() {
+		int count=0;
+		Connection conn=null;// DB 연결 객체
+		PreparedStatement psmt=null;// 쿼리 준비,실행 객체
+		ResultSet rs=null;//결과 받는 객체
+		
+		String sql=" select ceil(count(*)/10) from answerboard ";
+		
+		try {
+			conn=getConnection();
+			psmt=conn.prepareStatement(sql);
+			rs=psmt.executeQuery();
+			while(rs.next()) {
+				count=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs, psmt, conn);
+		}
+		return count;
+	}
+	
+	
 	//2.새글 추가하기
 	public boolean insertBoard(AnsDto dto) {
 		int count=0;
@@ -176,6 +212,7 @@ public class AnsDao extends DataBase{
 				 + " where seq in ("+String.join(",", seqs)+") ";
 								//String객체에서 제공하는 join("sepa",array)
 		                        // seqs{1 3 5 6} --> "1,3,5,6" --> "seq in (1,3,5,6)"
+		System.out.println("sql:"+sql);
 		try {
 			conn=getConnection();
 			System.out.println("2단계:DB연결성공");
@@ -201,7 +238,7 @@ public class AnsDao extends DataBase{
 		PreparedStatement psmt=null;
 		
 		String sql=" update answerboard "
-				+ " set readcount=reacount+1 "
+				+ " set readcount=readcount+1 "
 				+ " where seq=? ";
 		
 		try {

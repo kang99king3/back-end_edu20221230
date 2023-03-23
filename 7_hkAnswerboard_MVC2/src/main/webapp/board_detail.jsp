@@ -36,7 +36,7 @@
 			<button type="button" 
 			onclick="location.href='board_update_form.board?seq=${dto.seq}'">수정</button>
 			<button type="button"
-			    onclick="location.href='board_delete.board?seq=${dto.seq}'">삭제</button>
+			    onclick="location.href='muldel.board?chk=${dto.seq}'">삭제</button>
 			<button type="button"
 				onclick="location.href='boardlist.board'">목록</button>
 		</td>

@@ -51,6 +51,13 @@ public class AnsDto implements Serializable{
 		this.content = content;
 	}
 
+	public AnsDto(int seq, String title, String content) {
+		super();
+		this.seq = seq;
+		this.title = title;
+		this.content = content;
+	}
+	
 	public int getSeq() {
 		return seq;
 	}

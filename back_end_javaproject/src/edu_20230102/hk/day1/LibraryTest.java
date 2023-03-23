@@ -20,7 +20,7 @@ public class LibraryTest {
 		
 		//mutable: 값이 변하는 성질 : 주소값 전달
 	}
-
+	
 	//메서드명: 카멜방식(소문자로 시작하고 의미가 바뀔때 대문자)
 	//변수명  : 동일한 방식
 	public void test_Method() {

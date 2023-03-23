@@ -10,9 +10,9 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
-<div id="container">
+<div id="container" style="margin-bottom:  700px;">
 <h1>메인페이지</h1>
-<a href="boardlist.board">글목록</a>
+<a class="btn btn-default" href="boardlist.board?pageNum=1">글목록</a>
 </div>
 <%@include file="footer.jsp" %>
 </body>

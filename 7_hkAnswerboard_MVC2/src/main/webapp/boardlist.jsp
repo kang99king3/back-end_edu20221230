@@ -22,7 +22,6 @@
 <%@include file="header.jsp" %>
 
 <div id="container">
-<h1>게시판 글목록 보기</h1>
 <!-- <div class="table"> -->
 <!-- 	<div class="tr"> -->
 <!-- 		<div class="td">1</div> -->
@@ -30,7 +29,9 @@
 <!-- 		<div class="td">3</div> -->
 <!-- 	</div> -->
 <!-- </div> -->
-	<table border="1">
+<div class="table-responsive" >
+	<h1>게시판 글목록 보기</h1>
+	<table class="table table-striped">
 		<tr>
 			<th>번호</th><th>작성자</th><th>제목</th>
 			<th>조회수</th><th>작성일</th><th>삭제여부</th>
@@ -58,6 +59,7 @@
 			</td>
 		</tr>
 	</table>
+	</div>
 </div>
 
 <%@include file="footer.jsp" %>

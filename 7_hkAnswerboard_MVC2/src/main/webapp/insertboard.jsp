@@ -13,7 +13,7 @@
 <div id="container">
 	<h1>새글 작성하기</h1>
 	<form action="insertboard.board" method="post" >
-		<table border="1">
+		<table class="table table-striped" >
 			<tr>
 				<th>작성자(ID)</th>
 				<td><input type="text" name="id" pattern="^[a-zA-Z]+$"  required="required" /></td>

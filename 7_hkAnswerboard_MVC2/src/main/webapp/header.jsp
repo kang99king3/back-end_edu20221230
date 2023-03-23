@@ -21,6 +21,15 @@
 
 <!--4. 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+	#container{
+		width:80%;
+		margin: 0 auto;
+	}
+	
+</style>
+
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -32,7 +41,7 @@
 	    <span class="icon-bar"></span>
 	    <span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="user_main.jsp">회원관리</a>
+	  <a class="navbar-brand" href="index.jsp">MAIN</a>
 	</div>
 	<div id="navbar" class="collapse navbar-collapse">
 	  <ul class="nav navbar-nav">

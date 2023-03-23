@@ -20,7 +20,7 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
-
+<jsp:useBean id="util" class="com.hk.utils.Util" />
 <div id="container">
 <!-- <div class="table"> -->
 <!-- 	<div class="tr"> -->
@@ -43,7 +43,12 @@
 				<td>${dto.seq}</td>
 				<td>${dto.id}</td>
 				<td style="width: 300px;">
-					${fn:length(dto.title)<10?dto.title : fn:substring(dto.title,0,10)+="..."}</td>
+					<jsp:setProperty property="arrow" name="util" value="${dto.depth}" />
+					<jsp:getProperty property="arrow" name="util"/>
+					<a href="boardDetail.board?seq=${dto.seq}">
+					${fn:length(dto.title)<10?dto.title : fn:substring(dto.title,0,10)+="..."}
+					</a>
+				</td>
 				<td>${dto.readcount}</td>
 				<td><fmt:formatDate value="${dto.regdate}" pattern="yyyy년MM월dd일" /> </td>
 				<td>${dto.delflag}</td>

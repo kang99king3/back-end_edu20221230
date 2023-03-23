@@ -53,6 +53,24 @@ public class AnsController extends HttpServlet {
 				response.sendRedirect("errror.jsp?msg="
 									+URLEncoder.encode("글추가실패","utf-8"));
 			}
+		}else if(command.equals("/boardDetail.board")) {
+			int seq=Integer.parseInt(request.getParameter("seq"));
+			AnsDto dto=dao.getBoard(seq);
+			request.setAttribute("dto", dto);
+			dispatch("board_detail.jsp", request, response);
+		}else if(command.equals("/replyboard.board")) {
+			int seq=Integer.parseInt(request.getParameter("seq"));
+			String id=request.getParameter("id");
+			String title=request.getParameter("title");
+			String content=request.getParameter("content");
+			
+			boolean isS=dao.replyBoard(new AnsDto(seq,id,title,content));
+			if(isS) {
+				response.sendRedirect("boardlist.board");
+			}else {
+				response.sendRedirect("errror.jsp?msg="
+									+URLEncoder.encode("답글추가실패","utf-8"));
+			}
 		}
 		
 	}
@@ -60,6 +78,12 @@ public class AnsController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		doGet(request, response);
+	}
+	
+	//forward 메서드 구현
+	public void dispatch(String url,HttpServletRequest request, 
+			  			HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher(url).forward(request, response);		
 	}
 
 }

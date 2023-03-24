@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -66,29 +68,16 @@ public class HkDao extends SqlMapConfig{
 	//          insert문작성, 화면에서 글의 정보를 입력받아서 DB에 추가-> DTO로 전달
 	public boolean insertBoard(HkDto dto) {
 		int count=0;
-		Connection conn=null;
-		PreparedStatement psmt=null;
-		
-		String sql=" insert into hkboard "
-				 + " values(null, ?, ?, ?, SYSDATE()) ";
+		SqlSession sqlSession=null;
 		
 		try {
-			conn=getConnection();
-			System.out.println("2단계:DB연결성공");
-			
-			psmt=conn.prepareStatement(sql);
-			psmt.setString(1, dto.getId());
-			psmt.setString(2, dto.getTitle());
-			psmt.setString(3, dto.getContent());
-			System.out.println("3단계:쿼리준비성공");
-			
-			count=psmt.executeUpdate();//DB 테이블에 내용을 수정하는 작업
-			System.out.println("4단계:쿼리실행성공");
-		} catch (SQLException e) {
+			sqlSession=getSqlSessionFactory().openSession(true);
+			count=sqlSession.insert(namespace+"insertBoard", dto);
+		} catch (Exception e) {
 			System.out.println("JDBC실패:해당클래스는 "+getClass());
 			e.printStackTrace();
 		}finally {
-			close(null, psmt, conn);
+			sqlSession.close();
 		}
 		
 		return count>0?true:false;//삼항연산자
@@ -97,30 +86,21 @@ public class HkDao extends SqlMapConfig{
 	//글 수정하기: boolean , update문 , 파라미터: seq, 제목, 내용 [DTO에 담아서전달할지, 그냥 값 자체를 전달할지 결정
 	public boolean updateBoard(int seq, String title , String content) {
 		int count=0;
-		Connection conn=null;
-		PreparedStatement psmt=null;
-		
-		String sql=" update hkboard set title=?, content=?,regdate=SYSDATE() where seq=? ";
+		SqlSession sqlSession=null;
+		//map에 여러개의 파라미터를 저장해서 전달할 수 있다.
+		Map<String, Object>map=new HashMap<>();
+		map.put("seq", seq);
+		map.put("title", title);
+		map.put("content", content);
 		
 		try {
-			conn=getConnection();
-			System.out.println("2단계:DB연결 성공");
-			
-			psmt=conn.prepareStatement(sql);
-			//java 값 --> DB : java의 값의 타입을 확인하여 메서드 결정(setString? , setInt?.. )
-			psmt.setString(1, title); 
-			psmt.setString(2, content);
-			psmt.setInt(3, seq);
-			System.out.println("3단계:쿼리준비 성공");
-			
-			count=psmt.executeUpdate();//실행후 반환값은 수정된 row의 개수
-			System.out.println("4단계:쿼리실행 성공");
-		} catch (SQLException e) {
+			sqlSession=getSqlSessionFactory().openSession(true);
+			count=sqlSession.update(namespace+"updateBoard", map);
+		} catch (Exception e) {
 			System.out.println("JDBC실패:updateBoard():"+getClass());
 			e.printStackTrace();
 		}finally {
-			//기본타입 : 0 , 0.0  , 참조타입: null
-			close(null, psmt, conn);
+			sqlSession.close();
 		}
 		return count>0?true:false;
 	}
@@ -128,21 +108,17 @@ public class HkDao extends SqlMapConfig{
 	//글삭제하기: boolean , delete문(update문:컬럼에 삭제여부y/n) , 파라미터: seq
 	public boolean delBoard(String seq) {
 		int count=0;
-		Connection conn=null;
-		PreparedStatement psmt=null;
+	
 		
 		String sql=" delete from hkboard where seq=? ";
 		
 		try {
-			conn=getConnection();
-			psmt=conn.prepareStatement(sql);
-			psmt.setString(1, seq);
-			count=psmt.executeUpdate();
-		} catch (SQLException e) {
+			
+		} catch (Exception e) {
 			System.out.println("JDBC실패:delBoard():"+getClass());
 			e.printStackTrace();
 		}finally {
-			close(null, psmt, conn);
+	
 		}
 		return count>0?true:false;
 	}
@@ -160,46 +136,15 @@ public class HkDao extends SqlMapConfig{
 		boolean isS=true;//성공여부
 		int [] count=null;//실행결과를 담을 배열
 		
-		Connection conn=null;
-		PreparedStatement psmt=null;
-		
 		String sql = " delete from hkboard where seq=? ";
 		
 		try {
-			conn=getConnection();
-			conn.setAutoCommit(false);//자동커밋해제 -> 커밋후에는 rollback이 안돼~~
-			psmt=conn.prepareStatement(sql);
-			for (int i = 0; i < seqs.length; i++) {
-				psmt.setString(1, seqs[i]);//쿼리 하나 완성 
-				psmt.addBatch();    //    delete from hkboard where seq=2  
-			}                       //    delete from hkboard where seq=4 여러개 준비해놓고 한번에 실행
-			//int타입으로 결과값을 배열로 반환: 결과값은 성공하면 1을 반환 [1,1,1..]
-			count=psmt.executeBatch();//준비된 여러 쿼리가 한번에 실행됨
-			conn.commit();//DB에 반영하기
-			System.out.println(Arrays.toString(count));
-		} catch (SQLException e) {        
+			
+		} catch (Exception e) {        
 			e.printStackTrace();
-			try {
-				conn.rollback();//일부가 실패하면 성공한 것도 모두 되돌리기
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			
 		}finally {
-			try {
-				conn.setAutoCommit(true);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			close(null, psmt, conn);
-			//화면처리를 위한 성공여부 확인
-			for (int i = 0; i < count.length; i++) {
-				if(count[i]!=1) {
-					isS=false;
-					break;
-				}
-			}
+		
 		}
 		
 		return isS;

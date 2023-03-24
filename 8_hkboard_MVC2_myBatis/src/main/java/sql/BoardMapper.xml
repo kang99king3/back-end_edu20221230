@@ -11,4 +11,20 @@
 		SELECT SEQ, ID, TITLE, CONTENT, REGDATE 
 		FROM HKBOARD WHERE SEQ=#{seq}	
 	</select>
+	
+	<insert id="insertBoard" parameterType="hkDto" >
+		INSERT INTO HKBOARD 
+		VALUES(NULL, #{id}, #{title}, #{content}, SYSDATE())
+	</insert>
+	
+	<update id="updateBoard" parameterType="Map" >
+		UPDATE HKBOARD SET TITLE=#{title}, CONTENT=#{content},REGDATE=SYSDATE() 
+		WHERE SEQ=#{seq} 
+	</update>
+	
 </mapper> 
+
+
+
+
+

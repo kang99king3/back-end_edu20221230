@@ -3,6 +3,7 @@ package com.hk.controller;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.hk.daos.AnsDao;
 import com.hk.dtos.AnsDto;
+import com.hk.utils.Paging;
 
 @WebServlet("*.board")
 public class AnsController extends HttpServlet {
@@ -57,7 +59,6 @@ public class AnsController extends HttpServlet {
 			//2.cookie삭제하기
 			
 			//쿠키의 값을 가져오기: 반환타입이 배열
-			
 			Cookie cookie=getCookie("rseq", request);
 			if(cookie!=null) {
 				cookie.setMaxAge(0);//쿠키 삭제
@@ -76,15 +77,27 @@ public class AnsController extends HttpServlet {
 			//조회수 관련 종료---------------------------------------------------
 			
 			String pnum=request.getParameter("pnum");// <---페이지번호 받기
-			if(pnum==null) { //페이지번호 없이 요청이 오면 기본 1페이지보여주기
-				pnum=1+"";
+			
+			//---현재 페이지 상태 유지하기[세션활용] 시작
+			if(pnum==null) { 
+//				pnum=1+"";//페이지번호 없이 요청이 오면 기본 1페이지보여주기
+				pnum=(String)session.getAttribute("pnum");//페이지번호 없이 요청하면 세션값 적용
+			}else {
+				session.setAttribute("pnum", pnum);//페이지번호와 함께 요청하면 세션에 새로 저장
 			}
+			//---현재 페이지 상태 유지하기[세션활용] 종료
+			
 			//작업1.글목록 구하고 request에 담기
 			List<AnsDto> list=dao.getAllList(pnum);//<---받은 페이지 번호에 해당하는 목록구하기
 			request.setAttribute("list", list);
 			//작업2.글의 페이지수 구하고 request에 담기
 			int pcount=dao.getPCount();
 			request.setAttribute("pcount", pcount);// Object <---(Integer) int
+			
+			//--추가코드:페이지에 페이징처리 기능 시작           페이지수, 페이지번호, 한번에 볼 페이지범위
+			Map<String, Integer> map=Paging.pagingValue(pcount, pnum   , 10   );
+			request.setAttribute("pMap", map);
+			//--추가코드:페이지에 페이징처리 기능 종료
 			
 			//forward하기
 			request.getRequestDispatcher("boardlist.jsp")

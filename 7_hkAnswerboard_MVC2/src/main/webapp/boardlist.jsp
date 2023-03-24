@@ -8,13 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-/* 	.table{ */
-/* 		display: table; */
-/* 	} */
-/* 	.tr{display: table-row;} */
-/* 	.td{display: table-cell; width: 50px; */
-/* 		border:1px solid black; */
-/* 	} */
 	th,td{padding:10px !important; }
 </style>
 </head>
@@ -22,13 +15,6 @@
 <%@include file="header.jsp" %>
 <jsp:useBean id="util" class="com.hk.utils.Util" />
 <div id="container">
-<!-- <div class="table"> -->
-<!-- 	<div class="tr"> -->
-<!-- 		<div class="td">1</div> -->
-<!-- 		<div class="td">2</div> -->
-<!-- 		<div class="td">3</div> -->
-<!-- 	</div> -->
-<!-- </div> -->
 <div class="table-responsive" >
 	<h1>게시판 글목록 보기</h1>
 	<form action="muldel.board" method="post" onsubmit="return isChecked()">
@@ -74,15 +60,17 @@
 <%-- 					<a href="boardlist.board?snum=1&enum=10">${i}</a> --%>
 <%-- 					<a href="boardlist.board?snum=11&enum=20">${i}</a> --%>
 <%-- 				</c:forEach> --%>
+				<!-- 페이징 처리부분 시작 -->
 				<nav>
 				  <ul class="pagination">
-				    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-				    <c:forEach var="i" begin="1" end="${pcount}">
-				    	<li class="active"><a href="boardlist.board?pnum=${i}">${i}<span class="sr-only">(current)</span></a></li>
+				    <li ><a href="boardlist.board?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+				    <c:forEach var="i" begin="${pMap.startPage}" end="${pMap.endPage}">
+				    	<li ${sessionScope.pnum==i?"class='active'":""}><a href="boardlist.board?pnum=${i}">${i}<span class="sr-only">(current)</span></a></li>
 				    </c:forEach> 
-				    <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+				    <li ><a href="boardlist.board?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 				  </ul>
 				</nav>
+				<!-- 페이징 처리부분 종료 -->
 			</td>
 		</tr>
 		<tr>

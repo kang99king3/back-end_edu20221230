@@ -21,12 +21,13 @@
 	if(command.equals("registForm")){
 		response.sendRedirect("regist.jsp");
 	}else if(command.equals("adduser")){
+
 		String id=request.getParameter("id");
 		String name=request.getParameter("name");
 		String password=request.getParameter("password");
 		String address=request.getParameter("address");
 		String email=request.getParameter("email");
-		
+	
 		boolean isS=dao.insertUser(new LoginDto(id,name,password,address,email));
 		if(isS){
 			%>

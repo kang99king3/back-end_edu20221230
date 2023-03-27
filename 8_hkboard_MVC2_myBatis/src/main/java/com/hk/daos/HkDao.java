@@ -108,17 +108,17 @@ public class HkDao extends SqlMapConfig{
 	//글삭제하기: boolean , delete문(update문:컬럼에 삭제여부y/n) , 파라미터: seq
 	public boolean delBoard(String seq) {
 		int count=0;
-	
-		
-		String sql=" delete from hkboard where seq=? ";
+		SqlSession sqlSession=null;
 		
 		try {
-			
+			//sqlSeFactory구현 --->sqlSession객체 구현
+			sqlSession=getSqlSessionFactory().openSession(true);
+			count=sqlSession.delete(namespace+"delBoard", seq);
 		} catch (Exception e) {
 			System.out.println("JDBC실패:delBoard():"+getClass());
 			e.printStackTrace();
 		}finally {
-	
+			sqlSession.close();
 		}
 		return count>0?true:false;
 	}
@@ -133,21 +133,20 @@ public class HkDao extends SqlMapConfig{
 	// 삭제해줘 ------> del(O), del(X), del(O), del(X) --> 결론은 실패 --> 성공한것도 실패로 돌려놓자!!
 	// autocommit설정 ->  commit -> rollback
 	public boolean mulDel(String[] seqs) {
-		boolean isS=true;//성공여부
-		int [] count=null;//실행결과를 담을 배열
-		
-		String sql = " delete from hkboard where seq=? ";
-		
+		int count=0;//실행결과를 담을 배열
+		SqlSession sqlSession=null;
+		Map<String, String[]>map=new HashMap<>();
+		map.put("seqs", seqs);
 		try {
-			
+			sqlSession=getSqlSessionFactory().openSession(true);
+			count=sqlSession.delete(namespace+"mulDel", map);
 		} catch (Exception e) {        
 			e.printStackTrace();
-			
 		}finally {
-		
+			sqlSession.close();
 		}
 		
-		return isS;
+		return count>0?true:false;
 	}
 }
 

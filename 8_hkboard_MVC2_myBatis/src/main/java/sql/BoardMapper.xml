@@ -22,7 +22,28 @@
 		WHERE SEQ=#{seq} 
 	</update>
 	
+	<delete id="delBoard" parameterType="String">
+		 DELETE FROM HKBOARD <include refid="isSeq"/> 
+	</delete>
+	
+	<delete id="mulDel" parameterType="Map">
+		 DELETE FROM HKBOARD WHERE SEQ IN
+		 <foreach collection="seqs" item="seq" separator="," open="(" close=")">
+			 #{seq} 		 
+		 </foreach>
+	</delete>
+	
+	<sql id="isSeq">
+		WHERE SEQ=#{seq} 
+	</sql>
 </mapper> 
+
+
+
+
+
+
+
 
 
 

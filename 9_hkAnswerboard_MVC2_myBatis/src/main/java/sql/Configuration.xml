@@ -8,7 +8,7 @@
   
 <!-- dto 객체의 변수설정  -->
   <typeAliases>
-  	<typeAlias type="com.hk.dtos.HkDto" alias="hkDto"/>
+  	<typeAlias type="com.hk.dtos.AnsDto" alias="ansDto"/>
 <!--   	<typeAlias type="com.hk.dtos.HkDto2" alias="hkDto2"/> -->
 <!--   	<typeAlias type="com.hk.dtos.HkDto3" alias="hkDto3"/> -->
   </typeAliases>

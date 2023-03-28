@@ -5,7 +5,6 @@ import java.util.Date;
 
 public class AnsDto implements Serializable{
 
-	
 	private int seq;
 	private String id;
 	private String title;

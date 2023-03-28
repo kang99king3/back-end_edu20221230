@@ -15,11 +15,23 @@
 	<table border="1">
 		<tr>
 			<th>파일:</th>
-			<td><input type="file" name="filename"  /> </td>
+			<td><input type="file" name="filename" multiple="multiple" /> </td>
 		</tr>
+<!-- 		<tr> -->
+<!-- 			<th>파일:</th> -->
+<!-- 			<td> -->
+<!-- 				<input type="file" name="filename1"  />  -->
+<!-- 				<input type="file" name="filename2"  /> -->
+<!-- 				<input type="file" name="filename3"  /> -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<th>다운로드:</th> -->
+<%-- 			<td><a href="upload/${param.filename}">${param.filename}</a></td> --%>
+<!-- 		</tr> -->
 		<tr>
 			<th>다운로드:</th>
-			<td><a href="">파일명</a></td>
+			<td><a href="FileController.do?command=downloadlist">목록보기</a></td>
 		</tr>
 		<tr>
 			<td colspan="2">

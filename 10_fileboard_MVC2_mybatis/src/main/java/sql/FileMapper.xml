@@ -2,7 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hk.file">
+	<insert id="insertFileInfo" parameterType="fileDto">
+		INSERT INTO FILEINFO VALUES
+		(NULL,#{origin_name},#{stored_name},#{file_size},SYSDATE(),'N')
+	</insert>
 	
+	<select id="getFileList" parameterType="Map" resultType="fileDto">
+		SELECT SEQ,ORIGIN_NAME,STORED_NAME,FILE_SIZE, F_REGDATE,F_DELFLAG
+		FROM FILEINFO
+		<where>
+			<if test="seq!=null">
+				seq=#{seq}
+			</if>
+		</where>
+		ORDER BY F_REGDATE DESC
+	</select>
 </mapper> 
 
 

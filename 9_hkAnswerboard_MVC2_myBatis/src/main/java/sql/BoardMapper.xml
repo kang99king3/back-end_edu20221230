@@ -31,22 +31,20 @@
 				       DELFLAG 
 				FROM ANSWERBOARD 
 				) A 
+		<where>		
 		<choose>
 			<when test="seq!=null">
-				<where>
 					SEQ=#{seq}	
-				</where>
 			</when>
 			<otherwise>
-				<where>
 					CEIL(RN/10)=#{pnum}
-				</where>
 			</otherwise>
 		</choose>
+		</where>
 	</select>
 	
 	<select id="getPCount" resultType="int">
-		SELECT CEIL(COUNT(*)/10) FROM ANSWERBOARD
+		SELECT CEIL(COUNT(*)/10) FROM ANSWERBOARD   
 	</select>
 	
 	<insert id="insertBoard">
@@ -54,7 +52,7 @@
 		 VALUES(null,#{id},#{title},#{content},SYSDATE(), 
 		(SELECT NVL(MAX(REFER),0)+1 FROM ANSWERBOARD ALIAS_FOR_SUBQUERY),0,0,0,'N') 
 	</insert>
-  
+  	
   	<update id="updateBoard" parameterType="ansDto">
   		UPDATE ANSWERBOARD 
 		SET TITLE=#{title} ,CONTENT=#{content} , REGDATE=SYSDATE() 

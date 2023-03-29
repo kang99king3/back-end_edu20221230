@@ -1,0 +1,8 @@
+CREATE TABLE fileinfo (
+		seq INT PRIMARY KEY NOT NULL  AUTO_INCREMENT,
+		origin_name VARCHAR(100) NOT NULL, 
+		stored_name VARCHAR(100) NOT NULL,
+		file_size INT NOT NULL,
+		f_regdate DATE NOT NULL,
+		f_delflag VARCHAR(2) NOT NULL
+	);	

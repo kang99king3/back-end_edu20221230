@@ -18,44 +18,37 @@ public class AnsService implements IAnsService{
 	
 	@Override
 	public List<AnsDto> getAllList(String pnum) {
-		// TODO Auto-generated method stub
-		return null;
+		return ansDao.getAllList(pnum);
 	}
 
 	@Override
 	public int getPCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ansDao.getPCount();
 	}
 
 	@Override
 	public boolean insertBoard(AnsDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+		return ansDao.insertBoard(dto);
 	}
 
 	@Override
 	public AnsDto getBoard(int seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return ansDao.getBoard(seq);
 	}
 
 	@Override
 	public boolean updateBoard(AnsDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+		return ansDao.updateBoard(dto);
 	}
 
 	@Override
 	public boolean muldelBoard(String[] seqs) {
-		// TODO Auto-generated method stub
-		return false;
+		return ansDao.muldelBoard(seqs);
 	}
 
 	@Override
 	public boolean readCount(int seq) {
-		// TODO Auto-generated method stub
-		return false;
+		return ansDao.readCount(seq);
 	}
      //propagation = Propagation.REQUIRED_NEW
 	//propagation = Propagation.NESTED

@@ -11,5 +11,5 @@
 <body>
 <a href="home.do">HOME</a>
 <a href="boardlist.do?pnum=1">글목록</a>
-</body>
+</body> 
 </html>

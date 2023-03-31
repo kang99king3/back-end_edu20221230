@@ -34,11 +34,11 @@
 		<td colspan="2">
 			<button type="button" class="replybtn" >답글</button>
 			<button type="button" 
-			onclick="location.href='board_update_form.board?seq=${dto.seq}'">수정</button>
+			onclick="location.href='board_update_form.do?seq=${dto.seq}'">수정</button>
 			<button type="button"
-			    onclick="location.href='muldel.board?chk=${dto.seq}'">삭제</button>
+			    onclick="location.href='muldel.do?chk=${dto.seq}'">삭제</button>
 			<button type="button"
-				onclick="location.href='boardlist.board'">목록</button>
+				onclick="location.href='boardlist.do'">목록</button>
 		</td>
 	</tr>
 </table>

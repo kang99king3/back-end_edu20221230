@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.ansboard.dtos.AnsDto;
 import com.hk.ansboard.service.IAnsService;
@@ -41,7 +42,7 @@ public class AnsController {
 	public String getAllList(String pnum, Model model,
 			HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("글목록조회");
-		
+		System.out.println("파라미터:"+pnum);
 		//쿠키의 값을 가져오기: 반환타입이 배열
 		Cookie cookie=getCookie("rseq", request);
 		if(cookie!=null) {
@@ -72,7 +73,53 @@ public class AnsController {
 		//--추가코드:페이지에 페이징처리 기능 종료
 		return "boardlist";
 	}
+	
+	@RequestMapping(value = "/boardDetail.do",method = RequestMethod.GET)
+	public String getBoard(Model model,int seq
+			      ,HttpServletRequest request,HttpServletResponse response ) {
+		
+		//쿠키의 값을 가져오기: 반환타입이 배열
+		Cookie[] cookies=request.getCookies();
+		String s=null;
+		for (int i = 0; i < cookies.length; i++) {
+			if(cookies[i].getName().equals("rseq")) {
+				s=cookies[i].getValue();
+			}
+		}
+		
+		//쿠키를 생성하는 전제조건: "rseq"라는 이름의 쿠키값이 없을 때
+		if(s==null||!s.equals(seq+"")) {
+			Cookie cookie=new Cookie("rseq", seq+"");//쿠키생성
+			cookie.setMaxAge(60*10);//쿠키의 유효기간
+			response.addCookie(cookie);//브라우저로 생성한 쿠키를 추가
+			ansService.readCount(seq);//조회수 증가
+		}
+		
+		AnsDto dto=ansService.getBoard(seq);
+		model.addAttribute("dto", dto);
+		
+		return "board_detail";
+	}
+	
+	@RequestMapping(value = "/board_update_form.do",method = RequestMethod.GET)
+	public String board_update_form(Model model
+									,@RequestParam(value="seq") int seq
+									,HttpServletRequest request
+									,HttpServletResponse response ) {
+		
+		AnsDto dto=ansService.getBoard(seq);
+		model.addAttribute("dto", dto);
+		
+		return "board_update";
+	}
 }
+
+
+
+
+
+
+
 
 
 

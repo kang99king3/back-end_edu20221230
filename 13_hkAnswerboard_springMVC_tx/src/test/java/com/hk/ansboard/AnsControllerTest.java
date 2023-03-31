@@ -33,9 +33,10 @@ public class AnsControllerTest {
 		this.mock=MockMvcBuilders.webAppContextSetup(wac).build();
 		
 		//boardlist.do를 요청하기
-		MvcResult result=mock.perform(MockMvcRequestBuilders.get("/boardlist.do"))
-							  .andExpect(MockMvcResultMatchers.status().isOk())
-							  .andReturn();
+		MvcResult result=mock.perform(MockMvcRequestBuilders.get("/boardlist.do")
+							 .param("pnum", "1")
+							 ).andExpect(MockMvcResultMatchers.status().isOk())
+							 .andReturn();
 		int statusCode=result.getResponse().getStatus();
 		System.out.println("status 코드:"+statusCode);
 		//200코드와 같은지 비교-->200은 성공을 의미
@@ -43,6 +44,21 @@ public class AnsControllerTest {
 //		fail("Not yet implemented");
 	}
 
+	@Test
+	public void testGetBoard() throws Exception {
+		//mock 객체를 활용해서 가상의 클라이언트 요청 --> 컨트롤러 테스트
+		this.mock=MockMvcBuilders.webAppContextSetup(wac).build();
+		
+		//boardlist.do를 요청하기
+		MvcResult result=mock.perform(MockMvcRequestBuilders.get("/boardDetail.do")
+							 .param("seq", "118")
+							 ).andExpect(MockMvcResultMatchers.status().isOk())
+							 .andReturn();
+		int statusCode=result.getResponse().getStatus();
+		System.out.println("status 코드:"+statusCode);
+		//200코드와 같은지 비교-->200은 성공을 의미
+		assertEquals(HttpStatus.OK.value(), statusCode);
+	}
 }
 
 

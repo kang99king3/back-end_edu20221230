@@ -40,7 +40,7 @@ public class AnsDaoImp implements IAnsDao{
 	public AnsDto getBoard(int seq) {
 		Map<String , Integer>map=new HashMap<>();
 		map.put("seq", seq);
-		return sqlSession.selectOne(namespace+"getBoard", map);
+		return sqlSession.selectOne(namespace+"getAllList", map);
 	}
 
 	@Override

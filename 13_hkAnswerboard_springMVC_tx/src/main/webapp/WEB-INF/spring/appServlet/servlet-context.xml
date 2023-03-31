@@ -11,7 +11,7 @@
 	<mvc:annotation-driven/>
 
 	<!-- 정적파일 경로(js, css, img)를 설정 -->
-	<mvc:resources location="/resources/" mapping="/**"></mvc:resources>
+<!-- 	<mvc:resources location="/resources/**" mapping="/resources/"></mvc:resources> -->
 
 	<!-- JSP 셋팅 :   prefix/페이지이름suffix 경로를 만들어서 찾아줌 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

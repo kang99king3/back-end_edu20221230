@@ -39,7 +39,7 @@
 						<c:otherwise>
 							<jsp:setProperty property="arrow" name="util" value="${dto.depth}" />
 							<jsp:getProperty property="arrow" name="util"/>
-							<a href="boardDetail.board?seq=${dto.seq}">
+							<a href="boardDetail.do?seq=${dto.seq}">
 							${fn:length(dto.title)<10?dto.title : fn:substring(dto.title,0,10)+="..."}
 							</a>						
 						</c:otherwise>
@@ -63,11 +63,11 @@
 				<!-- 페이징 처리부분 시작 -->
 				<nav>
 				  <ul class="pagination">
-				    <li ><a href="boardlist.board?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+				    <li ><a href="boardlist.do?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 				    <c:forEach var="i" begin="${pMap.startPage}" end="${pMap.endPage}">
-				    	<li ${sessionScope.pnum==i?"class='active'":""}><a href="boardlist.board?pnum=${i}">${i}<span class="sr-only">(current)</span></a></li>
+				    	<li ${sessionScope.pnum==i?"class='active'":""}><a href="boardlist.do?pnum=${i}">${i}<span class="sr-only">(current)</span></a></li>
 				    </c:forEach> 
-				    <li ><a href="boardlist.board?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+				    <li ><a href="boardlist.do?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 				  </ul>
 				</nav>
 				<!-- 페이징 처리부분 종료 -->

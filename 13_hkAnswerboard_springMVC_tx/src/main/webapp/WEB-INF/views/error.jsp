@@ -14,7 +14,7 @@
 	String msg=request.getParameter("msg");
 %>
 <h1>시스템 오류 발생</h1>
-<h2>관리자에게 문의하세요(<%=msg %>)</h2>
+<h2>관리자에게 문의하세요(<%=msg==null?"":msg%>${msgs})</h2>
 <h3><a href="index.jsp">메인으로 돌아가기</a></h3>
 </body>
 </html>

@@ -75,7 +75,7 @@
 		</tr>
 		<tr>
 			<td colspan="10">
-				<button type="button" onclick="location.href='insertForm.board'">글추가</button>
+				<button type="button" onclick="location.href='insertForm.do'">글추가</button>
 				<button type="submit">삭제</button>
 			</td>
 		</tr>

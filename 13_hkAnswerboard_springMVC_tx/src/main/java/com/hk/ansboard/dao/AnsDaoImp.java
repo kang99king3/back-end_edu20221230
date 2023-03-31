@@ -7,6 +7,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hk.ansboard.dtos.AnsDto;
 
@@ -63,11 +64,13 @@ public class AnsDaoImp implements IAnsDao{
 		return count>0?true:false;
 	}
 
+	
 	@Override
 	public int updateReplyBoard(AnsDto dto) {
 		return sqlSession.update(namespace+"replyUpdate", dto);
 	}
 
+	
 	@Override
 	public int insertReplyBoard(AnsDto dto) {
 		return sqlSession.update(namespace+"replyInsert", dto);

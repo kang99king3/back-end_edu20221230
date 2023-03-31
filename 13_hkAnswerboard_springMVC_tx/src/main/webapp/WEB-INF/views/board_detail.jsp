@@ -44,7 +44,7 @@
 </table>
 <div id="replyForm">
 	<h1>답글 작성하기</h1>
-	<form action="replyboard.board" method="post" >
+	<form action="replyboard.do" method="post" >
 		<input type="hidden" name="seq" value="${dto.seq}"/>
 		<table class="table table-striped" >
 			<tr>
@@ -63,7 +63,7 @@
 				<td colspan="2">
 					<input type="submit" value="답글등록" />
 					<input type="button" value="목록" 
-					onclick="location.href='boardlist.board'"/>
+					onclick="location.href='boardlist.do'"/>
 				</td>
 			</tr>
 		</table>

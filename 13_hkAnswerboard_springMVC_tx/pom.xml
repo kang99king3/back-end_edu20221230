@@ -8,6 +8,7 @@
     <java-version>11</java-version>
     <org.springframework-version>5.3.14</org.springframework-version>
     <org.slf4j-version>1.6.6</org.slf4j-version>
+    <org.aspectj-version>1.6.10</org.aspectj-version>
   </properties>
   
   <dependencies>
@@ -145,7 +146,25 @@
             <artifactId>spring-test</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
-		<!-- Test 종류 -->
+		<!-- Test 종료 -->
+		
+		<!-- AspectJ AOP관련 라이브러리-->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>	
+		<!-- aop구현할때 필요한 라이브러리 -->
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>${org.aspectj-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-tx</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
   </dependencies> 
   
   <build>

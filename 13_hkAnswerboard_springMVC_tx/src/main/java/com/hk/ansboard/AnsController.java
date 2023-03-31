@@ -1,5 +1,7 @@
 package com.hk.ansboard;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +27,8 @@ import com.hk.utils.Paging;
 @Controller
 public class AnsController {
 
+	private static final Logger logger=LoggerFactory.getLogger(AnsController.class);
+	
 	@Autowired
 	private IAnsService ansService;
 	
@@ -41,8 +47,10 @@ public class AnsController {
 	@RequestMapping(value="/boardlist.do",method = RequestMethod.GET)
 	public String getAllList(String pnum, Model model,
 			HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("글목록조회");
-		System.out.println("파라미터:"+pnum);
+//		System.out.println("글목록조회");
+//		System.out.println("파라미터:"+pnum);
+		logger.info("글목록 조회함");
+		logger.info("파라미터:"+pnum);
 		//쿠키의 값을 가져오기: 반환타입이 배열
 		Cookie cookie=getCookie("rseq", request);
 		if(cookie!=null) {
@@ -77,7 +85,8 @@ public class AnsController {
 	@RequestMapping(value = "/boardDetail.do",method = RequestMethod.GET)
 	public String getBoard(Model model,int seq
 			      ,HttpServletRequest request,HttpServletResponse response ) {
-		
+		logger.info("글상세내용 조회함");
+		logger.info("파라미터:"+seq);
 		//쿠키의 값을 가져오기: 반환타입이 배열
 		Cookie[] cookies=request.getCookies();
 		String s=null;
@@ -112,6 +121,69 @@ public class AnsController {
 		
 		return "board_update";
 	}
+	
+	@RequestMapping(value = "/board_update.do",method = RequestMethod.POST)
+	public String board_update(Model model
+							  ,AnsDto dto 
+						      ,HttpServletRequest request
+							  ,HttpServletResponse response ) 
+							  throws UnsupportedEncodingException {
+		
+		boolean isS=ansService.updateBoard(dto);
+		if(isS) {
+			return "redirect:boardDetail.do?seq="+dto.getSeq();
+		}else {
+			return "redirect:error.do?msg="+(URLEncoder.encode("수정실패", "utf-8"));			
+		}
+		
+	}
+	
+	@RequestMapping(value = "/insertForm.do",method = RequestMethod.GET)
+	public String insertForm(Model model
+							  ,AnsDto dto 
+						      ,HttpServletRequest request
+							  ,HttpServletResponse response ) 
+							  throws UnsupportedEncodingException {
+		
+		return "insertboard";
+	}
+	
+	@RequestMapping(value = "/insertboard.do",method = RequestMethod.POST)
+	public String insertBoard(Model model
+							  ,AnsDto dto 
+						      ,HttpServletRequest request
+							  ,HttpServletResponse response ) 
+							  throws UnsupportedEncodingException {
+		
+		boolean isS=ansService.insertBoard(dto);
+		if(isS) {
+			return "redirect:boardlist.do";
+		}else {
+			return "redirect:error.do?msg="
+					+(URLEncoder.encode("글추가실패", "utf-8"));
+		}
+		
+	}
+	
+	//답글달기  replyboard.do
+	@RequestMapping(value = "/replyboard.do",method = RequestMethod.POST)
+	public String replyBoard(Model model
+							  ,AnsDto dto 
+						      ,HttpServletRequest request
+							  ,HttpServletResponse response ) 
+							  throws UnsupportedEncodingException {
+		
+		boolean isS=ansService.replyBoard(dto);
+		if(isS) {
+			return "redirect:boardlist.do";
+		}else {
+			return "redirect:error.do?msg="
+					+(URLEncoder.encode("답글추가실패", "utf-8"));
+		}
+		
+	}
+	//삭제하기
+	
 }
 
 

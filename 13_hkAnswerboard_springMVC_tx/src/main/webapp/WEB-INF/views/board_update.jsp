@@ -12,7 +12,7 @@
 <%@include file="header.jsp" %>
 <div id="container">
 <h1>작성글 수정하기</h1>
-<form action="board_update.board" method="post">
+<form action="board_update.do" method="post">
 <input type="hidden" name="seq" value="${dto.seq}"/>
 <table class="table">
 	<tr>
@@ -31,7 +31,7 @@
 		<td colspan="2">
 			<input class="btn btn-primary" type="submit" value="수정완료"/>
 			<button class="btn"  type="button"
-				onclick="location.href='boardlist.board'">목록</button>
+				onclick="location.href='boardlist.do'">목록</button>
 		</td>
 	</tr>
 </table>

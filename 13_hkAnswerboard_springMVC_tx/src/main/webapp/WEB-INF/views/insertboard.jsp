@@ -12,7 +12,7 @@
 <%@include file="header.jsp" %>
 <div id="container">
 	<h1>새글 작성하기</h1>
-	<form action="insertboard.board" method="post" >
+	<form action="insertboard.do" method="post" >
 		<table class="table table-striped" >
 			<tr>
 				<th>작성자(ID)</th>
@@ -30,7 +30,7 @@
 				<td colspan="2">
 					<input type="submit" value="등록" />
 					<input type="button" value="목록" 
-					onclick="location.href='boardlist.board'"/>
+					onclick="location.href='boardlist.do'"/>
 				</td>
 			</tr>
 		</table>

@@ -52,7 +52,7 @@ public class AnsService implements IAnsService{
 	}
      //propagation = Propagation.REQUIRED_NEW
 	//propagation = Propagation.NESTED
-	@Transactional(propagation = Propagation.REQUIRED)
+//	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
 	public boolean replyBoard(AnsDto dto) {
 		int count=0;
@@ -60,6 +60,7 @@ public class AnsService implements IAnsService{
 		count=ansDao.insertReplyBoard(dto);//insert문 실행
 		return count>0?true:false;
 	}
+	
 	
 	
 }

@@ -77,7 +77,7 @@
     
     <insert id="replyInsert" parameterType="ansDto">
     	<![CDATA[
-    	INSERT INTO ANSWERBOARD 
+    	INSERT INTO ANSWERBOARD1 
 		 VALUES(NULL, #{id},#{title},#{content},SYSDATE() 
 		      ,(SELECT REFER FROM ANSWERBOARD ALIAS_FOR_SUBQUERY WHERE SEQ=#{seq}) 
 		      ,(SELECT STEP FROM ANSWERBOARD ALIAS_FOR_SUBQUERY WHERE SEQ=#{seq})+1 

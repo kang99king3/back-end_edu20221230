@@ -14,8 +14,8 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class CalDto {
 	
 	@NonNull

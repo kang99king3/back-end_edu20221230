@@ -16,8 +16,8 @@ import lombok.ToString;
 @Setter
 @ToString
 
-@AllArgsConstructor
-//@RequiredArgsConstructor
+//@AllArgsConstructor
+@RequiredArgsConstructor
 //@NoArgsConstructor
 public class AnsDto {
 	@Nullable

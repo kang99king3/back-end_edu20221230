@@ -4,6 +4,7 @@ import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -13,6 +14,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class FileDto {
 
+	
 	private int seq;
 	private String origin_name;
 	private String stored_name;

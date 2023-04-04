@@ -13,6 +13,20 @@
 		http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
+
+	<bean id="logAop" class="com.hk.ansboard.aop.LogExecute" ></bean>
+
+	<aop:config>
+		<aop:pointcut expression="execution(* com.hk.ansboard.dao.AnsDaoImp.*(..))" 
+							  id="daoLogPoint"/>
+		<aop:aspect id="logAspect" ref="logAop">
+			<aop:before method="before" pointcut-ref="daoLogPoint"/>
+			<aop:after-returning method="afterReturning" pointcut-ref="daoLogPoint"/>
+			<aop:after-throwing method="daoError" pointcut-ref="daoLogPoint"/>
+		</aop:aspect>
+	</aop:config>
+
+
 	<tx:advice id="txAdvice" transaction-manager="transactionManager" >
 		<tx:attributes>
 			<tx:method name="replyBoard" propagation="REQUIRED"

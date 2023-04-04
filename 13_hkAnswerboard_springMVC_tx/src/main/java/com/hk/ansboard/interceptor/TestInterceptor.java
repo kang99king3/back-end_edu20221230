@@ -27,7 +27,7 @@ public class TestInterceptor implements HandlerInterceptor{
 		}else if(request.getRequestURI().contains("/boardDetail.do")) {
 			if(obj==null) {
 				System.out.println("글상세조회는 로그인한 상태일때만...");
-//					response.sendRedirect("./boardlist.do");
+				response.sendRedirect("./boardlist.do");
 				//       /boardlist.do  ---> / root경로부터 시작
 				//       http://localhost:8090/13_hkAnswerboard_springMVC/boardlist.do
 				//       http://localhost:8090/boardlist.do --> 404

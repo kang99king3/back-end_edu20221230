@@ -3,6 +3,7 @@ package com.hk.ansboard;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -184,6 +185,22 @@ public class AnsController {
 	}
 	//삭제하기
 	
+	
+	//웹 처리 상태에 따라 오류페이지 처리
+	@RequestMapping(value = "/error404.do", method = RequestMethod.GET)
+	public String error404(Locale locale, Model model) {
+		logger.info("404 오류{}.", locale);
+		model.addAttribute("code", "404오류");
+		return "error/404";
+	}
+	
+	@RequestMapping(value = "/error500.do", method = RequestMethod.GET)
+	public String error500(Locale locale, Model model) {
+		logger.info("500 오류{}.", locale);
+		model.addAttribute("code", "500오류");
+				
+		return "error/404";
+	}
 }
 
 

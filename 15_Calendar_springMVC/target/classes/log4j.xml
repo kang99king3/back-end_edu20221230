@@ -12,7 +12,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.hk.ansboard">
+	<logger name="com.hk.calboard">
 		<level value="debug" />
 	</logger>
 	

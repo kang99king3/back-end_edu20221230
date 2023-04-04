@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="home.do">HOME</a>
-<a href="boardlist.do?pnum=1">글목록</a>
+<a href="calendar.do">일정보기</a>
 </body> 
 </html>

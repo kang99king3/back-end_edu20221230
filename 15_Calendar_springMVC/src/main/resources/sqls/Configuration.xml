@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  
+<!-- dto 객체의 변수설정  -->
+  <typeAliases>
+  	<typeAlias type="com.hk.calboard.dtos.CalDto" alias="CalDto"/>
+  </typeAliases>
+
+<!--   쿼리가 작성되어 있는 mapper.xml의 경로 설정 -->
+  <mappers>
+    <mapper resource="./sqls/CalMapper.xml"/>
+  </mappers>
+</configuration>
+
+
+

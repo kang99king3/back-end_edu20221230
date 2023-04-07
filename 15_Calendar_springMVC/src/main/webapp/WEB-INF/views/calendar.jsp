@@ -1,3 +1,4 @@
+<%@page import="com.hk.calboard.utils.Util"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -17,6 +18,8 @@
 	#calendar td{
 		height: 115px;
 	}
+	.pen{width: 20px; height: 20px;}
+	.d{font-size: 15px; font-family: bold;}
 </style>
 
 </head>
@@ -90,10 +93,8 @@
 		for(int i=1;i<=lastDay;i++){
 			%>
 			<td>
-				<a href="#"><%=i%></a>
-<!-- 				<p>aaa</p> -->
-<!-- 				<p>aaa</p> -->
-<!-- 				<p>aaa</p> -->
+				<a href="calList.do?year=<%=year%>&month=<%=month%>&date=<%=i%>" style="color:<%=Util.fontColor(dayOfWeek, i)%>;"  class="d" ><%=i%></a>
+				<a href="addCalBoardForm.do?year=<%=year%>&month=<%=month%>&date=<%=i%>"><img class="pen" src="resources/img/pen.png" alt="일정추가"/></a>
 			</td>
 			<%
 			if((dayOfWeek-1+i)%7==0){
@@ -107,7 +108,21 @@
 	%>
 	</tr>		
 	</table>								
-</div>                                 
+</div>                         
+<%! //선언부: 메서드
+	//파라미터 선언: 
+// 	public String fontColor(int dayOfWeek,int i){
+// 		//토요일:(dayOfWeek-1+i)%7==0
+// 		//일요일:(dayOfWeek-1+i)%7==1
+// 		String str="black";//기본은 평일
+// 		if((dayOfWeek-1+i)%7==0){ // 토요일
+// 			str="blue";
+// 		}else if((dayOfWeek-1+i)%7==1){ //일요일
+// 			str="red";
+// 		}
+// 		return str;
+// 	}
+%>        
 <jsp:include page="footer.jsp"/>
 </body>
 </html>

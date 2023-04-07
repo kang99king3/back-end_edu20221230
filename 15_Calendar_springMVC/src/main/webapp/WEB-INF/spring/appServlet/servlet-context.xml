@@ -14,8 +14,8 @@
 	<mvc:annotation-driven/>
 
 	<!-- 정적파일 경로(js, css, img)를 설정 -->
-	<mvc:resources location="/resources/" mapping="/**"></mvc:resources>
-    <mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
+<!-- 	<mvc:resources location="/resources/" mapping="/**/*"></mvc:resources> -->
+<!--     <mvc:resources location="/css/" mapping="/css/**"></mvc:resources> -->
     
 	<!-- JSP 셋팅 :   prefix/페이지이름suffix 경로를 만들어서 찾아줌 -->
 	<!-- DispatcherServlet이 실행되어야 ViewResolver가 실행된다. -->

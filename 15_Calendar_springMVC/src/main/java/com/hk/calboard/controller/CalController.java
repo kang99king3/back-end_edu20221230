@@ -20,21 +20,24 @@ public class CalController {
 
 	//log를 원하는 위치에 설정하여 디버깅하기 위함
 	private static final Logger logger=LoggerFactory.getLogger(CalController.class);
-	@Autowired
-	private TestController testController;
+//	@Autowired
+//	private TestController testController;
 	
 //	@PostMapping()
 //	@RequestMapping(value="/calendar.do", method = RequestMethod.GET)
 	@GetMapping(value="/calendar.do")
 	public String calendar(Locale locale, Model model,HttpServletRequest request) {
 		logger.info("달력보기{}",locale);
-		Map<String, Integer>map=testController.makeCalendar(request);
-		model.addAttribute("calMap", map);
+//		Map<String, Integer>map=testController.makeCalendar(request);
+//		model.addAttribute("calMap", map);
 		return "calendar";//redirect가 아니죠?? forward 방식으로 응답
 	}
 	
-	
-	
+	@GetMapping(value="/addCalBoardForm.do")
+	public String addCalForm(Locale locale) {
+		logger.info("일정 추가폼으로 이동{}",locale);
+		return "addCalBoardForm";
+	}
 	
 	//웹 처리 상태에 따라 오류페이지 처리
 	@RequestMapping(value = "/error404.do", method = RequestMethod.GET)

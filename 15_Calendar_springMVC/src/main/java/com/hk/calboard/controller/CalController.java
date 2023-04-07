@@ -1,9 +1,13 @@
 package com.hk.calboard.controller;
 
 import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,13 +20,17 @@ public class CalController {
 
 	//log를 원하는 위치에 설정하여 디버깅하기 위함
 	private static final Logger logger=LoggerFactory.getLogger(CalController.class);
+	@Autowired
+	private TestController testController;
 	
 //	@PostMapping()
 //	@RequestMapping(value="/calendar.do", method = RequestMethod.GET)
 	@GetMapping(value="/calendar.do")
-	public String calendar(Locale locale) {
+	public String calendar(Locale locale, Model model,HttpServletRequest request) {
 		logger.info("달력보기{}",locale);
-		return "calendar";
+		Map<String, Integer>map=testController.makeCalendar(request);
+		model.addAttribute("calMap", map);
+		return "calendar";//redirect가 아니죠?? forward 방식으로 응답
 	}
 	
 	

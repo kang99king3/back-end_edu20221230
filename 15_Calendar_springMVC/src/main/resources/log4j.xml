@@ -11,6 +11,18 @@
 		</layout>
 	</appender>
 	
+	<!-- 날짜별 로그 파일 생성 -->
+    <appender name="rollingFile" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/LOG/all.log"/>
+        <param name="Append" value="true"/>
+        <!-- param name="MaxFileSize" value="100MB"/ -->
+        <!-- param name="MaxBackupIndex" value="2"></param -->
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p: %c - %m%n" />
+        </layout>  
+    </appender>
+	
 	<!-- Application Loggers -->
 	<logger name="com.hk.calboard">
 		<level value="debug" />

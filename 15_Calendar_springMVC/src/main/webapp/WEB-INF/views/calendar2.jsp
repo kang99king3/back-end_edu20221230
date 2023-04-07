@@ -3,6 +3,8 @@
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>    
 <%response.setContentType("text/html; charset=utf-8"); %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +34,7 @@
 	int month=cal.get(Calendar.MONTH)+1;// API: 0월~11월
 	
 	//달이 바뀌면서 년도와 월 값에 대한 처리 코드 작성
-	if(paramYear!=null){// 사용자가 요청을 했다는 의미
+	if(paramYear!=null){
 		year=Integer.parseInt(paramYear);
 	}
 	if(paramMonth!=null){
@@ -61,17 +63,17 @@
 	
 %>
 <div id="container">
-<h1>일정관리[달력보기]</h1>
+<h1>일정관리2[달력보기]</h1>
 <table class="table" id="calendar">
 	<caption style="text-align: center; font-size: 30px;">
-		<a href="calendar.do?year=<%=year-1%>&month=<%=month%>">◁</a>
-		<a href="calendar.do?year=<%=year%>&month=<%=month-1%>">◀</a>
-		<span class="y"><%=year%></span>
+		<a href="calendar.do?year=${calMap.year-1}&month=${calMap.month}">◁</a>
+		<a href="calendar.do?year=${calMap.year}&month=${calMap.month-1}">◀</a>
+		<span class="y">${calMap.year}</span>
 		<span>년</span>
-		<span class="m"><%=month%></span>
+		<span class="m">${calMap.month}</span>
 		<span>월</span>
-		<a href="calendar.do?year=<%=year%>&month=<%=month+1%>">▶</a>
-		<a href="calendar.do?year=<%=year+1%>&month=<%=month%>">▷</a>
+		<a href="calendar.do?year=${calMap.year}&month=${calMap.month+1}">▶</a>
+		<a href="calendar.do?year=${calMap.year+1}&month=${calMap.month}">▷</a>
 	</caption>
 	<tr>
 		<th>일</th>
@@ -83,6 +85,9 @@
 		<th>토</th>
 	</tr>
 	<tr>
+	<c:forEach begin="1" end="${calMap.dayOfWeek}">
+		
+	</c:forEach>
 	<%                 
 		for(int i=0;i<dayOfWeek-1;i++){
 			out.print("<td>&nbsp;</td>");

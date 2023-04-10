@@ -93,7 +93,7 @@
 		for(int i=1;i<=lastDay;i++){
 			%>
 			<td>
-				<a href="calList.do?year=<%=year%>&month=<%=month%>&date=<%=i%>" style="color:<%=Util.fontColor(dayOfWeek, i)%>;"  class="d" ><%=i%></a>
+				<a href="calBoardList.do?year=<%=year%>&month=<%=month%>&date=<%=i%>" style="color:<%=Util.fontColor(dayOfWeek, i)%>;"  class="d" ><%=i%></a>
 				<a href="addCalBoardForm.do?year=<%=year%>&month=<%=month%>&date=<%=i%>"><img class="pen" src="resources/img/pen.png" alt="일정추가"/></a>
 			</td>
 			<%

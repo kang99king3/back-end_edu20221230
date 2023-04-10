@@ -1,5 +1,7 @@
 package com.hk.calboard.utils;
 
+import java.text.SimpleDateFormat;
+
 public class Util {
 
 	public static String fontColor(int dayOfWeek,int i){
@@ -13,4 +15,18 @@ public class Util {
 		}
 		return str;
 	}
+	
+	//한자리를 두자리로 변환
+	public static String isTwo(String str) {
+		
+		return str.length()<2?"0"+str:str;// 4 --> "04"
+	}
+	
+	//SimpleDateFormat 날짜포멧을 설정<----jstl에 fmt태그
+	//timestamp 
 }
+
+
+
+
+

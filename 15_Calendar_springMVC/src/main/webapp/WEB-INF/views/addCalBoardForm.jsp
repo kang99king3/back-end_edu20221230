@@ -23,7 +23,6 @@
 	pageContext.setAttribute("min", min);
 %>
 <body>
-
 <div id="container">
 <h1>일정 추가하기</h1>
 <form action="addCalBoard.do" method="post">
@@ -72,11 +71,11 @@
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td><input type="text" name="caltitle"/></td>
+			<td><input type="text" name="title"/></td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td><textarea rows="10" cols="60" name="calcontent"></textarea> </td>
+			<td><textarea rows="10" cols="60" name="content"></textarea> </td>
 		</tr>
 		<tr>
 			<td colspan="2">

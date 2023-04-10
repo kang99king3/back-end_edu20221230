@@ -1,14 +1,13 @@
-package com.hk.calboard.daos;
+package com.hk.calboard.service;
 
 import java.util.List;
 
+import com.hk.calboard.command.InsertCalCommand;
 import com.hk.calboard.dtos.CalDto;
 
-public interface ICalDao {
-
+public interface ICalService {
 	// 일정추가하기: ID, TITLE, CONTENT, MDATE
-	public int insertCalBoard(CalDto dto);
-//	default int insertCalBoard(CalDto dto) {return 0;};
+	public boolean insertCalBoard(InsertCalCommand insertCalCommand);
 	// 일정목록조회하기: 파라미터[ID, YYYYMMDD]
 	public List<CalDto> calBoardList(String id, String yyyyMMdd);
 	// 일정 상세내용 조회: SEQ
@@ -22,7 +21,3 @@ public interface ICalDao {
 	// 달력에서 일정 보여주기: ID, YYYYMM
 	public List<CalDto> CalViewList(String id, String yyyyMM);
 }
-
-
-
-

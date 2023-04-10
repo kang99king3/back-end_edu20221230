@@ -18,7 +18,6 @@ import lombok.ToString;
 @AllArgsConstructor
 public class CalDto {
 	
-	@NonNull
 	private int seq;
 	@NonNull
 	private String id;

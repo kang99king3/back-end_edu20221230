@@ -1,6 +1,8 @@
 package com.hk.calboard.daos;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -12,21 +14,22 @@ import com.hk.calboard.dtos.CalDto;
 @Repository
 public class CalDaoMapper implements ICalDao{
 
-	private String namespace="com.hk.calboard.";
+	private String namespace="com.hk.calboard.daos.";
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public boolean insertCalBoard(CalDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+	public int insertCalBoard(CalDto dto) {
+		return sqlSession.insert(namespace+"insertCalBoard", dto);
 	}
 
 	@Override
 	public List<CalDto> calBoardList(String id, String yyyyMMdd) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, String>map=new HashMap<>();
+		map.put("id", id);
+		map.put("yyyyMMdd",yyyyMMdd);
+		return sqlSession.selectList(namespace+"calBoardList", map);
 	}
 
 	@Override

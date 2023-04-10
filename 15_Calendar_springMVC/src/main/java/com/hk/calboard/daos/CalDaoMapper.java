@@ -34,20 +34,21 @@ public class CalDaoMapper implements ICalDao{
 
 	@Override
 	public CalDto calBoardDetail(int seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(namespace+"calBoardDetail", seq);
 	}
 
 	@Override
 	public boolean calBoardUpdate(CalDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+		int count=sqlSession.update(namespace+"calBoardUpdate", dto);
+		return count>0?true:false;
 	}
 
 	@Override
 	public boolean calMulDel(String[] seqs) {
-		// TODO Auto-generated method stub
-		return false;
+		Map<String, String[]>map=new HashMap<>();
+		map.put("seqs", seqs);//--> map에 넣는이유는 다이나믹쿼리사용할때 받는 파리미터가 map이여야함
+		int count=sqlSession.delete(namespace+"calMulDel",map);
+		return count>0?true:false;
 	}
 
 	@Override

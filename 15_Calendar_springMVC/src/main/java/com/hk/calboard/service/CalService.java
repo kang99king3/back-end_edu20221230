@@ -42,20 +42,30 @@ public class CalService implements ICalService{
 
 	@Override
 	public CalDto calBoardDetail(int seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return calDaoMapper.calBoardDetail(seq);
 	}
 
 	@Override
-	public boolean calBoardUpdate(CalDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean calBoardUpdate(InsertCalCommand insertCalCommand) {
+		// DB에 mdate 컬럼에 저장할 값을 처리: year,month,date... 12자리로 변환
+		String mdate=insertCalCommand.getYear()
+				    +Util.isTwo(insertCalCommand.getMonth())
+				    +Util.isTwo(insertCalCommand.getDate())
+				    +Util.isTwo(insertCalCommand.getHour())
+				    +Util.isTwo(insertCalCommand.getMin()); // 12자리 생성
+		//dto <---command값을 저장
+		CalDto dto=new CalDto();
+		dto.setSeq(insertCalCommand.getSeq());
+		dto.setTitle(insertCalCommand.getTitle());
+		dto.setContent(insertCalCommand.getContent());
+		dto.setMdate(mdate);
+		
+		return calDaoMapper.calBoardUpdate(dto);
 	}
 
 	@Override
 	public boolean calMulDel(String[] seqs) {
-		// TODO Auto-generated method stub
-		return false;
+		return calDaoMapper.calMulDel(seqs);
 	}
 
 	@Override

@@ -2,14 +2,12 @@
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>    
 <%response.setContentType("text/html; charset=utf-8"); %> 
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<jsp:include page="header.jsp"/>
+<%@include file="header.jsp" %>
 <script type="text/javascript">
 function allSel(bool){
 	var chks=document.getElementsByName("chk");// [chk,chk,chk,chk..]
@@ -43,7 +41,10 @@ function isAllCheck(){
 <div id="container">
 <jsp:useBean id="util" class="com.hk.calboard.utils.Util" />
 <h1>일정목록보기</h1>
-<form action="muldel.do" method="post" onsubmit="return isAllCheck()">
+<form action="calMulDel.do" method="post" onsubmit="return isAllCheck()">
+<input type="hidden" name="year" value="${empty list?'': fn:substring(list[0].mdate,0,4) }"/>
+<input type="hidden" name="month" value="${empty list?'': fn:substring(list[0].mdate,4,6) }"/>
+<input type="hidden" name="date" value="${empty list?'': fn:substring(list[0].mdate,6,8) }"/>
 <table class="table">
 	<col width="50px">
 	<col width="200px">
@@ -63,7 +64,7 @@ function isAllCheck(){
 							<jsp:setProperty property="toDates" name="util" value="${dto.mdate}"/>   
 							<jsp:getProperty property="toDates" name="util" />    
 						</td>
-						<td>${dto.title}</td>
+						<td><a href="calBoardDetail.do?seq=${dto.seq}">${dto.title}</a></td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.regdate}"/> </td>
 					</tr>					
 				</c:forEach>
@@ -73,8 +74,8 @@ function isAllCheck(){
 	
 	<tr>
 		<td colspan="5">
-			<input type="submit" value="삭제"/>
-			<input type="button" value="달력보기"
+			<input class="btn" type="submit" value="삭제"/>
+			<input class="btn" type="button" value="달력보기"
 			    onclick="location.href='calendar.do'"/>
 		</td>
 	</tr>

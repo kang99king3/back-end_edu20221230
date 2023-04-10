@@ -1,5 +1,6 @@
 package com.hk.calboard.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -74,6 +75,15 @@ public class CalController {
 //		String id=(String)session.getAttribute("id");//id는 session에서 가져오기
 		System.out.println("year:"+map.get("year"));
 		String id="kbj";
+		
+		//일정목록 조회할 때마다 필요로 하는 year, month, date를 세션에 담아서 관리
+		HttpSession session=request.getSession();
+		if(map.get("year")==null) {
+			map=(Map<String,String>)session.getAttribute("ymdMap");
+		}else {			
+			session.setAttribute("ymdMap", map);
+		}
+		
 		String yyyyMMdd=map.get("year")
 					   +Util.isTwo(map.get("month")) 
 					   +Util.isTwo(map.get("date"));//8자리 만들기
@@ -81,6 +91,50 @@ public class CalController {
 		List<CalDto>list=calService.calBoardList(id, yyyyMMdd);
 		model.addAttribute("list", list);
 		return "calBoardList";
+	}
+	
+	@GetMapping(value="/calBoardDetail.do")
+	public String calBoardDetail(int seq, Model model) {
+		logger.info("일정상세보기");
+		CalDto dto=calService.calBoardDetail(seq);
+		model.addAttribute("dto", dto);
+		return "calBoardDetail";
+	}
+	
+	@GetMapping(value="calBoardUpdateform.do")
+	public String calBoardUpdateform(int seq, Model model) {
+		logger.info("일정 수정폼이동");
+		CalDto dto=calService.calBoardDetail(seq);
+		model.addAttribute("dto", dto);
+		return "calBoardUpdate";
+	}
+	
+	@PostMapping(value="calBoardUpdate.do")
+	public String calBoardUpdate(InsertCalCommand insertCalCommand, Model model) {
+		logger.info("일정 수정하기");
+		
+		try {
+			boolean isS=calService.calBoardUpdate(insertCalCommand);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error500.do";
+		}
+		
+		return "redirect:calBoardDetail.do?seq="+insertCalCommand.getSeq();
+	}
+	
+	@RequestMapping(value = "/calMulDel.do",method = {RequestMethod.POST,RequestMethod.GET})
+	public String calMulDel(String[] chk,@RequestParam Map<String,String> map) {
+		try {
+			boolean isS=calService.calMulDel(chk);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error500.do";
+		}
+//		return "redirect:calBoardList.do?year="+map.get("year")
+//										+"&month="+map.get("month")
+//										+"&date="+map.get("date");
+		return "redirect:calBoardList.do";
 	}
 	
 	//웹 처리 상태에 따라 오류페이지 처리

@@ -11,6 +11,30 @@
 		SELECT SEQ, ID, TITLE, CONTENT, MDATE, REGDATE FROM CALBOARD 
 		WHERE id=#{id} AND SUBSTRING(mdate,1,8) = #{yyyyMMdd};
 	</select>
+	
+	<select id="calBoardDetail" parameterType="int" resultType="CalDto">
+		SELECT SEQ, ID, TITLE, CONTENT, MDATE, REGDATE
+		FROM CALBOARD 
+		WHERE SEQ=#{seq}
+	</select>
+	
+	<update id="calBoardUpdate" parameterType="CalDto">
+		UPDATE CALBOARD 
+		SET TITLE=#{title}, CONTENT=#{content},
+            MDATE=#{mdate}, REGDATE=SYSDATE() 
+		WHERE SEQ=#{seq}
+	</update>
+	
+	<delete id="calMulDel" parameterType="Map">
+		DELETE FROM calboard WHERE seq IN
+		<foreach collection="seqs" item="seq" open="(" close=")" separator=",">
+			#{seq}		
+		</foreach>
+	</delete>
+	
+	<!-- 달력화면에 해당 일에 마우스를 올리면 일정개수를 보여주는 쿼리 -->
+
+	<!-- 달력화면에 일마다 존재하는 일정을 최대3개까지 보여주는 쿼리 -->
 </mapper>
 
 

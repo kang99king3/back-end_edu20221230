@@ -95,6 +95,9 @@
 			<td>
 				<a href="calBoardList.do?year=<%=year%>&month=<%=month%>&date=<%=i%>" style="color:<%=Util.fontColor(dayOfWeek, i)%>;"  class="d" ><%=i%></a>
 				<a href="addCalBoardForm.do?year=<%=year%>&month=<%=month%>&date=<%=i%>"><img class="pen" src="resources/img/pen.png" alt="일정추가"/></a>
+				<div>
+					<p>일정이 있습니다.</p>
+				</div>
 			</td>
 			<%
 			if((dayOfWeek-1+i)%7==0){

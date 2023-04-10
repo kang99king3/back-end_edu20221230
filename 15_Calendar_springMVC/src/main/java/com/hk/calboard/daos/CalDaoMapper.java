@@ -59,8 +59,10 @@ public class CalDaoMapper implements ICalDao{
 
 	@Override
 	public List<CalDto> CalViewList(String id, String yyyyMM) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, String> map=new HashMap<>();
+		map.put("id", id);
+		map.put("yyyyMM", yyyyMM);
+		return sqlSession.selectList(namespace+"CalViewList", map);
 	}
 
 }

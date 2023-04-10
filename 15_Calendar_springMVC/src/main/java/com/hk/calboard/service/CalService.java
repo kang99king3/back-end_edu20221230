@@ -76,8 +76,7 @@ public class CalService implements ICalService{
 
 	@Override
 	public List<CalDto> CalViewList(String id, String yyyyMM) {
-		// TODO Auto-generated method stub
-		return null;
+		return calDaoMapper.CalViewList(id, yyyyMM);
 	}
 
 	

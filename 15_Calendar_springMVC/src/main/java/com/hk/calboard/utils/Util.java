@@ -3,6 +3,9 @@ package com.hk.calboard.utils;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import com.hk.calboard.dtos.CalDto;
 
 public class Util {
 
@@ -48,6 +51,21 @@ public class Util {
 	
 	public String getToDates() {
 		return this.toDates;
+	}
+	
+	public static String getCalViewList(int i,List<CalDto> clist) {
+		String d=isTwo(i+"");//숫자 4 --> "04" 변환
+		String calList="";//"<p>title1..</p><p>title2</p><p>title3</p>"
+		for(int j=0;j<clist.size();j++){
+			if(clist.get(j).getMdate().substring(6, 8).equals(d)){
+				calList+="<p>"
+					   +(clist.get(j).getTitle().length()>7?
+					     clist.get(j).getTitle().substring(0, 7)+".."
+					     :clist.get(j).getTitle())
+					   +"</p>";
+			}
+		}
+		return calList;
 	}
 }
 

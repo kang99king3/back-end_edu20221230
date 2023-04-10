@@ -1,3 +1,5 @@
+<%@page import="com.hk.calboard.dtos.CalDto"%>
+<%@page import="java.util.List"%>
 <%@page import="com.hk.calboard.utils.Util"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,6 +16,7 @@
 	#calendar td > p {
 		margin-bottom: 5px ;
 		background-color: orange;
+		font-size: 7px;
 	}
 	#calendar td{
 		height: 115px;
@@ -62,6 +65,8 @@
 	//현재 월의 마지막 날 구하기
 	int lastDay=cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 	
+	//달력에 보여줄 일일별 일정제목 리스트
+	List<CalDto> clist=(List<CalDto>)request.getAttribute("clist");
 %>
 <div id="container">
 <h1>일정관리[달력보기]</h1>
@@ -95,9 +100,7 @@
 			<td>
 				<a href="calBoardList.do?year=<%=year%>&month=<%=month%>&date=<%=i%>" style="color:<%=Util.fontColor(dayOfWeek, i)%>;"  class="d" ><%=i%></a>
 				<a href="addCalBoardForm.do?year=<%=year%>&month=<%=month%>&date=<%=i%>"><img class="pen" src="resources/img/pen.png" alt="일정추가"/></a>
-				<div>
-					<p>일정이 있습니다.</p>
-				</div>
+				<%=Util.getCalViewList(i, clist) %>
 			</td>
 			<%
 			if((dayOfWeek-1+i)%7==0){

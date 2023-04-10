@@ -1,5 +1,6 @@
 package com.hk.calboard.controller;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -38,10 +39,21 @@ public class CalController {
 //	@PostMapping()
 //	@RequestMapping(value="/calendar.do", method = RequestMethod.GET)
 	@GetMapping(value="/calendar.do")
-	public String calendar(Locale locale, Model model,HttpServletRequest request) {
+	public String calendar(String year,String month, Locale locale, Model model,HttpServletRequest request) {
 		logger.info("달력보기{}",locale);
 //		Map<String, Integer>map=testController.makeCalendar(request);
 //		model.addAttribute("calMap", map);
+		
+		if(year==null||month==null) {
+			Calendar cal=Calendar.getInstance();
+			year=cal.get(Calendar.YEAR)+"";
+			month=(cal.get(Calendar.MONTH)+1)+"";
+		}
+		String id="kbj";//나중에는 세션에서 로그인한 아이디로 쓰자
+		String yyyyMM=year+Util.isTwo(month);//"202304" 6자리
+		List<CalDto> clist = calService.CalViewList(id, yyyyMM);
+		model.addAttribute("clist", clist);
+	
 		return "calendar";//redirect가 아니죠?? forward 방식으로 응답
 	}
 	
@@ -136,6 +148,9 @@ public class CalController {
 //										+"&date="+map.get("date");
 		return "redirect:calBoardList.do";
 	}
+	
+	
+	
 	
 	//웹 처리 상태에 따라 오류페이지 처리
 	@RequestMapping(value = "/error404.do", method = RequestMethod.GET)

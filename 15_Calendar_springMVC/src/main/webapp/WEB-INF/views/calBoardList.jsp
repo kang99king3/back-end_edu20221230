@@ -41,6 +41,7 @@ function isAllCheck(){
 </head>
 <body>
 <div id="container">
+<jsp:useBean id="util" class="com.hk.calboard.utils.Util" />
 <h1>일정목록보기</h1>
 <form action="muldel.do" method="post" onsubmit="return isAllCheck()">
 <table class="table">
@@ -58,7 +59,10 @@ function isAllCheck(){
 				<c:forEach items="${requestScope.list}" var="dto">
 					<tr>
 						<td><input type="checkbox" name="chk" value="${dto.seq}" /> </td>
-						<td>${dto.mdate}</td>
+						<td>
+							<jsp:setProperty property="toDates" name="util" value="${dto.mdate}"/>   
+							<jsp:getProperty property="toDates" name="util" />    
+						</td>
 						<td>${dto.title}</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.regdate}"/> </td>
 					</tr>					

@@ -74,9 +74,12 @@ function isAllCheck(){
 	
 	<tr>
 		<td colspan="5">
-			<input class="btn" type="submit" value="삭제"/>
-			<input class="btn" type="button" value="달력보기"
-			    onclick="location.href='calendar.do'"/>
+			<button type="submit" title="일정삭제">
+				<span class="glyphicon glyphicon-trash"></span>
+			</button> 
+			<button type="button" onclick="location.href='calendar.do'" title="달력보기">
+				<span class="glyphicon glyphicon-calendar"></span>
+			</button>    
 		</td>
 	</tr>
 </table>

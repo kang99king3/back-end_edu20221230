@@ -15,8 +15,11 @@
 <style type="text/css">
 	#calendar td > p {
 		margin-bottom: 5px ;
-		background-color: orange;
+		background-color: 	#28A8A8;
 		font-size: 7px;
+		color:white;
+		font-weight: bold;
+		padding-left: 5px;
 	}
 	#calendar td{
 		height: 115px;
@@ -72,14 +75,18 @@
 <h1>일정관리[달력보기]</h1>
 <table class="table" id="calendar">
 	<caption style="text-align: center; font-size: 30px;">
-		<a href="calendar.do?year=<%=year-1%>&month=<%=month%>">◁</a>
-		<a href="calendar.do?year=<%=year%>&month=<%=month-1%>">◀</a>
+		<a href="calendar.do?year=<%=year-1%>&month=<%=month%>">
+		<span class="glyphicon glyphicon-backward"></span></a>
+		<a href="calendar.do?year=<%=year%>&month=<%=month-1%>">
+		<span class="glyphicon glyphicon-chevron-left"></span></a>
 		<span class="y"><%=year%></span>
 		<span>년</span>
 		<span class="m"><%=month%></span>
 		<span>월</span>
-		<a href="calendar.do?year=<%=year%>&month=<%=month+1%>">▶</a>
-		<a href="calendar.do?year=<%=year+1%>&month=<%=month%>">▷</a>
+		<a href="calendar.do?year=<%=year%>&month=<%=month+1%>">
+		<span class="glyphicon glyphicon-chevron-right"></span></a>
+		<a href="calendar.do?year=<%=year+1%>&month=<%=month%>">
+		<span class="glyphicon glyphicon-forward"></span></a>
 	</caption>
 	<tr>
 		<th>일</th>

@@ -53,8 +53,10 @@ public class CalDaoMapper implements ICalDao{
 
 	@Override
 	public int calBoardCount(String id, String yyyyMMdd) {
-		// TODO Auto-generated method stub
-		return 0;
+		Map<String, String>map=new HashMap<>();
+		map.put("id", id);
+		map.put("yyyyMMdd", yyyyMMdd);
+		return sqlSession.selectOne(namespace+"calBoardCount", map);
 	}
 
 	@Override

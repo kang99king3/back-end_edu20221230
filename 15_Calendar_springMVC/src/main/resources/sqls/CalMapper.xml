@@ -33,7 +33,10 @@
 	</delete>
 	
 	<!-- 달력화면에 해당 일에 마우스를 올리면 일정개수를 보여주는 쿼리 -->
-
+	<select id="calBoardCount" parameterType="Map" resultType="Integer">
+		SELECT COUNT(*) FROM CALBOARD 
+		WHERE ID=#{id} AND SUBSTR(MDATE,1,8)=#{yyyyMMdd}
+	</select>
 	<!-- 달력화면에 일마다 존재하는 일정을 최대3개까지 보여주는 쿼리 -->
 	<select id="CalViewList" parameterType="Map" resultType="CalDto">
 		SELECT RN,SEQ,ID,TITLE,CONTENT,MDATE,REGDATE

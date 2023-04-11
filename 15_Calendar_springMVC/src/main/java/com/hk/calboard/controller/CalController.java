@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.hk.calboard.command.InsertCalCommand;
 import com.hk.calboard.dtos.CalDto;
@@ -149,8 +151,18 @@ public class CalController {
 		return "redirect:calBoardList.do";
 	}
 	
-	
-	
+//	public String ---> 값 하나 (text)로 반환 작성
+//	public Map<String,Integer..String...> -> json로 반환 작성
+	@ResponseBody  // --> printWriter pw=response.getWrite()
+	@GetMapping(value="calCountAjax.do")
+	public Map<String,Integer> calCountAjax(String yyyyMMdd){
+		logger.info("일정개수보여주기");
+		Map<String,Integer> map=new HashMap<>();
+		String id="kbj";
+		int count=calService.calBoardCount(id, yyyyMMdd);
+		map.put("count", count);
+		return map;
+	}
 	
 	//웹 처리 상태에 따라 오류페이지 처리
 	@RequestMapping(value = "/error404.do", method = RequestMethod.GET)

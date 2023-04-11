@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<style type="text/css">
+	input + span{color:red; font-size: 10px;}
+</style>
+</head>
+<body>
+<h1>회원 가입</h1>
+<form action="/user/addUser" method="post" th:object="${addUserCommand}" >
+<table class="table">
+	<tr>
+		<th>아이디:</th>
+		<td><input type="text" name="id" th:field="*{id}"/>
+			<span th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></span>
+		</td>
+	</tr>
+	<tr>
+		<th>이름:</th>
+		<td><input type="text" name="name" th:field="*{name}"/>
+			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+		</td>
+	</tr>
+	<tr>
+		<th>비밀번호:</th>
+		<td><input type="password" name="password" th:field="*{password}"/>
+			<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+		</td>
+	</tr>
+	<tr>
+		<th>이메일:</th>
+		<td><input type="email" name="email" th:field="*{email}"/>
+		<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+		</td>
+	</tr>
+	<tr>
+		<th>주소:</th>
+		<td><input type="text" name="address" th:field="*{address}"/>
+		<span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+		</td>
+	</tr>
+	<tr>
+		<td><input type="submit" value="가입" class="btn" /></td>
+	</tr>
+</table>
+</form>
+</body>
+</html>

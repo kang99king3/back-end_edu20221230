@@ -23,9 +23,23 @@
 	}
 	#calendar td{
 		height: 115px;
+		position: relative;
 	}
 	.pen{width: 20px; height: 20px;}
 	.d{font-size: 15px; font-family: bold;}
+	
+	.cp{
+		position: absolute;
+		left:20px;
+		top:-30px;
+		width: 40px;
+		height: 40px;
+		border-radius: 20px 20px 20px 1px;
+		background-color: pink;
+		line-height: 40px;
+		text-align: center;
+		font-weight: bold;
+	}
 </style>
 <script type="text/javascript">
 	function isTwo(str){
@@ -41,17 +55,22 @@
 			var date=aDate.text().trim();//일
 			var yyyyMMdd=year+isTwo(month)+isTwo(date);
 // 			alert(yyyyMMdd);
-			$.ajax({
-				method:"get", //전송방식
-				url:"calCountAjax.do", //요청 url
-				data:{"yyyyMMdd":yyyyMMdd}, //서버로 보낼 값
-				dataType:"json",  //서버에서 받을 데이터의 타입
-				async:false,   //ajax()메서드가 비동리고 실행하는것을 막음:false설정
-				success:function(data){ //서버와 통신 성공했다면 기능을 실행하자
-					alert(data.count);// data["count"]이렇게도 쓰고...
-				}
-			});
-		},function(){});
+			if(aDate.nextAll("p").length>0){
+				$.ajax({
+					method:"get", //전송방식
+					url:"calCountAjax.do", //요청 url
+					data:{"yyyyMMdd":yyyyMMdd}, //서버로 보낼 값
+					dataType:"json",  //서버에서 받을 데이터의 타입
+					async:false,   //ajax()메서드가 비동기로 실행하는것을 막음:false설정
+					success:function(data){ //서버와 통신 성공했다면 기능을 실행하자
+	// 					alert(data.count);// data["count"]이렇게도 쓰고...
+						aDate.after("<div class='cp'>"+data.count+"</div>");						
+					}
+				});
+			}
+		},function(){
+			$(".cp").remove();
+		});
 	
 	})
 </script>
@@ -133,6 +152,7 @@
 			%>
 			<td>
 				<a class="d"  href="calBoardList.do?year=<%=year%>&month=<%=month%>&date=<%=i%>" style="color:<%=Util.fontColor(dayOfWeek, i)%>;"  ><%=i%></a>
+				
 				<a href="addCalBoardForm.do?year=<%=year%>&month=<%=month%>&date=<%=i%>"><img class="pen" src="resources/img/pen.png" alt="일정추가"/></a>
 				<%=Util.getCalViewList(i, clist) %>
 			</td>

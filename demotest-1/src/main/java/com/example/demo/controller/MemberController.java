@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.command.AddUserCommand;
+import com.example.demo.command.LoginCommand;
 import com.example.demo.service.MemberService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -65,6 +68,27 @@ public class MemberController {
 		return map;
 	}
 	
+	@GetMapping("/loginForm")
+	public String loginForm(Model model) {
+		model.addAttribute("loginCommand", new LoginCommand());
+		return "thymeleaf/member/login";
+	}
+	
+	@PostMapping("/login")
+	public String login(@Validated LoginCommand loginCommand,
+						BindingResult result,
+						HttpServletRequest request,  
+						Model model) {
+		//command 파리미터 다음에 BindingResult를 선언한다. 
+		//command에 유효값처리 결과가 BindingResult에서 받아진다.
+		if(result.hasErrors()) {
+			return "thymeleaf/member/login";
+		}
+		
+		String path = memberService.loginUser(loginCommand, request);
+		
+		return path;
+	}
 }
 
 

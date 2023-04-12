@@ -1,0 +1,29 @@
+CREATE TABLE member (
+	`memberid` INT NOT NULL AUTO_INCREMENT,
+	`id` VARCHAR(40) NOT NULL  UNIQUE,
+	`name` VARCHAR(40) NOT NULL ,
+	`password` VARCHAR(50) NOT NULL UNIQUE ,
+	`email` VARCHAR(50) NOT NULL UNIQUE ,
+	`address` VARCHAR(1000) NOT NULL ,
+	`role` VARCHAR(15) NOT NULL ,
+	PRIMARY KEY (`memberid`) 
+);
+
+CREATE TABLE fileboard (
+	`file_seq` INT NOT NULL AUTO_INCREMENT,
+	`board_seq` INT NOT NULL ,
+	`origin_filename` VARCHAR(50) NOT NULL ,
+	`stored_filename` VARCHAR(50) NOT NULL ,
+	PRIMARY KEY (`file_seq`),
+	FOREIGN KEY (board_seq) REFERENCES testboard(board_seq) 
+);
+
+CREATE TABLE testboard (
+	board_seq INT NOT NULL AUTO_INCREMENT,
+	id VARCHAR(40) NOT NULL ,
+	title VARCHAR(1000) NOT NULL ,
+	content VARCHAR(2000) NOT NULL ,
+	regdate DATE  NOT NULL ,
+	PRIMARY KEY (board_seq) ,
+	FOREIGN KEY (id) REFERENCES member(id)
+);

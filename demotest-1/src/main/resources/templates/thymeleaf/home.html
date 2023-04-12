@@ -5,8 +5,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1 th:text="${msg}">Thymeleaf 페이지</h1>
-<a th:href="@{/user/loginForm}">SignIn</a>
-<a th:href="@{/user/addUserForm}">SignUp</a>
+<h1>HOME</h1>
+<th:block th:if="${session.mdto==null}">
+	<a th:href="@{/user/loginForm}">SignIn</a>
+	<a th:href="@{/user/addUserForm}">SignUp</a>
+</th:block>
+<th:block th:unless="${session.mdto==null}">
+	<p>
+	   <span th:text="${session.mdto.role}"></span> 
+	   <span>[[${session.mdto.id}]]</span>
+	   <a th:href="@{/user/logout}">로그아웃</a>
+	</p>
+</th:block>
 </body>
 </html>
+

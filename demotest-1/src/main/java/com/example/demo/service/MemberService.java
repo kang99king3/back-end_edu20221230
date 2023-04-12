@@ -7,14 +7,22 @@ import com.example.demo.command.AddUserCommand;
 import com.example.demo.dtos.MemberDto;
 import com.example.demo.mapper.MemberMapper;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+//
+//@AllArgsConstructor
+//@RequiredArgsConstructor
 @Service
 public class MemberService {
 
 	@Autowired
 	private MemberMapper memberMapper;
 	
+	@Autowired
+	private MemberDto mdto;
+	
 	public boolean addUser(AddUserCommand addUserCommand) {
-		MemberDto mdto=new MemberDto();
+//		MemberDto mdto=new MemberDto();
 		mdto.setId(addUserCommand.getId());
 		mdto.setName(addUserCommand.getName());
 		//password는 암호화하여 저장하자

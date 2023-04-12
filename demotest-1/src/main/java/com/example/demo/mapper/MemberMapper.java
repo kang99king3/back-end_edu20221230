@@ -9,10 +9,11 @@ import com.example.demo.dtos.MemberDto;
 public interface MemberMapper {
 
 	public boolean addUser(MemberDto dto);
+
+	public String idChk(String id);
 	
 	public MemberDto loginUser(String id);
 	
-	public String idChk(String id);
 }
 
 

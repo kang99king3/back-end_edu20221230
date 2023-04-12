@@ -1,19 +1,49 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{/thymeleaf/layouts/layout01}">
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<!--1. jquery 라이브러리 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <style type="text/css">
 	input + span{color:red; font-size: 10px;}
 </style>
+<script type="text/javascript">
+	$(function(){
+		$("#id").on("keyup",function(){
+			var id=$(this).val();
+			$.ajax({
+				url:"/user/idChk",
+				method:"get",
+				dataType:"json",
+				async:false,
+				data:{"id":id},
+				success:function(data){
+					if(data.id!=null){
+						$("#idChk").text("사용할 수 없는 아이디입니다.");
+					}else{
+						$("#idChk").text("사용 가능한 아이디입니다.");
+					}
+				},
+				error:function(e){
+					console.log(e);
+				}
+			});
+		});
+	});
+</script>
 </head>
 <body>
+<!-- <div layout:fragment="content"> -->
 <h1>회원 가입</h1>
 <form action="/user/addUser" method="post" th:object="${addUserCommand}" >
 <table class="table">
 	<tr>
 		<th>아이디:</th>
-		<td><input type="text" name="id" th:field="*{id}"/>
+		<td><input type="text" name="id" id="id" th:field="*{id}"/>
+			<span id="idChk"></span>
 			<span th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></span>
 		</td>
 	</tr>
@@ -46,5 +76,6 @@
 	</tr>
 </table>
 </form>
+<!-- </div> -->
 </body>
 </html>

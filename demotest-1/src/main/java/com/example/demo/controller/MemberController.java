@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.command.AddUserCommand;
 import com.example.demo.service.MemberService;
@@ -49,7 +53,27 @@ public class MemberController {
 		}
 		
 	}
+	
+	@GetMapping("/idChk")
+	@ResponseBody
+	public Map<String, String> idChk(Model model, String id){
+		System.out.println("id중복체크");
+		String resultId=memberService.idChk(id);
+		Map<String, String>map=new HashMap<>();
+		map.put("id", resultId);
+		return map;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
 
 
 

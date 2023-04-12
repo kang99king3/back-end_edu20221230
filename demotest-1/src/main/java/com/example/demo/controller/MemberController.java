@@ -29,6 +29,7 @@ public class MemberController {
 
 		model.addAttribute("addUserCommand", new AddUserCommand());
 		return "thymeleaf/member/addUserForm";
+//		return "member/addUserForm";
 	}
 	
 	@PostMapping(value="/addUser")

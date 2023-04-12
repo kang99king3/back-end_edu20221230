@@ -18,6 +18,7 @@ public class HomeController {
 		System.out.println("home");
 //		model.addAttribute("msg", "spring boot");
 		return "thymeleaf/home";
+//		return "home";
 	}
 
 	

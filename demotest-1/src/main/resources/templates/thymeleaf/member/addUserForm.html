@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{/thymeleaf/layouts/layout01}">
+	  layout:decorate="~{thymeleaf/layouts/layout}">
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<!--1. jquery 라이브러리 -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <style type="text/css">
 	input + span{color:red; font-size: 10px;}
 </style>
@@ -36,7 +34,7 @@
 </script>
 </head>
 <body>
-<!-- <div layout:fragment="content"> -->
+<div layout:fragment="content">
 <h1>회원 가입</h1>
 <form action="/user/addUser" method="post" th:object="${addUserCommand}" >
 <table class="table">
@@ -76,6 +74,6 @@
 	</tr>
 </table>
 </form>
-<!-- </div> -->
+</div>
 </body>
 </html>

@@ -15,13 +15,15 @@
 
 <!--4. 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<link th:href="@{/css/layout.css}" rel="stylesheet">
 </head>
 <body>
-	<div th:replace="/fragments/header::header"></div>
+	<div th:replace="thymeleaf/fragments/header::header"></div>
 	
 	<div layout:fragment="content" class="content"></div>
 	
-	<div th:replace="/thymeleaf/fragments/footer::footer"></div>
+	<div th:replace="thymeleaf/fragments/footer::footer"></div>
 </body>
 </html>
 

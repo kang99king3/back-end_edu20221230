@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.command.AddUserCommand;
@@ -17,7 +18,8 @@ public class MemberService {
 
 	@Autowired
 	private MemberMapper memberMapper;
-	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private MemberDto mdto;
 	
@@ -26,7 +28,7 @@ public class MemberService {
 		mdto.setId(addUserCommand.getId());
 		mdto.setName(addUserCommand.getName());
 		//password는 암호화하여 저장하자
-		mdto.setPassword(addUserCommand.getPassword());
+		mdto.setPassword(passwordEncoder.encode(addUserCommand.getPassword()));
 		mdto.setEmail(addUserCommand.getEmail());
 		mdto.setAddress(addUserCommand.getAddress());
 		return memberMapper.addUser(mdto);

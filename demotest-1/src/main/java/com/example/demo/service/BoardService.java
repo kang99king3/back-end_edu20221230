@@ -41,6 +41,7 @@ public class BoardService {
 		boardDto.setId(insertBoardCommand.getId());
 		boardDto.setTitle(insertBoardCommand.getTitle());
 		boardDto.setContent(insertBoardCommand.getContent());
+		boolean isS= boardMapper.insertBoard(boardDto);
 		if(!multiFile.isEmpty()) { //첨부됐다면
 			//게시글의 첨부 파일 경로[절대경로로 설정해보자..]
 			String filePath="C:/Users/user/git/back-end_edu20221230_2/"
@@ -49,7 +50,7 @@ public class BoardService {
 			FileBoardDto fdto=fileService.uploadFile(filePath, multiFile);
 			boardMapper.insertFileBoard(fdto);//db에 파일 정보 추가
 		}
-		return boardMapper.insertBoard(boardDto);
+		return isS;
 	}
 	
 }

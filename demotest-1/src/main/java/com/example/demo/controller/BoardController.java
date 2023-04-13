@@ -16,7 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.command.InsertBoardCommand;
 import com.example.demo.dtos.BoardDto;
+import com.example.demo.dtos.MemberDto;
 import com.example.demo.service.BoardService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping(value = "/board")
@@ -51,13 +54,18 @@ public class BoardController {
 	public String boardInsert(@Validated InsertBoardCommand insertBoardCommand
 							  ,BindingResult result
 							  ,@RequestParam("filename") MultipartFile multiFile
-							  ,Model model) {
+							  ,Model model
+							  ,HttpServletRequest request) {
 		if(result.hasErrors()) {
 			System.out.println("글을 모두 입력하세요");
 			return "thymeleaf/board/boardInsertForm";
 		}
 		
 		try {
+			//글추가 폼에서 id가 출력안되서 session에서 id 가져옴
+			MemberDto mdto=(MemberDto)request.getSession().getAttribute("mdto");
+			insertBoardCommand.setId(mdto.getId());  
+			
 			boardService.insertBoard(insertBoardCommand, multiFile);
 			System.out.println("글추가함");
 		}catch(Exception e) {

@@ -8,7 +8,7 @@ public class InsertBoardCommand {
 	
 	private int board_seq;
 	
-	@NotBlank(message = "아이디를 입력하세요")
+//	@NotBlank(message = "아이디를 입력하세요")
 	private String id;
 	@NotBlank(message = "제목을 입력하세요")
 	private String title;

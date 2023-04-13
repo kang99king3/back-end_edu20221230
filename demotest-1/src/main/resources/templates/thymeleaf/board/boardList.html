@@ -24,8 +24,8 @@
 			<tr th:each="dto : ${list}">
 				<td><input type="checkbox" name="chk" th:value="${dto.board_seq}"></td>
 				<td th:text="${dto.id}"></td>
-				<td th:text="${dto.title}">
-					<a th:href="@{/board/boardDetail(seq=${dto.board_seq})}">[[${dto.title}]]</a>
+				<td>
+					<a th:href="@{/board/boardDetail(board_seq=${dto.board_seq})}">[[${dto.title}]]</a>
 				</td>
 				<td th:text="${#dates.format(dto.regdate,'yyyy-MM-dd')}"></td>
 			</tr>

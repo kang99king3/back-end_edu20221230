@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{thymeleaf/layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content">
+<h1>게시판</h1>
+<!-- <form th:action="@{/board/muDel}" method="post" th:object="${}"> -->
+	<table class="table">
+		<tr>
+			<th><input type="checkbox" name="all" onclick="allSel(this.checked)"/> </th>
+			<th>작성자</th>
+			<th>제목</th>
+			<th>작성일</th>
+		</tr>
+		<th:block th:if="${#lists.isEmpty(list)}">
+			<tr><td colspan="4" style="text-align: center;">---작성된 글이 없습니다.---</td></tr>
+		</th:block>
+		<th:block th:unless="${#lists.isEmpty(list)}">
+			<tr th:each="dto : ${list}">
+				<td><input type="checkbox" name="chk" th:value="${dto.board_seq}"></td>
+				<td th:text="${dto.id}"></td>
+				<td th:text="${dto.title}">
+					<a th:href="@{/board/boardDetail(seq=${dto.board_seq})}">[[${dto.title}]]</a>
+				</td>
+				<td th:text="${#dates.format(dto.regdate,'yyyy-MM-dd')}"></td>
+			</tr>
+		</th:block>
+		<tr>
+			<td colspan="4">
+				<button type="button" class="btn"
+				        th:onclick="|location.href='@{/board/boardInsertForm}'|" >글쓰기</button>
+				<button type="submit" class="btn" >삭제</button>       
+			</td>
+		</tr>
+	</table>
+<!-- </form> -->
+</div>
+</body>
+</html>
+
+
+
+
+
+

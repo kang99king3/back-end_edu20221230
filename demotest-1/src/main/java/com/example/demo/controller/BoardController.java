@@ -27,6 +27,7 @@ public class BoardController {
 	
 	@GetMapping(value = "/boardList")
 	public String  boardList(Model model) {
+		System.out.println("글목록보기");
 		List<BoardDto> list=boardService.getAllList();
 		model.addAttribute("list", list);
 		return "thymeleaf/board/boardList";

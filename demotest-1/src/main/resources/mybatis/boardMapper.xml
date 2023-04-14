@@ -31,14 +31,20 @@
 		WHERE T.BOARD_SEQ=#{board_seq}
 	</select>
 	
-	<insert id="insertBoard" parameterType="BoardDto">
+	<!-- useGeneratedKeys="true" keyProperty="board_seq": board_seq값을 BoardDto에 전달함 -->
+	<insert id="insertBoard" parameterType="BoardDto"
+							useGeneratedKeys="true" keyProperty="board_seq" >
 		INSERT INTO TESTBOARD
 		VALUES(NULL, #{id}, #{title}, #{content},SYSDATE())
 	</insert>
 	
 	<insert id="insertFileBoard" parameterType="FileBoardDto">
+<!-- 		<selectKey resultType="int" order="BEFORE" keyProperty="board_seq"  -->
+<!-- 				   keyColumn="board_seq"> -->
+<!-- 			select LAST_INSERT_ID()  -->
+<!-- 		</selectKey> -->
 		INSERT INTO FILEBOARD
-		VALUES(NULL,LAST_INSERT_ID(),#{origin_filename},#{stored_filename})
+		VALUES(NULL,#{board_seq},#{origin_filename},#{stored_filename})
 	</insert>
 </mapper>  
 

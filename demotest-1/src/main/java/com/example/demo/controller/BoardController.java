@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.example.demo.command.InsertBoardCommand;
 import com.example.demo.dtos.BoardDto;
@@ -53,7 +54,8 @@ public class BoardController {
 	@PostMapping(value = "/boardInsert")
 	public String boardInsert(@Validated InsertBoardCommand insertBoardCommand
 							  ,BindingResult result
-							  ,@RequestParam("filename") MultipartFile multiFile
+//							  ,@RequestParam("filename") MultipartFile multiFile
+							  ,MultipartRequest multipartRequest
 							  ,Model model
 							  ,HttpServletRequest request) {
 		if(result.hasErrors()) {
@@ -66,7 +68,8 @@ public class BoardController {
 			MemberDto mdto=(MemberDto)request.getSession().getAttribute("mdto");
 			insertBoardCommand.setId(mdto.getId());  
 			
-			boardService.insertBoard(insertBoardCommand, multiFile);
+//			boardService.insertBoard(insertBoardCommand, multiFile);
+			boardService.insertBoard(insertBoardCommand, multipartRequest);
 			System.out.println("글추가함");
 		}catch(Exception e) {
 			e.printStackTrace();

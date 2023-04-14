@@ -22,7 +22,9 @@
 	
 	<select id="getAllList" resultType="BoardDto">
 		SELECT BOARD_SEQ, ID, TITLE, CONTENT, REGDATE
-		FROM TESTBOARD ORDER BY REGDATE DESC
+		FROM TESTBOARD
+		WHERE DELFLAG = 'N'
+		ORDER BY REGDATE DESC
 	</select>
 	
 	<select id="getBoard" parameterType="int" resultMap="BoardDtoMap">
@@ -53,6 +55,13 @@
 		FROM FILEBOARD
 		WHERE FILE_SEQ = #{file_seq}
 	</select>
+	
+	<update id="mulDel" parameterType="Map">
+		UPDATE TESTBOARD SET DELFLAG = 'Y' WHERE BOARD_SEQ IN
+		<foreach collection="seqs" item="board_seq" open="(" close=")" separator=",">
+			#{board_seq}
+		</foreach>
+	</update>
 </mapper>  
 
 

@@ -9,7 +9,7 @@
 <body>
 <div layout:fragment="content">
 <h1>게시판</h1>
-<!-- <form th:action="@{/board/muDel}" method="post" th:object="${}"> -->
+<form th:action="@{/board/mulDel}" method="post" th:object="${delBoardCommand}">
 	<table class="table">
 		<tr>
 			<th><input type="checkbox" name="all" onclick="allSel(this.checked)"/> </th>
@@ -22,7 +22,7 @@
 		</th:block>
 		<th:block th:unless="${#lists.isEmpty(list)}">
 			<tr th:each="dto : ${list}">
-				<td><input type="checkbox" name="chk" th:value="${dto.board_seq}"></td>
+				<td><input type="checkbox" name="chk" th:field="*{chk}" th:value="${dto.board_seq}"></td>
 				<td th:text="${dto.id}"></td>
 				<td>
 					<a th:href="@{/board/boardDetail(board_seq=${dto.board_seq})}">[[${dto.title}]]</a>
@@ -34,11 +34,12 @@
 			<td colspan="4">
 				<button type="button" class="btn"
 				        th:onclick="|location.href='@{/board/boardInsertForm}'|" >글쓰기</button>
-				<button type="submit" class="btn" >삭제</button>       
+				<button type="submit" class="btn" >삭제</button>  
+				<span th:if="${#fields.hasErrors('chk')}" th:errors="*{chk}"></span>     
 			</td>
 		</tr>
 	</table>
-<!-- </form> -->
+</form>
 </div>
 </body>
 </html>

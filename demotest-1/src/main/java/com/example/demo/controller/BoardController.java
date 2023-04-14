@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
+import com.example.demo.command.DelBoardCommand;
 import com.example.demo.command.InsertBoardCommand;
 import com.example.demo.dtos.BoardDto;
 import com.example.demo.dtos.FileBoardDto;
@@ -40,6 +41,7 @@ public class BoardController {
 		System.out.println("글목록보기");
 		List<BoardDto> list=boardService.getAllList();
 		model.addAttribute("list", list);
+		model.addAttribute("delBoardCommand", new DelBoardCommand() );
 		return "thymeleaf/board/boardList";
 	}
 	
@@ -85,6 +87,22 @@ public class BoardController {
 		
 		return "redirect:/board/boardList";
 	}
+	
+	@PostMapping(value = "/mulDel")
+	public String mulDel(@Validated DelBoardCommand delBoardCommand
+						 ,BindingResult result
+			             , Model model) {
+		if(result.hasErrors()) {
+			System.out.println("최소하나 체크하기");
+			List<BoardDto> list=boardService.getAllList();
+			model.addAttribute("list", list);
+			return "thymeleaf/board/boardlist";
+		}
+		boardService.mulDel(delBoardCommand.getChk());
+		System.out.println("글삭제함");
+		return "redirect:/board/boardList";
+	}
+	
 	
 	@GetMapping(value = "/download")
 	public void download(int file_seq,

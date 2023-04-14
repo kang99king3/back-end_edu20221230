@@ -73,6 +73,10 @@ public class BoardService {
 		return boardMapper.getFileInfo(file_seq);
 	}
 	
+	public boolean mulDel(String[] seqs) {
+		return boardMapper.mulDel(seqs);
+	}
+	
 }
 
 

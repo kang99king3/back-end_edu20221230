@@ -23,7 +23,7 @@ public interface BoardMapper {
 	//글 수정
 	
 	//글 삭제
-	
+	public boolean mulDel(String[] seqs);
 	//파일정보 가져오기
 	public FileBoardDto getFileInfo(int file_seq);
 }

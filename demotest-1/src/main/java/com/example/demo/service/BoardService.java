@@ -24,8 +24,8 @@ public class BoardService {
 	private BoardMapper boardMapper;
 	@Autowired
 	private FileService fileService;
-	@Autowired
-	private BoardDto boardDto;
+//	@Autowired
+//	private BoardDto boardDto;
 	
 
 	public List<BoardDto> getAllList(){
@@ -40,6 +40,7 @@ public class BoardService {
 	public boolean insertBoard(InsertBoardCommand insertBoardCommand
 //			,MultipartFile multiFile) throws IllegalStateException, IOException {
 			,MultipartRequest multipartRequest) throws IllegalStateException, IOException {
+		BoardDto boardDto=new BoardDto();
 		boardDto.setId(insertBoardCommand.getId());
 		boardDto.setTitle(insertBoardCommand.getTitle());
 		boardDto.setContent(insertBoardCommand.getContent());
@@ -52,8 +53,8 @@ public class BoardService {
 //			FileBoardDto fdto=fileService.uploadFile(filePath, multiFile);
 //			boardMapper.insertFileBoard(fdto);//db에 파일 정보 추가
 //		}
-		System.out.println("멀티파일:"+multipartRequest.getFiles("filename").size());
-		if(multipartRequest.getFiles("filename").size()>0) {
+		System.out.println("멀티파일:"+multipartRequest.getFiles("filename").get(0).isEmpty());
+		if(!multipartRequest.getFiles("filename").get(0).isEmpty()) {
 			String filePath="C:/Users/user/git/back-end_edu20221230_2/"
 					+ "demotest-1/src/main/resources/upload";
 			//업로드 후에, 업로드한 파일들의 정보를 가져온다
@@ -66,6 +67,10 @@ public class BoardService {
 			}
 		}
 		return isS;
+	}
+	
+	public FileBoardDto getFileInfo(int file_seq) {
+		return boardMapper.getFileInfo(file_seq);
 	}
 	
 }

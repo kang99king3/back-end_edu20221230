@@ -1,6 +1,7 @@
 package com.example.demo.dtos;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 import org.springframework.stereotype.Component;
@@ -26,7 +27,8 @@ public class BoardDto {
 	private String content;
 	private Date regdate;
 	
-	private FileBoardDto fileBoardDto;
+//	private FileBoardDto fileBoardDto;
+	private List<FileBoardDto> fileBoardDto;
 }
 
 

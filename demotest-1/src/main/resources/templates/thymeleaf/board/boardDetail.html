@@ -19,12 +19,18 @@
 			<td th:text="${dto.title}"></td>
 		</tr>
 		<tr>
-			<th>파일</th>
-			<th:block th:if="${dto.fileBoardDto.origin_filename==null}">
+			<th>파일 [[${#lists.size(dto.fileBoardDto)}]]</th>
+			<th:block th:if="${dto.fileBoardDto[0].origin_filename==null}">
 			<td>첨부파일 없음</td>
 			</th:block>
-			<th:block th:unless="${dto.fileBoardDto.origin_filename==null}">
-			<td><span class="glyphicon glyphicon-folder-close"></span><a href="#" th:text="${dto.fileBoardDto.origin_filename}"></a></td>
+			<th:block th:unless="${dto.fileBoardDto[0].origin_filename==null}">
+			<td>
+				<th:block th:each="fdto:${dto.fileBoardDto}">
+					<span class="glyphicon glyphicon-folder-close"></span>
+				    <a th:href="@{/board/download(file_seq=${fdto.file_seq})}" 
+				       th:text="${fdto.origin_filename}"></a>&nbsp;&nbsp;
+			    </th:block>
+			</td>
 			</th:block>
 		</tr>
 		<tr>

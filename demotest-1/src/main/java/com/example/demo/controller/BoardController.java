@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,13 @@ import org.springframework.web.multipart.MultipartRequest;
 
 import com.example.demo.command.InsertBoardCommand;
 import com.example.demo.dtos.BoardDto;
+import com.example.demo.dtos.FileBoardDto;
 import com.example.demo.dtos.MemberDto;
 import com.example.demo.service.BoardService;
+import com.example.demo.service.FileService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping(value = "/board")
@@ -28,6 +32,8 @@ public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private FileService fileService;
 	
 	@GetMapping(value = "/boardList")
 	public String  boardList(Model model) {
@@ -41,6 +47,7 @@ public class BoardController {
 	public String  boardDetail(int board_seq, Model model) {
 		BoardDto dto=boardService.getBoard(board_seq);
 		model.addAttribute("dto", dto);
+		System.out.println(dto.getFileBoardDto().get(0));
 		return "thymeleaf/board/boardDetail";
 	}
 	
@@ -77,6 +84,26 @@ public class BoardController {
 		}
 		
 		return "redirect:/board/boardList";
+	}
+	
+	@GetMapping(value = "/download")
+	public void download(int file_seq,
+						 HttpServletRequest request,
+						 HttpServletResponse response) {
+		System.out.println("다운로드:"+file_seq);
+		String filePath="C:/Users/user/git/back-end_edu20221230_2/"
+					  + "demotest-1/src/main/resources/upload";
+		FileBoardDto fdto=boardService.getFileInfo(file_seq);
+		
+		try {
+			fileService.fileDownload(filePath,
+									 fdto.getOrigin_filename(),
+									 fdto.getStored_filename(),
+									 request, response);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
 

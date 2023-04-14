@@ -24,8 +24,8 @@ public interface BoardMapper {
 	
 	//글 삭제
 	
-	
-	
+	//파일정보 가져오기
+	public FileBoardDto getFileInfo(int file_seq);
 }
 
 

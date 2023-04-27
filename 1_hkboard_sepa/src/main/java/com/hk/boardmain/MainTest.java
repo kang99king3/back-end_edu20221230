@@ -10,6 +10,7 @@ import com.hk.dtos.HkDto;
 public class MainTest {
 
 	public static void main(String[] args) {
+		System.out.println("작업1");
 //		DataBase db=new DataBase();
 		HkDao db=new HkDao();
 		

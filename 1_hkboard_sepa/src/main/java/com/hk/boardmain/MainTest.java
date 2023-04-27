@@ -11,6 +11,7 @@ public class MainTest {
 
 	public static void main(String[] args) {
 		System.out.println("작업1");
+		System.out.println("작업2");
 //		DataBase db=new DataBase();
 		HkDao db=new HkDao();
 		

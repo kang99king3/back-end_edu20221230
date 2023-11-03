@@ -56,7 +56,7 @@ public class AnsController extends HttpServlet {
 			//1.session삭제하기
 //			session.removeAttribute("readcount");
 			
-			//2.cookie삭제하기
+			//2.cookie삭제하기:상세보기후 글목록으로 이동하면 쿠키 삭제한다.
 			
 			//쿠키의 값을 가져오기: 반환타입이 배열
 			Cookie cookie=getCookie("rseq", request);
@@ -79,10 +79,14 @@ public class AnsController extends HttpServlet {
 			String pnum=request.getParameter("pnum");// <---페이지번호 받기
 			
 			//---현재 페이지 상태 유지하기[세션활용] 시작
+			//상세페이지 조회 직전에 글목록으로 돌아가기 위해 pnum 값 없이 
+			//요청해주고 그럼 pnum이 null인 경우이므로 이경우 저장되어 있던 
+			//session의 pnum값을 사용하여 보여준다.
 			if(pnum==null) { 
 //				pnum=1+"";//페이지번호 없이 요청이 오면 기본 1페이지보여주기
 				pnum=(String)session.getAttribute("pnum");//페이지번호 없이 요청하면 세션값 적용
 			}else {
+				//pnum이 null일 경우 사용하기 위해 담아둔다.
 				session.setAttribute("pnum", pnum);//페이지번호와 함께 요청하면 세션에 새로 저장
 			}
 			//---현재 페이지 상태 유지하기[세션활용] 종료
@@ -94,7 +98,7 @@ public class AnsController extends HttpServlet {
 			int pcount=dao.getPCount();
 			request.setAttribute("pcount", pcount);// Object <---(Integer) int
 			
-			//--추가코드:페이지에 페이징처리 기능 시작           페이지수, 페이지번호, 한번에 볼 페이지범위
+			//--추가코드:페이지에 페이징처리 기능 시작         페이지수, 페이지번호, 한번에 볼 페이지범위
 			Map<String, Integer> map=Paging.pagingValue(pcount, pnum   , 10   );
 			request.setAttribute("pMap", map);
 			//--추가코드:페이지에 페이징처리 기능 종료

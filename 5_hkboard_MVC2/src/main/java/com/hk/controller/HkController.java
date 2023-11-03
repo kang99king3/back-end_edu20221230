@@ -59,7 +59,7 @@ public class HkController extends HttpServlet{
 		String command=requestURI.substring(contextPath.length());
 		//2단계: DAO객체 생성하기(DB에 연결해서 작업하기 위한 준비)
 		HkDao dao=new HkDao();
-		
+		System.out.println("command:"+command);
 		//3단계: command값에 의해 분기 실행(요청에 대한 분기 처리)
 		if(command.equals("/boardlist.board")){//글목록 요청 처리
 			BoardListController action=new BoardListController();

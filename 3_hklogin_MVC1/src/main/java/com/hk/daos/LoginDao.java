@@ -34,7 +34,7 @@ public class LoginDao extends DataBase{
 		Connection conn=null;
 		PreparedStatement psmt=null;
 		
-		String sql=" insert into userinfo values( "
+		String sql=" insert into userinfo2 values( "
 				 + " null,?,?,?,?,?,'Y',?,SYSDATE()) ";
 		
 		try {
@@ -66,7 +66,7 @@ public class LoginDao extends DataBase{
 		PreparedStatement psmt=null;
 		ResultSet rs=null;
 		
-		String sql=" select id,name,role from userinfo "
+		String sql=" select id,name,role from userinfo2 "
 				 + " where id=? and password=? and enabled='Y' ";
 		
 		try {
@@ -99,7 +99,7 @@ public class LoginDao extends DataBase{
 		PreparedStatement psmt=null;
 		ResultSet rs=null;
 		
-		String sql=" select id from userinfo "
+		String sql=" select id from userinfo2 "
 				 + " where id=? ";
 		
 		try {
@@ -129,7 +129,7 @@ public class LoginDao extends DataBase{
 		ResultSet rs=null;
 		
 		String sql=" select id,name,address,email,role,regdate "
-				 + " from userinfo where id=? ";
+				 + " from userinfo2 where id=? ";
 		
 		try {
 			conn=getConnection();
@@ -161,7 +161,7 @@ public class LoginDao extends DataBase{
 		Connection conn=null;
 		PreparedStatement psmt=null;
 		
-		String sql="update userinfo set address=? , email=? where id=? ";
+		String sql="update userinfo2 set address=? , email=? where id=? ";
 		
 		try {
 			conn=getConnection();
@@ -184,7 +184,7 @@ public class LoginDao extends DataBase{
 		Connection conn=null;
 		PreparedStatement psmt=null;
 		
-		String sql="update userinfo set enabled = 'N' where id=? ";
+		String sql="update userinfo2 set enabled = 'N' where id=? ";
 		
 		try {
 			conn=getConnection();
@@ -210,7 +210,7 @@ public class LoginDao extends DataBase{
 		ResultSet rs=null;
 		
 		String sql=" select seq,id,name,address,email,role,enabled,regdate "
-				  + "from userinfo order by regdate ";
+				 + " from userinfo2 order by regdate ";
 				 
 		try {
 			conn=getConnection();
@@ -249,7 +249,7 @@ public class LoginDao extends DataBase{
 		ResultSet rs=null;
 		
 		String sql=" select seq,id,name,role,regdate "
-				  + "from userinfo where enabled='Y' order by regdate ";
+				  + "from userinfo2 where enabled='Y' order by regdate ";
 				 
 		try {
 			conn=getConnection();
@@ -281,7 +281,7 @@ public class LoginDao extends DataBase{
 		Connection conn=null;
 		PreparedStatement psmt=null;
 		
-		String sql="update userinfo set role=? where id=? ";
+		String sql="update userinfo2 set role=? where id=? ";
 		
 		try {
 			conn=getConnection();

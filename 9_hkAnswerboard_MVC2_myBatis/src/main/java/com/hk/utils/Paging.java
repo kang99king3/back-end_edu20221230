@@ -27,11 +27,11 @@ public class Paging {
 		                                     //      10-5=5
 		int nextPageNum=pageEndNum>=pcount?pcount:pageEndNum+1;
 		//     현재페이지가 8일경우:  10   >=   14 ?   15  :  10+1   ---> 11
-		//     현재페이지가 12일경우:  15   >=   14 ?   14  :  14+1   ---> 14   
+		//     현재페이지가 12일경우:  15   >=   14 ?   14  :  15+1   ---> 14   
 		//   1 2 3 4 5 < 6 7 8 9 10 > 11 12 13 14 
 		
 		int startPage=pageEndNum-(pageRange-1);//현재페이지번호가 8일경우 10-(5-1)= 6
-		int endPage=pageEndNum>pcount?pcount:pageEndNum;//
+		int endPage=pageEndNum>pcount?pcount:pageEndNum;
 		
 		map.put("prePageNum", prePageNum);
 		map.put("nextPageNum", nextPageNum);

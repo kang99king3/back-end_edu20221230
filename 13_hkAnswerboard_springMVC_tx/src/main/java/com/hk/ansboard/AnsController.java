@@ -199,7 +199,7 @@ public class AnsController {
 		logger.info("500 오류{}.", locale);
 		model.addAttribute("code", "500오류");
 				
-		return "error/404";
+		return "error/500";
 	}
 }
 

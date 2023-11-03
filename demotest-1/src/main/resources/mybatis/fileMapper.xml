@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.example.demo.mapper.FileMapper">
+	
+	<resultMap type="FileBoardDto" id="FileBoardDtoMap">
+		<id     property="file_seq"          column="FILE_SEQ" />
+		<result property="board_seq"         column="BOARD_SEQ" />
+		<result property="origin_filename"   column="ORIGIN_FILENAME" />
+		<result property="stored_filename"   column="STORED_FILENAME" />
+	</resultMap>
+	
+	<insert id="insertFileBoard" parameterType="FileBoardDto">
+		INSERT INTO FILEBOARD
+		VALUES(NULL,#{board_seq},#{origin_filename},#{stored_filename})
+	</insert>
+	
+	<select id="getFileInfo" parameterType="int" resultType="FileBoardDto">
+		SELECT FILE_SEQ, BOARD_SEQ, ORIGIN_FILENAME, STORED_FILENAME
+		FROM FILEBOARD
+		WHERE FILE_SEQ = #{file_seq}
+	</select>
+	
+	<update id="updateFile" parameterType="FileBoardDto">
+		UPDATE FILEBOARD
+		SET ORIGIN_FILENAME=#{origin_filename},
+		    STORED_FILENAME=#{stored_filename}
+		WHERE FILE_SEQ=#{file_seq}
+	</update>
+</mapper>  
+
+
+
+
+
+

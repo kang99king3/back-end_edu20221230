@@ -13,9 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
 import com.example.demo.command.InsertBoardCommand;
+import com.example.demo.command.UpdateBoardCommand;
 import com.example.demo.dtos.BoardDto;
 import com.example.demo.dtos.FileBoardDto;
 import com.example.demo.mapper.BoardMapper;
+import com.example.demo.mapper.FileMapper;
 
 @Service
 public class BoardService {
@@ -23,9 +25,9 @@ public class BoardService {
 	@Autowired
 	private BoardMapper boardMapper;
 	@Autowired
+	private FileMapper fileMapper;
+	@Autowired
 	private FileService fileService;
-//	@Autowired
-//	private BoardDto boardDto;
 	
 
 	public List<BoardDto> getAllList(){
@@ -34,6 +36,15 @@ public class BoardService {
 	
 	public BoardDto getBoard(int board_seq) {
 		return boardMapper.getBoard(board_seq);
+	}
+	
+	//수정하기
+	public boolean updateBoard(UpdateBoardCommand updateBoardCommand) {
+		BoardDto boardDto=new BoardDto();
+		boardDto.setBoard_seq(updateBoardCommand.getBoard_seq());
+		boardDto.setTitle(updateBoardCommand.getTitle());
+		boardDto.setContent(updateBoardCommand.getContent());
+		return boardMapper.updateBoard(boardDto);
 	}
 	
 	@Transactional
@@ -62,16 +73,16 @@ public class BoardService {
 			for(FileBoardDto fdto:uploadFileList) {
 				//mapper.xml에서 글 추가시 옵션을 설정하면 boardDto에 board_seq값이 담기게 되고
 				//그 값을 파일 insert할때 전달해서 추가할 수 있게 된다.
-				boardMapper.insertFileBoard(
+				fileMapper.insertFileBoard(
 				 new FileBoardDto(0, boardDto.getBoard_seq(), fdto.getOrigin_filename(), fdto.getStored_filename()));
 			}
 		}
 		return isS;
 	}
 	
-	public FileBoardDto getFileInfo(int file_seq) {
-		return boardMapper.getFileInfo(file_seq);
-	}
+//	public FileBoardDto getFileInfo(int file_seq) {
+//		return boardMapper.getFileInfo(file_seq);
+//	}
 	
 	public boolean mulDel(String[] seqs) {
 		return boardMapper.mulDel(seqs);

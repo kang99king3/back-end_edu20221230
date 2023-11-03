@@ -13,7 +13,7 @@
 	
 	<!-- 날짜별 로그 파일 생성 -->
     <appender name="rollingFile" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="/LOG/all.log"/>
+        <param name="File" value="/home/LOG/all.log"/>
         <param name="Append" value="true"/>
         <!-- param name="MaxFileSize" value="100MB"/ -->
         <!-- param name="MaxBackupIndex" value="2"></param -->
@@ -48,7 +48,7 @@
 	<!-- Root Logger -->
 	<root>
 		<priority value="info" />
-		<appender-ref ref="console" />
+		<appender-ref ref="rollingFile" />
 	</root>
 	
 </log4j:configuration>

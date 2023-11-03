@@ -9,8 +9,6 @@
 <body>
 <div layout:fragment="content">
 <h1>상세보기</h1>
-<form th:action="@{/board/boardUpdate}" method="post" th:object="${updateBoardCommand}">
-<input type="hidden" name="board_seq" th:value="${dto.board_seq}" th:field="*{board_seq}" />
 <table class="table">
 		<tr>
 			<th>작성자[ID]</th>
@@ -18,10 +16,7 @@
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td>
-				<input type="text" name="title" th:value="${dto.title}" th:field="*{title}" />
-				<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
-			</td>
+			<td th:text="${dto.title}"></td>
 		</tr>
 		<tr>
 			<th>파일 [[${#lists.size(dto.fileBoardDto)}]]</th>
@@ -43,21 +38,18 @@
 			<td><textarea 	th:text="${dto.content}" 
 							readonly="readonly" 
 							class="form-control"  
-							th:field="*{content}"
 							name="content" rows="10" cols="60"></textarea>
-				<span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span>
+				
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-<!-- 				<button th:onclick="|location.href='@{/board/boardUpdateForm(board_seq=${dto.board_seq})}'|" type="button" class="btn">수정</button> -->
-				<button type="submit" class="btn">수정</button>
+				<button th:onclick="|location.href='@{/board/boardUpdateForm(board_seq=${dto.board_seq})}'|" type="button" class="btn">수정</button>
 				<button th:onclick="|location.href='@{/board/mulDel(chk=${dto.board_seq})}'|" type="button" class="btn">삭제</button>
 				<button  class="btn"type="button" th:onclick="|location.href='@{/board/boardList}'|" >목록</button>
 			</td>
 		</tr>
 	</table>
-</form>
 </div>
 </body>
 </html>

@@ -17,15 +17,20 @@ public interface BoardMapper {
 	
 	//글추가
 	public boolean insertBoard(BoardDto dto);
+	
 	//파일 정보 추가
 	public boolean insertFileBoard(FileBoardDto dto);
 	
 	//글 수정
+	public boolean updateBoard(BoardDto dto);
 	
 	//글 삭제
 	public boolean mulDel(String[] seqs);
+	
 	//파일정보 가져오기
 	public FileBoardDto getFileInfo(int file_seq);
+	
+	
 }
 
 

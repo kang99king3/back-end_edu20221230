@@ -51,10 +51,18 @@ public class CalController {
 			year=cal.get(Calendar.YEAR)+"";
 			month=(cal.get(Calendar.MONTH)+1)+"";
 		}
-		String id="kbj";//나중에는 세션에서 로그인한 아이디로 쓰자
-		String yyyyMM=year+Util.isTwo(month);//"202304" 6자리
-		List<CalDto> clist = calService.CalViewList(id, yyyyMM);
-		model.addAttribute("clist", clist);
+		
+		try {
+			String id="kbj";//나중에는 세션에서 로그인한 아이디로 쓰자
+			String yyyyMM=year+Util.isTwo(month);//"202304" 6자리
+			System.out.println("yyyyMM:"+yyyyMM);
+			List<CalDto> clist = calService.CalViewList(id, yyyyMM);
+			model.addAttribute("clist", clist);
+		} catch (Exception e) {
+			model.addAttribute("code", e.getMessage());
+			return "error/500";
+//			e.printStackTrace();
+		}
 	
 		return "calendar";//redirect가 아니죠?? forward 방식으로 응답
 	}
@@ -175,7 +183,8 @@ public class CalController {
 	@RequestMapping(value = "/error500.do", method = RequestMethod.GET)
 	public String error500(Locale locale, Model model) {
 		logger.info("500 오류{}.", locale);
-		model.addAttribute("code", "500오류");
+		
+		model.addAttribute("code", "500오류:");
 				
 		return "error/404";
 	}

@@ -22,7 +22,7 @@ public class TestInterceptor implements HandlerInterceptor{
 //				response.sendRedirect("index.jsp");
 //			}else 
 		if(request.getRequestURI().contains("/boardlist.do")){
-			System.out.println("글목록은 진행시키고..");
+			System.out.println("글목록은 진행시키고.."+request.getRequestURI());
 			return true;				
 		}else if(request.getRequestURI().contains("/boardDetail.do")) {
 			if(obj==null) {

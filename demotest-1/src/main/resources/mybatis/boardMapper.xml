@@ -38,23 +38,23 @@
 	<insert id="insertBoard" parameterType="BoardDto"
 							useGeneratedKeys="true" keyProperty="board_seq" >
 		INSERT INTO TESTBOARD
-		VALUES(NULL, #{id}, #{title}, #{content},SYSDATE())
+		VALUES(NULL, #{id}, #{title}, #{content},SYSDATE(),'N')
 	</insert>
 	
-	<insert id="insertFileBoard" parameterType="FileBoardDto">
+<!-- 	<insert id="insertFileBoard" parameterType="FileBoardDto"> -->
 <!-- 		<selectKey resultType="int" order="BEFORE" keyProperty="board_seq"  -->
 <!-- 				   keyColumn="board_seq"> -->
 <!-- 			select LAST_INSERT_ID()  -->
 <!-- 		</selectKey> -->
-		INSERT INTO FILEBOARD
-		VALUES(NULL,#{board_seq},#{origin_filename},#{stored_filename})
-	</insert>
+<!-- 		INSERT INTO FILEBOARD -->
+<!-- 		VALUES(NULL,#{board_seq},#{origin_filename},#{stored_filename}) -->
+<!-- 	</insert> -->
 	
-	<select id="getFileInfo" parameterType="int" resultType="FileBoardDto">
-		SELECT FILE_SEQ, BOARD_SEQ, ORIGIN_FILENAME, STORED_FILENAME
-		FROM FILEBOARD
-		WHERE FILE_SEQ = #{file_seq}
-	</select>
+<!-- 	<select id="getFileInfo" parameterType="int" resultType="FileBoardDto"> -->
+<!-- 		SELECT FILE_SEQ, BOARD_SEQ, ORIGIN_FILENAME, STORED_FILENAME -->
+<!-- 		FROM FILEBOARD -->
+<!-- 		WHERE FILE_SEQ = #{file_seq} -->
+<!-- 	</select> -->
 	
 	<update id="mulDel" parameterType="Map">
 		UPDATE TESTBOARD SET DELFLAG = 'Y' WHERE BOARD_SEQ IN
@@ -62,6 +62,19 @@
 			#{board_seq}
 		</foreach>
 	</update>
+	
+	<update id="updateBoard" parameterType="BoardDto">
+		UPDATE TESTBOARD 
+		SET TITLE=#{title}, CONTENT=#{content}
+		WHERE board_seq= #{board_seq}
+	</update>
+	
+<!-- 	<update id="updateFile" parameterType="FileBoardDto"> -->
+<!-- 		UPDATE FILEBOARD -->
+<!-- 		SET ORIGIN_FILENAME=#{origin_filename}, -->
+<!-- 		    STORED_FILENAME=#{stored_filename} -->
+<!-- 		WHERE FILE_SEQ=#{file_seq} -->
+<!-- 	</update> -->
 </mapper>  
 
 

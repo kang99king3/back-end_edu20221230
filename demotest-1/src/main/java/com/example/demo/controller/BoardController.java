@@ -12,12 +12,14 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
 import com.example.demo.command.DelBoardCommand;
 import com.example.demo.command.InsertBoardCommand;
+import com.example.demo.command.UpdateBoardCommand;
 import com.example.demo.dtos.BoardDto;
 import com.example.demo.dtos.FileBoardDto;
 import com.example.demo.dtos.MemberDto;
@@ -48,11 +50,35 @@ public class BoardController {
 	@GetMapping(value = "/boardDetail")
 	public String  boardDetail(int board_seq, Model model) {
 		BoardDto dto=boardService.getBoard(board_seq);
+		model.addAttribute("updateBoardCommand", 
+				new UpdateBoardCommand(dto.getBoard_seq(),
+									   dto.getTitle(),
+									   dto.getContent()));
 		model.addAttribute("dto", dto);
 		System.out.println(dto.getFileBoardDto().get(0));
 		return "thymeleaf/board/boardDetail";
 	}
 	
+	@PostMapping(value = "/boardUpdate")
+	public String boardUpdate(@Validated UpdateBoardCommand updateBoardCommand
+							  ,BindingResult result
+							  ,Model model
+							  ,HttpServletRequest request) {
+		if(result.hasErrors()) {
+			System.out.println("수정 목록을 모두 입력하세요");
+			return "thymeleaf/board/boardDetail";
+		}
+		
+		try { 
+			boardService.updateBoard(updateBoardCommand);
+			System.out.println("글수정함");
+		}catch(Exception e) {
+			e.printStackTrace();
+			return "redirect:/board/boardDetail?board_seq="+updateBoardCommand.getBoard_seq();
+		}
+		
+		return "redirect:/board/boardDetail?board_seq="+updateBoardCommand.getBoard_seq();
+	}
 	@GetMapping(value = "/boardInsertForm")
 	public String  boardInsertForm(Model model) {
 		model.addAttribute("insertBoardCommand", 
@@ -88,7 +114,8 @@ public class BoardController {
 		return "redirect:/board/boardList";
 	}
 	
-	@PostMapping(value = "/mulDel")
+//	@PostMapping(value = "/mulDel")
+	@RequestMapping(value="mulDel")
 	public String mulDel(@Validated DelBoardCommand delBoardCommand
 						 ,BindingResult result
 			             , Model model) {
@@ -111,9 +138,9 @@ public class BoardController {
 		System.out.println("다운로드:"+file_seq);
 		String filePath="C:/Users/user/git/back-end_edu20221230_2/"
 					  + "demotest-1/src/main/resources/upload";
-		FileBoardDto fdto=boardService.getFileInfo(file_seq);
+		FileBoardDto fdto=fileService.getFileInfo(file_seq);
 		
-		try {
+		try { 
 			fileService.fileDownload(filePath,
 									 fdto.getOrigin_filename(),
 									 fdto.getStored_filename(),

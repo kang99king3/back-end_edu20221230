@@ -16,7 +16,7 @@ public class HomeController {
 	@GetMapping(value="/home")
 	public String home(Model model) {
 		System.out.println("home");
-//		model.addAttribute("msg", "spring boot");
+		model.addAttribute("imgname", "/img/arrow.png");
 		return "thymeleaf/home";
 //		return "home";
 	}

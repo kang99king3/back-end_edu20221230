@@ -11,12 +11,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
 import com.example.demo.dtos.FileBoardDto;
+import com.example.demo.mapper.FileMapper;
 
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +27,9 @@ import jakarta.servlet.http.HttpServletResponse;
 @Service
 public class FileService {
 
+	@Autowired
+	private FileMapper fileMapper;
+	
 	//파일 하나 업로드 하기
 	public FileBoardDto uploadFile(String uploadPath,MultipartFile multipartFile ) 
 									throws IllegalStateException, IOException {
@@ -106,6 +111,10 @@ public class FileService {
 				}
 			}
 		}
+	}
+	
+	public FileBoardDto getFileInfo(int file_seq) {
+		return fileMapper.getFileInfo(file_seq);
 	}
 }
 

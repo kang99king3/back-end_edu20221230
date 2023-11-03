@@ -47,7 +47,7 @@
 		SELECT CEIL(COUNT(*)/10) FROM ANSWERBOARD   
 	</select>
 	
-	<insert id="insertBoard">
+	<insert id="insertBoard" parameterType="ansDto">
 		INSERT INTO ANSWERBOARD 
 		 VALUES(null,#{id},#{title},#{content},SYSDATE(), 
 		(SELECT NVL(MAX(REFER),0)+1 FROM ANSWERBOARD ALIAS_FOR_SUBQUERY),0,0,0,'N') 

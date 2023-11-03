@@ -22,6 +22,21 @@
 <!--5. Custom styles for this template -->
 <link href="css/starter-template.css" rel="stylesheet">
  <link href="css/carousel.css" rel="stylesheet">
+<style type="text/css">
+.footer{
+	position: absolute;
+	left:0;
+	right: 0;
+	bottom: 0;
+	width:100%;
+/* 	padding:15px 0; */
+	text-align: center;
+	color:white; 
+	line-height:50px; 
+	height:50px; 
+	background-color: #3c3c3c;
+}
+</style>
 </head>
 <%
 	LoginDto ldto =(LoginDto)session.getAttribute("ldto");

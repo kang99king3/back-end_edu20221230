@@ -68,6 +68,8 @@ public class BoardService {
 		if(!multipartRequest.getFiles("filename").get(0).isEmpty()) {
 			String filePath="C:/Users/user/git/back-end_edu20221230_2/"
 					+ "demotest-1/src/main/resources/upload";
+//			String saveDirectory=request.getSession().getServletContext()
+//		 			.getRealPath("upload");
 			//업로드 후에, 업로드한 파일들의 정보를 가져온다
 			List<FileBoardDto> uploadFileList= fileService.uploadFiles(filePath, multipartRequest);
 			for(FileBoardDto fdto:uploadFileList) {

@@ -115,7 +115,7 @@ public class BoardController {
 	}
 	
 //	@PostMapping(value = "/mulDel")
-	@RequestMapping(value="mulDel")
+	@RequestMapping(value="mulDel",method = {RequestMethod.POST,RequestMethod.GET})
 	public String mulDel(@Validated DelBoardCommand delBoardCommand
 						 ,BindingResult result
 			             , Model model) {

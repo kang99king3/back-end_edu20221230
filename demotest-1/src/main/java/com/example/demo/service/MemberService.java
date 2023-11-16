@@ -49,6 +49,7 @@ public class MemberService {
 			if(passwordEncoder.matches(loginCommand.getPassword(), mdto.getPassword())) {
 				System.out.println("패스워드 비교: 회원이 맞습니다.");
 				request.getSession().setAttribute("mdto", mdto);
+				request.getSession().setMaxInactiveInterval(30*60);
 				return path;
 			}else {
 				System.out.println("패스워드가 틀림");
